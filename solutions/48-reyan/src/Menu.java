@@ -67,13 +67,9 @@ public class Menu {
     }
 
     private void buttonEventHandler(){
-        buttonRandomAI.setOnMouseClicked(event ->{
-            themeDeterminerFromRadioButtons(false);
-        });
+        buttonRandomAI.setOnMouseClicked(e -> themeDeterminerFromRadioButtons(false));
 
-        buttonDefensiveAI.setOnMouseClicked(event ->{
-            themeDeterminerFromRadioButtons(true);
-        });
+        buttonDefensiveAI.setOnMouseClicked(e -> themeDeterminerFromRadioButtons(true));
     }
 
     private void themeDeterminerFromRadioButtons(boolean isdefensivePlayerAI){
