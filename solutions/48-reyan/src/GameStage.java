@@ -1,6 +1,11 @@
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -87,6 +92,13 @@ public class GameStage {
         lines[l] = drawLine(400, 30, 400, 348);
 
         lineGroup.getChildren().addAll(lines[0], lines[1], lines[2], lines[3], lines[4]);
+    }
+
+    private void thingsToChangeForTheme(Color colorOfPane, Color colorOfLine){
+        gamePane.setBackground(new Background((new BackgroundFill(colorOfPane, CornerRadii.EMPTY, Insets.EMPTY))));
+        for(int i=0; i<4; i++){
+            lines[i].setStroke(colorOfLine);
+        }
     }
 
     protected Pane getGamePane(){ return gamePane; }
