@@ -34,9 +34,9 @@ public class ClassicTheme implements Theme {
     private void randomAIPlayerClassic(){
         Tile tile;
         tile = randomAIPlayer.getPlayerTile();
-        if(!tile.getIsOccupied()){
+        if(!tile.getIsOccupied()) {
             tile.setPlayerText("O");
             tile.setIsOccupied(true);
-        } else { return; }
+        }
     }
 }
