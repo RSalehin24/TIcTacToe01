@@ -1,6 +1,6 @@
 import javafx.scene.paint.Color;
 
-public class ClassicTheme {
+public class ClassicTheme implements Theme {
 
     private Tile[] tiles;
     private GameStage gameStage;
@@ -12,6 +12,7 @@ public class ClassicTheme {
         randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
         gameStage.thingsToChangeForTheme(Color.WHITE, Color.BLACK);
         changePlayerSign();
+        gameStage.setTheme(this);
     }
 
     private void changePlayerSign(){

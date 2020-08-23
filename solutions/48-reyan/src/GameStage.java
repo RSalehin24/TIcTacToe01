@@ -25,14 +25,13 @@ public class GameStage {
     private Line[] lines = new Line[9];
 
     protected GameStage(){
-        menu = new Menu();
-        gamePane = createGamePane();
+        menu = new Menu(this);
         gameScene = createGameScene();
         gameStage = createShowGameStage();
     }
 
     protected Pane createGamePane(){
-        Pane gamePane = new Pane();
+        gamePane = new Pane();
         gamePane.setPrefSize(600, 380);
 
         createTileGroup();
@@ -98,6 +97,12 @@ public class GameStage {
         gamePane.setBackground(new Background((new BackgroundFill(colorOfPane, CornerRadii.EMPTY, Insets.EMPTY))));
         for(int i=0; i<4; i++){
             lines[i].setStroke(colorOfLine);
+        }
+    }
+
+    protected void setTheme(Theme theme){
+        for(int i=0; i<9; i++){
+            tiles[i].setTheme(theme);
         }
     }
 

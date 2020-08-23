@@ -18,7 +18,10 @@ public class Menu {
     private RadioButton radioButtonForest;
     private RadioButton radioButtonHighContrast;
 
-    public Menu(){
+    private GameStage gameStage;
+
+    public Menu(GameStage gameStage){
+        this.gameStage = gameStage;
         textTheme = createText("Theme", 410, 30);
         createButtonGroup(410, 410, 280, 320);
         createRadioButtonGroup(410, 40, 62, 84);
@@ -75,6 +78,7 @@ public class Menu {
 
     private void themeDeterminerFromRadioButtons(boolean isdefensivePlayerAI){
         if(radioButtonClassic.isSelected()){
+            ClassicTheme classicTheme = new ClassicTheme(gameStage);
         }
         else if(radioButtonForest.isSelected()){
         }

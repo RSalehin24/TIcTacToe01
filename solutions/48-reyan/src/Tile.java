@@ -7,6 +7,7 @@ public class Tile extends StackPane {
     private Text text;
     private boolean isOccupied = false;
     private boolean isHuman = false;
+    private Theme theme;
 
     protected Tile(){
         text = new Text();
@@ -18,16 +19,16 @@ public class Tile extends StackPane {
 
     private void mouseEventHandler(){
         setOnMouseClicked(event -> {
+            if(theme== null) return;
             if(event.getButton() == MouseButton.PRIMARY){
-                if(!isOccupied) text.setText("X");
+                if(!isOccupied) theme.gameFunctionThemeBasedPlayer(this);
                 isHuman = true;
-            }
-            else if(event.getButton() == MouseButton.SECONDARY){
-                if(!isOccupied) text.setText("O");
             }
         });
     }
 
+    protected void setTheme(Theme theme){ this.theme = theme;}
+    protected Theme getTheme(){ return theme; }
     protected boolean getIsOccupied(){ return isOccupied; }
     protected boolean getIsHuman(){ return isHuman; }
     protected void setIsOccupied(boolean isOccupied){ this.isOccupied = isOccupied; }
