@@ -3,11 +3,9 @@ import javafx.scene.paint.Color;
 public class ClassicTheme implements Theme {
 
     private Tile[] tiles;
-    private GameStage gameStage;
     private RandomAIPlayer randomAIPlayer;
 
     protected ClassicTheme(GameStage gameStage){
-        this.gameStage = gameStage;
         this.tiles = gameStage.getTiles();
         randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
         gameStage.thingsToChangeForTheme(Color.WHITE, Color.BLACK);
