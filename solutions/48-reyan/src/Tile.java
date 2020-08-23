@@ -1,3 +1,4 @@
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -8,6 +9,8 @@ public class Tile extends StackPane {
     private boolean isOccupied = false;
     private boolean isHuman = false;
     private Theme theme;
+    private boolean imageViewIdentifier;
+    private ImageView imageView;
 
     protected Tile(){
         text = new Text();
@@ -34,4 +37,8 @@ public class Tile extends StackPane {
     protected void setIsOccupied(boolean isOccupied){ this.isOccupied = isOccupied; }
     protected void setIsHuman(boolean isHuman){ this.isHuman = isHuman; }
     protected void setPlayerText(String string){ text.setText(string); }
+    protected void setImageView(ImageView imageView){ this.imageView = imageView; }
+    protected ImageView getImageView(){ return imageView; }
+    protected boolean getImageViewIdentifier(){ return imageViewIdentifier; }
+    protected void setImageViewIdentifier(boolean imageViewIdentifier) { this.imageViewIdentifier = imageViewIdentifier; }
 }

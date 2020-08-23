@@ -16,6 +16,7 @@ public class ClassicTheme implements Theme {
     private void changePlayerSign(){
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
+                if(tiles[i].getImageViewIdentifier()) { tiles[i].getChildren().remove(tiles[i].getImageView()); }
                 if(tiles[i].getIsHuman()){ tiles[i].setPlayerText("X"); }
                 else { tiles[i].setPlayerText("O");}
             }

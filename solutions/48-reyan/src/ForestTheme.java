@@ -46,6 +46,8 @@ public class ForestTheme implements Theme {
     private void addImageView(String imageName, Tile tile){
         Image image= new Image(imageName);
         ImageView imageView = new ImageView(image);
+        tile.setImageView(imageView);
+        tile.setImageViewIdentifier(true);
         imageView.setFitHeight(100);
         imageView.setFitWidth(100);
         tile.getChildren().add(imageView);
