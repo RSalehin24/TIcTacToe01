@@ -81,6 +81,7 @@ public class Menu {
             ClassicTheme classicTheme = new ClassicTheme(gameStage);
         }
         else if(radioButtonForest.isSelected()){
+            ForestTheme forestTheme = new ForestTheme(gameStage);
         }
         else if(radioButtonHighContrast.isSelected()){
         }
