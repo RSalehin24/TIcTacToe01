@@ -11,7 +11,10 @@ public class Tile extends StackPane {
         text.setFont(Font.font(75));
 
         getChildren().addAll(text);
+        mouseEventHandler();
+    }
 
+    private void mouseEventHandler(){
         setOnMouseClicked(event -> {
             if(event.getButton() == MouseButton.PRIMARY){
                 text.setText("X");
