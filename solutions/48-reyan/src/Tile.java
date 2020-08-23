@@ -30,5 +30,7 @@ public class Tile extends StackPane {
 
     protected boolean getIsOccupied(){ return isOccupied; }
     protected boolean getIsHuman(){ return isHuman; }
+    protected void setIsOccupied(boolean isOccupied){ this.isOccupied = isOccupied; }
+    protected void setIsHuman(boolean isHuman){ this.isHuman = isHuman; }
     protected void setPlayerText(String string){ text.setText(string); }
 }
