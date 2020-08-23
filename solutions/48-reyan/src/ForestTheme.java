@@ -11,7 +11,7 @@ public class ForestTheme implements Theme {
     protected ForestTheme(GameStage gameStage){
         this.tiles = gameStage.getTiles();
         randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
-        gameStage.thingsToChangeForTheme(gameStage.getGamePane(), Color.WHITE, Color.BLACK);
+        gameStage.thingsToChangeForTheme(gameStage.getGamePane(), Color.LIGHTGREEN, Color.DARKGREEN);
         changePlayerSign();
         gameStage.setTheme(this);
     }
@@ -19,8 +19,8 @@ public class ForestTheme implements Theme {
     private void changePlayerSign(){
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
-                if(tiles[i].getIsHuman()){ tiles[i].setPlayerText("X"); }
-                else { tiles[i].setPlayerText("O");}
+                if(tiles[i].getIsHuman()){ addImageView("flower.jpg", tiles[i]); }
+                else { addImageView("fruit.jpg", tiles[i]); }
             }
         }
     }

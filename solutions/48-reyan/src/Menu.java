@@ -68,7 +68,6 @@ public class Menu {
 
     private void buttonEventHandler(){
         buttonRandomAI.setOnMouseClicked(e -> themeDeterminerFromRadioButtons(false));
-
         buttonDefensiveAI.setOnMouseClicked(e -> themeDeterminerFromRadioButtons(true));
     }
 
