@@ -8,7 +8,7 @@ public class ClassicTheme implements Theme {
     protected ClassicTheme(GameStage gameStage){
         this.tiles = gameStage.getTiles();
         randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
-        gameStage.thingsToChangeForTheme(Color.WHITE, Color.BLACK);
+        gameStage.thingsToChangeForTheme(gameStage.getGamePane(), Color.WHITE, Color.BLACK);
         changePlayerSign();
         gameStage.setTheme(this);
     }
