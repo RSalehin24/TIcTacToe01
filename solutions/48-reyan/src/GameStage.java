@@ -2,19 +2,25 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class GameStage {
     private Pane gamePane;
     private Scene gameScene;
     private Stage gameStage;
+    private Menu menu;
+    private Text textTheme;
     private Group tileGroup = new Group();
     private Group lineGroup = new Group();
+    private Group radioButtonGroup = new Group();
+    private Group buttonGroup = new Group();
 
     private Tile[] tiles = new Tile[9];
     private Line[] lines = new Line[9];
 
     protected GameStage(){
+        menu = new Menu();
         gamePane = createGamePane();
         gameScene = createGameScene();
         gameStage = createShowGameStage();
@@ -22,12 +28,16 @@ public class GameStage {
 
     protected Pane createGamePane(){
         Pane gamePane = new Pane();
-        gamePane.setPrefSize(585, 380);
+        gamePane.setPrefSize(600, 380);
 
         createTileGroup();
         createLineGroup();
 
-        gamePane.getChildren().addAll(tileGroup, lineGroup);
+        textTheme = menu.getTextTheme();
+        radioButtonGroup = menu.getRadioButtonGroup();
+        buttonGroup = menu.getButtonGroup();
+
+        gamePane.getChildren().addAll(tileGroup, lineGroup, textTheme, buttonGroup, radioButtonGroup);
         return gamePane;
     }
 
