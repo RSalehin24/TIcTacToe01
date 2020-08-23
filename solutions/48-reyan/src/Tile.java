@@ -5,6 +5,8 @@ import javafx.scene.text.Text;
 
 public class Tile extends StackPane {
     private Text text;
+    private boolean isOccupied = false;
+    private boolean isHuman = false;
 
     protected Tile(){
         text = new Text();
@@ -17,11 +19,15 @@ public class Tile extends StackPane {
     private void mouseEventHandler(){
         setOnMouseClicked(event -> {
             if(event.getButton() == MouseButton.PRIMARY){
-                text.setText("X");
+                if(!isOccupied) text.setText("X");
+                isHuman = true;
             }
             else if(event.getButton() == MouseButton.SECONDARY){
-                text.setText("O");
+                if(!isOccupied) text.setText("O");
             }
         });
     }
+
+    protected boolean getIsOccupied(){ return isOccupied; }
+    protected boolean getIsHuman(){ return isHuman; }
 }
