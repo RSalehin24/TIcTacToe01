@@ -79,6 +79,7 @@ public class Menu {
             ForestTheme forestTheme = new ForestTheme(gameStage);
         }
         else if(radioButtonHighContrast.isSelected()){
+            HighContrastTheme highContrastTheme = new HighContrastTheme(gameStage);
         }
     }
 

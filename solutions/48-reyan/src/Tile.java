@@ -6,6 +6,7 @@ import javafx.scene.text.Text;
 
 public class Tile extends StackPane {
     private Text text;
+    private boolean textIdetifier;
     private boolean isOccupied = false;
     private boolean isHuman = false;
     private Theme theme;
@@ -30,13 +31,15 @@ public class Tile extends StackPane {
         });
     }
 
+    protected boolean getTextIdetifier(){ return textIdetifier; }
+    protected void setTextIdetifier(boolean textIdetifier){ this.textIdetifier = textIdetifier;}
     protected void setTheme(Theme theme){ this.theme = theme;}
     protected Theme getTheme(){ return theme; }
     protected boolean getIsOccupied(){ return isOccupied; }
     protected boolean getIsHuman(){ return isHuman; }
     protected void setIsOccupied(boolean isOccupied){ this.isOccupied = isOccupied; }
     protected void setIsHuman(boolean isHuman){ this.isHuman = isHuman; }
-    protected void setPlayerText(String string){ text.setText(string); }
+    protected void setText(String string){ text.setText(string); }
     protected void setImageView(ImageView imageView){ this.imageView = imageView; }
     protected ImageView getImageView(){ return imageView; }
     protected boolean getImageViewIdentifier(){ return imageViewIdentifier; }
