@@ -85,9 +85,6 @@ public class Menu {
         }
         else if(radioButtonHighContrast.isSelected()){
         }
-        else{
-            return;
-        }
     }
 
     protected Text getTextTheme(){ return textTheme; }
