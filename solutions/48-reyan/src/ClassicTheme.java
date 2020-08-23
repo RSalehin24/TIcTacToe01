@@ -23,15 +23,15 @@ public class ClassicTheme implements Theme {
                 if(tiles[i].getImageViewIdentifier()) { tiles[i].getChildren().remove(tiles[i].getImageView()); }
                 if(tiles[i].getIsHuman()){
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-                    tiles[i].setText("X"); }
-                else { tiles[i].setText("O");}
+                    tiles[i].setClassicPlayer("X"); }
+                else { tiles[i].setClassicPlayer("O");}
             }
         }
     }
 
     public void gameFunctionThemeBasedPlayer(Tile tile){
         if(!tile.getIsOccupied()){
-            tile.setText("X");
+            tile.setClassicPlayer("X");
             tile.setIsOccupied(true);
             tile.setIsHuman(true);
         }
@@ -42,8 +42,8 @@ public class ClassicTheme implements Theme {
         Tile tile;
         tile = randomAIPlayer.getPlayerTile();
         if(!tile.getIsOccupied()) {
-            tile.setText("O");
-            tile.setTextIdetifier(true);
+            tile.setClassicPlayer("O");
+            tile.setClassicPlayerIdentifier(true);
             tile.setIsOccupied(true);
         }
     }
