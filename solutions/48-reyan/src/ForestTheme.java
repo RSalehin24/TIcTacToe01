@@ -6,18 +6,20 @@ public class ForestTheme implements Theme {
 
 
     private Tile[] tiles;
+    private boolean isDefensivePlayerAI;
+
     private RandomAIPlayer randomAIPlayer;
     private DefensiveAIPlayer defensiveAIPlayer;
     private GameLogicForWinning gameLogicForWinning;
 
-    private boolean isDefensivePlayerAI;
+
 
     protected ForestTheme(GameStage gameStage, boolean isDefensivePlayerAI){
         this.isDefensivePlayerAI = isDefensivePlayerAI;
-        this.tiles = gameStage.getTiles();
-        this.randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
-        this.defensiveAIPlayer = new DefensiveAIPlayer(gameStage);
-        this.gameLogicForWinning = new GameLogicForWinning(gameStage);
+        randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
+        defensiveAIPlayer = new DefensiveAIPlayer(gameStage);
+        gameLogicForWinning = new GameLogicForWinning(gameStage);
+        tiles = gameStage.getTiles();
         gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         changePlayerSign();
         gameStage.setTheme(this);

@@ -1,17 +1,19 @@
 public class DefensiveAIPlayer {
 
     private Tile[] tiles;
+
     private boolean[] occupiedHuman;
     private boolean[] occupiedAI;
+
     private RandomAIPlayer randomAIPlayer;
     private GameLogicForWinning gameLogicForWinning;
 
     public DefensiveAIPlayer(GameStage gameStage){
-        this.tiles = gameStage.getTiles();
-        randomAIPlayer = new RandomAIPlayer(tiles);
-        gameLogicForWinning = new GameLogicForWinning(gameStage);
+        tiles = gameStage.getTiles();
         occupiedHuman = new boolean[9];
         occupiedAI = new boolean[9];
+        randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
+        gameLogicForWinning = new GameLogicForWinning(gameStage);
     }
 
     protected Tile getPlayerTile(){

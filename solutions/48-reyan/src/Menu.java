@@ -66,11 +66,6 @@ public class Menu {
         buttonGroup.getChildren().addAll(buttonRandomAI, buttonDefensiveAI);
     }
 
-    private void buttonEventHandler(){
-        buttonRandomAI.setOnMouseClicked(e -> themeDeterminerFromRadioButtons(false));
-        buttonDefensiveAI.setOnMouseClicked(e -> themeDeterminerFromRadioButtons(true));
-    }
-
     private void themeDeterminerFromRadioButtons(boolean isdefensivePlayerAI){
         if(radioButtonClassic.isSelected()){
             ClassicTheme classicTheme = new ClassicTheme(gameStage, isdefensivePlayerAI);
@@ -81,6 +76,11 @@ public class Menu {
         else if(radioButtonHighContrast.isSelected()){
             HighContrastTheme highContrastTheme = new HighContrastTheme(gameStage, isdefensivePlayerAI);
         }
+    }
+
+    private void buttonEventHandler(){
+        buttonRandomAI.setOnMouseClicked(e -> themeDeterminerFromRadioButtons(false));
+        buttonDefensiveAI.setOnMouseClicked(e -> themeDeterminerFromRadioButtons(true));
     }
 
     protected Text getTextTheme(){ return textTheme; }

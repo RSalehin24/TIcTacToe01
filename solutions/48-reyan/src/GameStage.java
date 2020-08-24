@@ -11,11 +11,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class GameStage {
-    private Pane paneOfGame;
-    private Scene sceneOfGame;
-    private Stage stageOfGame;
-    private Menu menu;
+
     private Text textTheme;
+    private Pane paneOfGame;
+    private Stage stageOfGame;
+
     private Group tileGroup = new Group();
     private Group lineGroup = new Group();
     private Group radioButtonGroup = new Group();
@@ -24,14 +24,16 @@ public class GameStage {
     private Tile[] tiles = new Tile[9];
     private Line[] lines = new Line[9];
 
-    protected GameStage(){
+    private Menu menu;
+
+
+    protected void createGameStage(){
         menu = new Menu();
         menu.createMenu(this);
-        sceneOfGame = createGameScene();
         stageOfGame = createShowGameStage();
     }
 
-    protected Pane createGamePane(){
+    private Pane createGamePane(){
         paneOfGame = new Pane();
         paneOfGame.setPrefSize(600, 380);
 
@@ -46,7 +48,7 @@ public class GameStage {
         return paneOfGame;
     }
 
-    protected Scene createGameScene(){
+    private Scene createGameScene(){
         return new Scene(createGamePane());
     }
 
