@@ -53,9 +53,9 @@ public class HighContrastTheme implements Theme{
         occupiedTileCheckHighContrast(tile, Color.WHITE, false);
     }
 
-    private void occupiedTileCheckHighContrast(Tile tile, Color color, boolean isHuman){
+    private void occupiedTileCheckHighContrast(Tile tile, Color playerSpecifiedColor, boolean isHuman){
         if(!tile.getIsOccupied()){
-            tile.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+            tile.setBackground(new Background(new BackgroundFill(playerSpecifiedColor, CornerRadii.EMPTY, Insets.EMPTY)));
             tile.setIsOccupied(true);
             tile.setIsHuman(isHuman);
             gameLogicForWinning.gameEndChecker(Color.DARKGREY);
