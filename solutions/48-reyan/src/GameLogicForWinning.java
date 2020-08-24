@@ -80,6 +80,12 @@ public class GameLogicForWinning {
         drawChecking();
     }
 
+    private void drawChecking(){
+        boolean draw = true;
+        for(int i=0; i<9; i++){ draw = draw && tiles[i].getIsOccupied(); }
+        if(draw){ start(2); }
+    }
+
     private void drawLineForMatchingMoves(double x1, double y1, double x2, double y2, Color color){
         Line line = gameStage.drawLine(x1, y1, x2, y2);
         line.setStroke(color);
@@ -101,12 +107,6 @@ public class GameLogicForWinning {
             }
         };
         timer.scheduleAtFixedRate(timerTask, 1000, 1000);
-    }
-
-    private void drawChecking(){
-        boolean draw = true;
-        for(int i=0; i<9; i++){ draw = draw && tiles[i].getIsOccupied(); }
-        if(draw){ start(2); }
     }
 
     protected boolean getEndFlag(){ return endFlag; }
