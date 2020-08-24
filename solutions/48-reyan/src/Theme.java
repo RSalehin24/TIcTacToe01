@@ -1,5 +1,6 @@
 public interface Theme {
 
-    void gameFunctionThemeBasedPlayer(Tile tile);
+    void setPlayerByThemeType(Tile tile);
 
 }
+

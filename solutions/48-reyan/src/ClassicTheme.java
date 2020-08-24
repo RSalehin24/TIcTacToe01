@@ -37,7 +37,7 @@ public class ClassicTheme implements Theme {
         }
     }
 
-    public void gameFunctionThemeBasedPlayer(Tile tile){
+    public void setPlayerByThemeType(Tile tile){
         occupiedTileCheckClassic(tile, "X", true);
         if(gameLogicForWinning.getEndFlag()) randomAIPlayerClassic();
     }

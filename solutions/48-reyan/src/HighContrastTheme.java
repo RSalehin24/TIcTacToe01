@@ -41,7 +41,7 @@ public class HighContrastTheme implements Theme{
         }
     }
 
-    public void gameFunctionThemeBasedPlayer(Tile tile){
+    public void setPlayerByThemeType(Tile tile){
         occupiedTileCheckHighContrast(tile, Color.BLACK, true);
         if(gameLogicForWinning.getEndFlag()) randomAIPlayerHighContrast();
     }

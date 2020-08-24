@@ -28,7 +28,7 @@ public class Tile extends StackPane {
         setOnMouseClicked(event -> {
             if(theme== null) return;
             if(event.getButton() == MouseButton.PRIMARY){
-                if(!isOccupied) theme.gameFunctionThemeBasedPlayer(this);
+                if(!isOccupied) theme.setPlayerByThemeType(this);
             }
         });
     }
