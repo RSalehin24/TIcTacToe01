@@ -21,13 +21,8 @@ public class GameEndingScene {
             stringForLabelTwo = "Game Has Drawn";
         }
 
-        Label labelOne = new Label(stringForLabelOne);
-        labelOne.setFont(new Font("Arial", 30));
-        labelOne.setTextFill(Color.web("#ff0000", 1.0));
-
-        Label labelTwo = new Label(stringForLabelTwo);
-        labelTwo.setFont(new Font("Aerial", 30));
-        labelTwo.setTextFill(Color.web("#228b22", 30));
+        Label labelOne = createLabel(stringForLabelOne,"#ff0000");
+        Label labelTwo = createLabel(stringForLabelTwo, "#228b22");
 
         VBox vBox = new VBox(5);
         vBox.setAlignment(Pos.CENTER);
@@ -36,6 +31,13 @@ public class GameEndingScene {
         Scene scene = new Scene(vBox, 420, 380);
 
         return scene;
+    }
+
+    private Label createLabel(String string, String color){
+        Label label = new Label(string);
+        label.setFont(new Font("Arial", 30));
+        label.setTextFill(Color.web(color, 1.0));
+        return label;
     }
 
 }
