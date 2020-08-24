@@ -7,20 +7,20 @@ import javafx.scene.text.Text;
 public class Tile extends StackPane {
 
     private Theme theme;
-    private Text playerInClassicTheme;
-    private ImageView imageView;
+    private Text playerInClassic;
+    private ImageView playerInForest;
 
-    private boolean isPlayerInClassicTheme;
+    private boolean isPlayerInClassic;
     private boolean isOccupied;
     private boolean isHuman;
-    private boolean imageViewIdentifier;
+    private boolean isPlayerInForest;
 
 
     protected Tile(){
-        playerInClassicTheme = new Text();
-        playerInClassicTheme.setFont(Font.font(75));
+        playerInClassic = new Text();
+        playerInClassic.setFont(Font.font(75));
 
-        getChildren().addAll(playerInClassicTheme);
+        getChildren().addAll(playerInClassic);
         mouseEventHandler();
     }
 
@@ -35,17 +35,17 @@ public class Tile extends StackPane {
 
     protected void setTheme(Theme theme){ this.theme = theme;}
 
-    protected void setPlayerInClassicTheme(String string){ playerInClassicTheme.setText(string); }
-    protected boolean getPlayerInClassicTheme(){ return isPlayerInClassicTheme; }
-    protected void setPlayerInClassicTheme(boolean playerInClassicTheme){ this.isPlayerInClassicTheme = playerInClassicTheme;}
+    protected void setPlayerInClassic(String string){ playerInClassic.setText(string); }
+    protected boolean getPlayerInClassic(){ return isPlayerInClassic; }
+    protected void setPlayerInClassic(boolean playerInClassic){ this.isPlayerInClassic = playerInClassic;}
 
     protected boolean getIsOccupied(){ return isOccupied; }
     protected void setIsOccupied(boolean isOccupied){ this.isOccupied = isOccupied; }
     protected boolean getIsHuman(){ return isHuman; }
     protected void setIsHuman(boolean isHuman){ this.isHuman = isHuman; }
 
-    protected ImageView getImageView(){ return imageView; }
-    protected void setImageView(ImageView imageView){ this.imageView = imageView; }
-    protected boolean getImageViewIdentifier(){ return imageViewIdentifier; }
-    protected void setImageViewIdentifier(boolean imageViewIdentifier) { this.imageViewIdentifier = imageViewIdentifier; }
+    protected ImageView getPlayerInForest(){ return playerInForest; }
+    protected void setPlayerInForest(ImageView playerInForest){ this.playerInForest = playerInForest; }
+    protected boolean getIsPlayerInForest(){ return isPlayerInForest; }
+    protected void setPlayerInForest(boolean playerInForest) { this.isPlayerInForest = playerInForest; }
 }
