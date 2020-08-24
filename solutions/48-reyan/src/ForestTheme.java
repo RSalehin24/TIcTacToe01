@@ -7,7 +7,7 @@ public class ForestTheme implements Theme {
 
     private Tile[] tiles;
     private RandomAIPlayer randomAIPlayer;
-    private  GameLogicForWinning gameLogicForWinning;
+    private GameLogicForWinning gameLogicForWinning;
 
     protected ForestTheme(GameStage gameStage){
         this.tiles = gameStage.getTiles();

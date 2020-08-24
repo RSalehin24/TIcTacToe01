@@ -75,5 +75,4 @@ fabric.properties
 
 ### Java
 *.class
-lib/
 tic-tac-toe-swe-18.iml

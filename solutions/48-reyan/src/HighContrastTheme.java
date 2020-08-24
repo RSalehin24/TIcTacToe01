@@ -8,6 +8,7 @@ public class HighContrastTheme implements Theme{
     private Tile[] tiles;
     private RandomAIPlayer randomAIPlayer;
     private GameLogicForWinning gameLogicForWinning;
+
     protected HighContrastTheme(GameStage gameStage){
         this.tiles = gameStage.getTiles();
         this.randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
