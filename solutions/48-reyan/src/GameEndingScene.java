@@ -17,7 +17,7 @@ public class GameEndingScene {
 
         VBox vBox = creatVBox(labelOne, labelTwo);
 
-        return new Scene(vBox, 420, 380);
+        return new Scene(vBox, 600, 380);
     }
 
     protected Label createLabel(String string, String color){
