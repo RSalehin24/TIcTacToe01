@@ -5,13 +5,20 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
 public class HighContrastTheme implements Theme{
+
     private Tile[] tiles;
+
     private RandomAIPlayer randomAIPlayer;
+    private DefensiveAIPlayer defensiveAIPlayer;
     private GameLogicForWinning gameLogicForWinning;
 
-    protected HighContrastTheme(GameStage gameStage){
+    private boolean isDefensivePlayerAI;
+
+    protected HighContrastTheme(GameStage gameStage,boolean isDefensivePlayerAI){
+        this.isDefensivePlayerAI = isDefensivePlayerAI;
         this.tiles = gameStage.getTiles();
         this.randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
+        this.defensiveAIPlayer = new DefensiveAIPlayer(gameStage);
         this.gameLogicForWinning = new GameLogicForWinning(gameStage);
         gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.LIGHTGREY, Color.GREY);
         changePlayerSign();
@@ -45,7 +52,8 @@ public class HighContrastTheme implements Theme{
 
     private void randomAIPlayerHighContrast(){
         Tile tile;
-        tile = randomAIPlayer.getPlayerTile();
+        if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
+        else tile = randomAIPlayer.getPlayerTile();
         if(!tile.getIsOccupied()) {
             tile.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
             tile.setIsOccupied(true);

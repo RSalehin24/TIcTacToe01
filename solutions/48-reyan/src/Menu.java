@@ -73,13 +73,13 @@ public class Menu {
 
     private void themeDeterminerFromRadioButtons(boolean isdefensivePlayerAI){
         if(radioButtonClassic.isSelected()){
-            ClassicTheme classicTheme = new ClassicTheme(gameStage);
+            ClassicTheme classicTheme = new ClassicTheme(gameStage, isdefensivePlayerAI);
         }
         else if(radioButtonForest.isSelected()){
-            ForestTheme forestTheme = new ForestTheme(gameStage);
+            ForestTheme forestTheme = new ForestTheme(gameStage, isdefensivePlayerAI);
         }
         else if(radioButtonHighContrast.isSelected()){
-            HighContrastTheme highContrastTheme = new HighContrastTheme(gameStage);
+            HighContrastTheme highContrastTheme = new HighContrastTheme(gameStage, isdefensivePlayerAI);
         }
     }
 

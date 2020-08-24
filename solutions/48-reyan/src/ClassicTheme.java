@@ -7,12 +7,18 @@ import javafx.scene.paint.Color;
 public class ClassicTheme implements Theme {
 
     private Tile[] tiles;
+
     private RandomAIPlayer randomAIPlayer;
+    private DefensiveAIPlayer defensiveAIPlayer;
     private GameLogicForWinning gameLogicForWinning;
 
-    protected ClassicTheme(GameStage gameStage){
+    private boolean isDefensivePlayerAI;
+
+    protected ClassicTheme(GameStage gameStage, boolean isDefensivePlayerAI){
+        this.isDefensivePlayerAI = isDefensivePlayerAI;
         this.tiles = gameStage.getTiles();
         this.randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
+        this.defensiveAIPlayer = new DefensiveAIPlayer(gameStage);
         this.gameLogicForWinning = new GameLogicForWinning(gameStage);
         gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
         changePlayerSign();
@@ -44,7 +50,8 @@ public class ClassicTheme implements Theme {
 
     private void randomAIPlayerClassic(){
         Tile tile;
-        tile = randomAIPlayer.getPlayerTile();
+        if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
+        else tile = randomAIPlayer.getPlayerTile();
         if(!tile.getIsOccupied()) {
             tile.setClassicPlayer("O");
             tile.setClassicPlayerIdentifier(true);
