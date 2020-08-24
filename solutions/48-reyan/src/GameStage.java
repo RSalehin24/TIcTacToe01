@@ -11,9 +11,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class GameStage {
-    private Pane gamePane;
-    private Scene gameScene;
-    private Stage gameStage;
+    private Pane paneOfGame;
+    private Scene sceneOfGame;
+    private Stage stageOfGame;
     private Menu menu;
     private Text textTheme;
     private Group tileGroup = new Group();
@@ -26,13 +26,13 @@ public class GameStage {
 
     protected GameStage(){
         menu = new Menu(this);
-        gameScene = createGameScene();
-        gameStage = createShowGameStage();
+        sceneOfGame = createGameScene();
+        stageOfGame = createShowGameStage();
     }
 
     protected Pane createGamePane(){
-        gamePane = new Pane();
-        gamePane.setPrefSize(600, 380);
+        paneOfGame = new Pane();
+        paneOfGame.setPrefSize(600, 380);
 
         createTileGroup();
         createLineGroup();
@@ -41,8 +41,8 @@ public class GameStage {
         radioButtonGroup = menu.getRadioButtonGroup();
         buttonGroup = menu.getButtonGroup();
 
-        gamePane.getChildren().addAll(tileGroup, lineGroup, textTheme, buttonGroup, radioButtonGroup);
-        return gamePane;
+        paneOfGame.getChildren().addAll(tileGroup, lineGroup, textTheme, buttonGroup, radioButtonGroup);
+        return paneOfGame;
     }
 
     protected Scene createGameScene(){
@@ -106,9 +106,9 @@ public class GameStage {
         }
     }
 
-    protected Pane getGamePane(){ return gamePane; }
-    protected Scene getGameScene(){ return gameScene; }
-    protected Stage getGameStage(){ return gameStage; }
+    protected Pane getPaneOfGame(){ return paneOfGame; }
+    protected Scene getSceneOfGame(){ return sceneOfGame; }
+    protected Stage getStageOfGame(){ return stageOfGame; }
     protected Tile[] getTiles(){ return tiles; }
     protected Line[] getLines(){ return  lines; }
 }

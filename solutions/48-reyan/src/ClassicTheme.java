@@ -8,11 +8,13 @@ public class ClassicTheme implements Theme {
 
     private Tile[] tiles;
     private RandomAIPlayer randomAIPlayer;
+    private GameLogicForWinning gameLogicForWinning;
 
     protected ClassicTheme(GameStage gameStage){
         this.tiles = gameStage.getTiles();
-        randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
-        gameStage.thingsToChangeForTheme(gameStage.getGamePane(), Color.WHITE, Color.BLACK);
+        this.randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
+        this.gameLogicForWinning = new GameLogicForWinning(gameStage);
+        gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
         changePlayerSign();
         gameStage.setTheme(this);
     }
@@ -23,7 +25,9 @@ public class ClassicTheme implements Theme {
                 if(tiles[i].getImageViewIdentifier()) { tiles[i].getChildren().remove(tiles[i].getImageView()); }
                 if(tiles[i].getIsHuman()){
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-                    tiles[i].setClassicPlayer("X"); }
+                    tiles[i].setClassicPlayer("X");
+                    gameLogicForWinning.gameEndChecker(Color.BLACK);
+                }
                 else { tiles[i].setClassicPlayer("O");}
             }
         }
@@ -34,6 +38,7 @@ public class ClassicTheme implements Theme {
             tile.setClassicPlayer("X");
             tile.setIsOccupied(true);
             tile.setIsHuman(true);
+            gameLogicForWinning.gameEndChecker(Color.BLACK);
         }
         randomAIPlayerClassic();
     }

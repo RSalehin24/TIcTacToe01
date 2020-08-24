@@ -7,11 +7,13 @@ public class ForestTheme implements Theme {
 
     private Tile[] tiles;
     private RandomAIPlayer randomAIPlayer;
+    private  GameLogicForWinning gameLogicForWinning;
 
     protected ForestTheme(GameStage gameStage){
         this.tiles = gameStage.getTiles();
-        randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
-        gameStage.thingsToChangeForTheme(gameStage.getGamePane(), Color.LIGHTGREEN, Color.DARKGREEN);
+        this.randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
+        this.gameLogicForWinning = new GameLogicForWinning(gameStage);
+        gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         changePlayerSign();
         gameStage.setTheme(this);
     }
@@ -30,6 +32,7 @@ public class ForestTheme implements Theme {
             addImageView("flower.jpg", tile);
             tile.setIsOccupied(true);
             tile.setIsHuman(true);
+            gameLogicForWinning.gameEndChecker(Color.DARKGREEN);
         }
         randomAIPlayerClassic();
     }
@@ -40,6 +43,7 @@ public class ForestTheme implements Theme {
         if(!tile.getIsOccupied()) {
             addImageView("fruit.jpg", tile);
             tile.setIsOccupied(true);
+            gameLogicForWinning.gameEndChecker(Color.DARKGREEN);
         }
     }
 

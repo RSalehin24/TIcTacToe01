@@ -7,11 +7,12 @@ import javafx.scene.paint.Color;
 public class HighContrastTheme implements Theme{
     private Tile[] tiles;
     private RandomAIPlayer randomAIPlayer;
-
+    private GameLogicForWinning gameLogicForWinning;
     protected HighContrastTheme(GameStage gameStage){
         this.tiles = gameStage.getTiles();
-        randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
-        gameStage.thingsToChangeForTheme(gameStage.getGamePane(), Color.LIGHTGREY, Color.GREY);
+        this.randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
+        this.gameLogicForWinning = new GameLogicForWinning(gameStage);
+        gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.LIGHTGREY, Color.GREY);
         changePlayerSign();
         gameStage.setTheme(this);
     }
@@ -36,6 +37,7 @@ public class HighContrastTheme implements Theme{
             tile.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
             tile.setIsOccupied(true);
             tile.setIsHuman(true);
+            gameLogicForWinning.gameEndChecker(Color.DARKGREY);
         }
         randomAIPlayerClassic();
     }
@@ -46,6 +48,7 @@ public class HighContrastTheme implements Theme{
         if(!tile.getIsOccupied()) {
             tile.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
             tile.setIsOccupied(true);
+            gameLogicForWinning.gameEndChecker(Color.DARKGREY);
         }
     }
 }

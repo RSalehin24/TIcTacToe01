@@ -36,6 +36,7 @@ public class GameEndingScene {
 
         return vBox;
     }
+
     protected String determineString(int winPlayerIndicator, String setStringOne, String setStringTwo, String setStringThree){
         String string;
         if (winPlayerIndicator == 0) {
