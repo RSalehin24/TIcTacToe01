@@ -92,12 +92,9 @@ public class GameLogicForWinning {
             @Override
             public void run() {
                 secondSToWaitForEndScene--;
-                if(secondSToWaitForEndScene == 0) Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        stageOfGame.setScene(gameEndingScene.makeGameOverScene(winPlayerIndicator));
-                    }
-                });
+                if(secondSToWaitForEndScene == 0) {
+                    Platform.runLater(() ->stageOfGame.setScene(gameEndingScene.makeGameOverScene(winPlayerIndicator)));
+                }
                 timer.cancel();
             }
         };
