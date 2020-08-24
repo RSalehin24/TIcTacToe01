@@ -20,7 +20,7 @@ public class Menu {
 
     private GameStage gameStage;
 
-    protected void createMenu(GameStage gameStage){
+    public Menu(GameStage gameStage){
         this.gameStage = gameStage;
         textTheme = createText("Theme", 410, 30);
         createButtonGroup(410, 410, 280, 320);
