@@ -34,7 +34,7 @@ public class ForestTheme implements Theme {
             tile.setIsHuman(true);
             gameLogicForWinning.gameEndChecker(Color.DARKGREEN);
         }
-        if(!gameLogicForWinning.getEndFlag()) randomAIPlayerForest();
+        if(gameLogicForWinning.getEndFlag()) randomAIPlayerForest();
     }
 
     private void randomAIPlayerForest(){

@@ -40,7 +40,7 @@ public class HighContrastTheme implements Theme{
             tile.setIsHuman(true);
             gameLogicForWinning.gameEndChecker(Color.DARKGREY);
         }
-        if(!gameLogicForWinning.getEndFlag()) randomAIPlayerHighContrast();
+        if(gameLogicForWinning.getEndFlag()) randomAIPlayerHighContrast();
     }
 
     private void randomAIPlayerHighContrast(){

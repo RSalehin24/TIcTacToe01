@@ -39,7 +39,7 @@ public class ClassicTheme implements Theme {
             tile.setIsHuman(true);
             gameLogicForWinning.gameEndChecker(Color.BLACK);
         }
-        if(!gameLogicForWinning.getEndFlag())randomAIPlayerClassic();
+        if(gameLogicForWinning.getEndFlag())randomAIPlayerClassic();
     }
 
     private void randomAIPlayerClassic(){
