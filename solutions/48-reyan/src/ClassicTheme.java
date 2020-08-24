@@ -38,12 +38,7 @@ public class ClassicTheme implements Theme {
     }
 
     public void gameFunctionThemeBasedPlayer(Tile tile){
-        if(!tile.getIsOccupied()){
-            tile.setClassicPlayer("X");
-            tile.setIsOccupied(true);
-            tile.setIsHuman(true);
-            gameLogicForWinning.gameEndChecker(Color.BLACK);
-        }
+        occupiedTileCheckClassic(tile, "X", true);
         if(gameLogicForWinning.getEndFlag()) randomAIPlayerClassic();
     }
 
@@ -51,10 +46,15 @@ public class ClassicTheme implements Theme {
         Tile tile;
         if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
         else tile = randomAIPlayer.getPlayerTile();
-        if(!tile.getIsOccupied()) {
-            tile.setClassicPlayer("O");
+        occupiedTileCheckClassic(tile, "O", false);
+    }
+
+    private void occupiedTileCheckClassic(Tile tile,String playerSymbol, boolean isHuman){
+        if(!tile.getIsOccupied()){
+            tile.setClassicPlayer(playerSymbol);
             tile.setClassicPlayerIdentifier(true);
             tile.setIsOccupied(true);
+            tile.setIsHuman(isHuman);
             gameLogicForWinning.gameEndChecker(Color.BLACK);
         }
     }
