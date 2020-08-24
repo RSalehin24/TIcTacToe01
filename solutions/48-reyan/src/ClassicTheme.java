@@ -30,9 +30,9 @@ public class ClassicTheme implements Theme {
                 if(tiles[i].getImageViewIdentifier()) { tiles[i].getChildren().remove(tiles[i].getImageView()); }
                 if(tiles[i].getIsHuman()){
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-                    tiles[i].setClassicPlayer("X");
+                    tiles[i].setPlayerInClassicTheme("X");
                 }
-                else { tiles[i].setClassicPlayer("O");}
+                else { tiles[i].setPlayerInClassicTheme("O");}
             }
         }
     }
@@ -51,8 +51,8 @@ public class ClassicTheme implements Theme {
 
     private void occupiedTileCheckClassic(Tile tile,String playerSymbol, boolean isHuman){
         if(!tile.getIsOccupied()){
-            tile.setClassicPlayer(playerSymbol);
-            tile.setClassicPlayerIdentifier(true);
+            tile.setPlayerInClassicTheme(playerSymbol);
+            tile.setPlayerInClassicTheme(true);
             tile.setIsOccupied(true);
             tile.setIsHuman(isHuman);
             gameLogicForWinning.gameEndChecker(Color.BLACK);

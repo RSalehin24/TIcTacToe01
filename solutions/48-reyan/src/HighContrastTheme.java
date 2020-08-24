@@ -34,7 +34,7 @@ public class HighContrastTheme implements Theme{
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
                 else {
-                    if(tiles[i].getClassicPlayerIdentifier()) tiles[i].setClassicPlayer("");
+                    if(tiles[i].getPlayerInClassicTheme()) tiles[i].setPlayerInClassicTheme("");
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
             }
