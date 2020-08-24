@@ -56,9 +56,9 @@ public class ForestTheme implements Theme {
         tile.getChildren().add(imageView);
     }
 
-    private void occupiedTileCheckForest(Tile tile, String string, boolean isHuman){
+    private void occupiedTileCheckForest(Tile tile, String playerSpecifiedImageName, boolean isHuman){
         if(!tile.getIsOccupied()) {
-            addImageView(string, tile);
+            addImageView(playerSpecifiedImageName, tile);
             tile.setIsOccupied(true);
             tile.setIsHuman(isHuman);
             gameLogicForWinning.gameEndChecker(Color.DARKGREEN);
