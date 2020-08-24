@@ -26,7 +26,6 @@ public class ClassicTheme implements Theme {
                 if(tiles[i].getIsHuman()){
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
                     tiles[i].setClassicPlayer("X");
-                    gameLogicForWinning.gameEndChecker(Color.BLACK);
                 }
                 else { tiles[i].setClassicPlayer("O");}
             }
@@ -40,7 +39,7 @@ public class ClassicTheme implements Theme {
             tile.setIsHuman(true);
             gameLogicForWinning.gameEndChecker(Color.BLACK);
         }
-        randomAIPlayerClassic();
+        if(!gameLogicForWinning.getEndFlag())randomAIPlayerClassic();
     }
 
     private void randomAIPlayerClassic(){
@@ -50,6 +49,7 @@ public class ClassicTheme implements Theme {
             tile.setClassicPlayer("O");
             tile.setClassicPlayerIdentifier(true);
             tile.setIsOccupied(true);
+            gameLogicForWinning.gameEndChecker(Color.BLACK);
         }
     }
 }

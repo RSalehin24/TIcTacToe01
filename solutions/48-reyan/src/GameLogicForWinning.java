@@ -7,11 +7,13 @@ public class GameLogicForWinning {
     private boolean[] occupiedAI;
     private GameEndingScene gameEndingScene;
     private Stage stageOfGame;
+    private boolean endFlag;
     private Tile[] tiles;
 
     protected GameLogicForWinning(GameStage gameStage){
         this.occupiedHuman = new boolean[9];
         this.occupiedAI = new boolean[9];
+        this.endFlag = false;
         this.gameEndingScene = new GameEndingScene();
         this.stageOfGame = gameStage.getStageOfGame();
         this.tiles = gameStage.getTiles();
@@ -39,20 +41,26 @@ public class GameLogicForWinning {
         for (int i=0, j=0; i<9; i += 3, j+=109) {
             if (booleanArray[i] && booleanArray[i+1] && booleanArray[i+2]) {
                 stageOfGame.setScene(gameEndingScene.makeGameOverScene(winPlayerIndicator));
+                endFlag = true;
             }
         }
 
         for(int i=0, j=0; i<3; i++, j+=109){
             if (booleanArray[i] && booleanArray[i+3] && booleanArray[i+6]) {
                 stageOfGame.setScene(gameEndingScene.makeGameOverScene(winPlayerIndicator));
+                endFlag = true;
             }
         }
 
         if (booleanArray[0] && booleanArray[4] && booleanArray[8]) {
             stageOfGame.setScene(gameEndingScene.makeGameOverScene(winPlayerIndicator));
+            endFlag = true;
         }
         if (booleanArray[2] && booleanArray[4] && booleanArray[6]) {
             stageOfGame.setScene(gameEndingScene.makeGameOverScene(winPlayerIndicator));
+            endFlag = true;
         }
     }
+
+    protected boolean getEndFlag(){ return endFlag; }
 }
