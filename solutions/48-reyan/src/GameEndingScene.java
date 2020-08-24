@@ -20,6 +20,18 @@ public class GameEndingScene {
         return new Scene(vBox, 600, 380);
     }
 
+    protected String determineString(int winPlayerIndicator, String setStringOne, String setStringTwo, String setStringThree){
+        String string;
+        if (winPlayerIndicator == 0) {
+            string = setStringOne;
+        } else if(winPlayerIndicator == 1) {
+            string = setStringTwo;
+        } else {
+            string = setStringThree;
+        }
+        return string;
+    }
+
     protected Label createLabel(String string, String color){
         Label label = new Label(string);
         label.setFont(new Font("Arial", 30));
@@ -35,15 +47,4 @@ public class GameEndingScene {
         return vBox;
     }
 
-    protected String determineString(int winPlayerIndicator, String setStringOne, String setStringTwo, String setStringThree){
-        String string;
-        if (winPlayerIndicator == 0) {
-            string = setStringOne;
-        } else if(winPlayerIndicator == 1) {
-            string = setStringTwo;
-        } else {
-            string = setStringThree;
-        }
-        return string;
-    }
 }
