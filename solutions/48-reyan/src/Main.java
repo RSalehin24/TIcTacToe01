@@ -9,7 +9,7 @@ public class Main extends Application {
         gameStage.createGameStage();
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         launch(args);
     }
 }
