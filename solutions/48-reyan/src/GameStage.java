@@ -46,8 +46,7 @@ public class GameStage {
     }
 
     protected Scene createGameScene(){
-        Scene gameScene = new Scene(createGamePane());
-        return gameScene;
+        return new Scene(createGamePane());
     }
 
     protected Stage createShowGameStage(){
