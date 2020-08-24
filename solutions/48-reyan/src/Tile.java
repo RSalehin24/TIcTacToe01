@@ -26,7 +26,6 @@ public class Tile extends StackPane {
             if(theme== null) return;
             if(event.getButton() == MouseButton.PRIMARY){
                 if(!isOccupied) theme.gameFunctionThemeBasedPlayer(this);
-                isHuman = true;
             }
         });
     }
@@ -34,7 +33,6 @@ public class Tile extends StackPane {
     protected boolean getClassicPlayerIdentifier(){ return classicPlayerIdentifier; }
     protected void setClassicPlayerIdentifier(boolean classicPlayerIdentifier){ this.classicPlayerIdentifier = classicPlayerIdentifier;}
     protected void setTheme(Theme theme){ this.theme = theme;}
-    protected Theme getTheme(){ return theme; }
     protected boolean getIsOccupied(){ return isOccupied; }
     protected boolean getIsHuman(){ return isHuman; }
     protected void setIsOccupied(boolean isOccupied){ this.isOccupied = isOccupied; }

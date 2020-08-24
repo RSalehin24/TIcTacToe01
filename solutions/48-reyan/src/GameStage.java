@@ -25,7 +25,8 @@ public class GameStage {
     private Line[] lines = new Line[9];
 
     protected GameStage(){
-        menu = new Menu(this);
+        menu = new Menu();
+        menu.createMenu(this);
         sceneOfGame = createGameScene();
         stageOfGame = createShowGameStage();
     }
@@ -106,8 +107,6 @@ public class GameStage {
     }
 
     protected Pane getPaneOfGame(){ return paneOfGame; }
-    protected Scene getSceneOfGame(){ return sceneOfGame; }
     protected Stage getStageOfGame(){ return stageOfGame; }
     protected Tile[] getTiles(){ return tiles; }
-    protected Line[] getLines(){ return  lines; }
 }
