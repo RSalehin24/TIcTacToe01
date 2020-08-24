@@ -6,7 +6,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         GameStage gameStage = new GameStage();
-        gameStage.createGameStage();
+        gameStage.createShowGameStage();
     }
 
     public static void main(String[] args) {

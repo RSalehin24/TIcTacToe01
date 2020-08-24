@@ -92,7 +92,7 @@ public class GameStage {
         return line;
     }
 
-    protected void thingsToChangeForTheme(Pane gamePane, Color colorOfPane, Color colorOfLine){
+    protected void thingsToChangePerTheme(Pane gamePane, Color colorOfPane, Color colorOfLine){
         gamePane.setBackground(new Background((new BackgroundFill(colorOfPane, CornerRadii.EMPTY, Insets.EMPTY))));
         for(int i=0; i<4; i++){
             lines[i].setStroke(colorOfLine);

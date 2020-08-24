@@ -20,7 +20,7 @@ public class ForestTheme implements Theme {
         defensiveAIPlayer = new DefensiveAIPlayer(gameStage);
         gameLogicForWinning = new GameLogicForWinning(gameStage);
         tiles = gameStage.getTiles();
-        gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
+        gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         changePlayerSignToForest();
         gameStage.setTheme(this);
     }

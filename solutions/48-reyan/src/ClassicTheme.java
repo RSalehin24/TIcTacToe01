@@ -19,7 +19,7 @@ public class ClassicTheme implements Theme {
         defensiveAIPlayer = new DefensiveAIPlayer(gameStage);
         gameLogicForWinning = new GameLogicForWinning(gameStage);
         tiles = gameStage.getTiles();
-        gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
+        gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
         changePlayerSignToClassic();
         gameStage.setTheme(this);
     }
