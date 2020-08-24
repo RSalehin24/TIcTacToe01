@@ -35,12 +35,7 @@ public class ForestTheme implements Theme {
     }
 
     public void gameFunctionThemeBasedPlayer(Tile tile){
-        if(!tile.getIsOccupied()){
-            addImageView("flower.jpg", tile);
-            tile.setIsOccupied(true);
-            tile.setIsHuman(true);
-            gameLogicForWinning.gameEndChecker(Color.DARKGREEN);
-        }
+        occupiedTileCheckingForest(tile,"flower.jpg",true);
         if(gameLogicForWinning.getEndFlag()) randomAIPlayerForest();
     }
 
@@ -48,11 +43,7 @@ public class ForestTheme implements Theme {
         Tile tile;
         if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
         else tile = randomAIPlayer.getPlayerTile();
-        if(!tile.getIsOccupied()) {
-            addImageView("fruit.jpg", tile);
-            tile.setIsOccupied(true);
-            gameLogicForWinning.gameEndChecker(Color.DARKGREEN);
-        }
+        occupiedTileCheckingForest(tile,"fruit.jpg", false);
     }
 
     private void addImageView(String imageName, Tile tile){
@@ -63,6 +54,15 @@ public class ForestTheme implements Theme {
         imageView.setFitHeight(100);
         imageView.setFitWidth(100);
         tile.getChildren().add(imageView);
+    }
+
+    private void occupiedTileCheckingForest(Tile tile, String string, boolean isHuman){
+        if(!tile.getIsOccupied()) {
+            addImageView(string, tile);
+            tile.setIsOccupied(true);
+            tile.setIsHuman(isHuman);
+            gameLogicForWinning.gameEndChecker(Color.DARKGREEN);
+        }
     }
 
 }
