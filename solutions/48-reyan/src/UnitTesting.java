@@ -9,6 +9,6 @@ public class UnitTesting {
         String stringTwo = "Sorry!";
         String stringThree = "Hmm!";
 
-        Assertions.assertEquals("Yahoo!!!", gameEndingScene.determineString(0, stringOne, stringTwo, stringThree));
+        Assertions.assertEquals("Yahoo!!!", gameEndingScene.determineLabelString(0, stringOne, stringTwo, stringThree));
     }
 }

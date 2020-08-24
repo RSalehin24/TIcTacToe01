@@ -35,8 +35,8 @@ public class GameLogicForWinning {
 
     protected void gameEndChecker(Color color) {
         obtainingPlayerFromTiles(tiles, occupiedHuman, occupiedAI);
-        winningConditions(occupiedHuman, 0, color);
-        winningConditions(occupiedAI, 1, color);
+        winnerDeterminer(occupiedHuman, 0, color);
+        winnerDeterminer(occupiedAI, 1, color);
     }
 
     protected void obtainingPlayerFromTiles(Tile[] tiles, boolean[] occupiedHuman, boolean[] occupiedAI){
@@ -51,29 +51,29 @@ public class GameLogicForWinning {
         }
     }
 
-    private void winningConditions(boolean[] booleanArray, int winPlayerIndicator, Color color) {
+    private void winnerDeterminer(boolean[] booleanArray, int winPlayerIndicator, Color color) {
         for (int i=0, j=0, k=0; i<9; i += 3, j+=109, k++) {
             if (booleanArray[i] && booleanArray[i+1] && booleanArray[i+2]) {
                 drawLineForMatchingMoves(53, 84+j, 368, 84+j, color);
-                start(winPlayerIndicator);
+                setGameEndScene(winPlayerIndicator);
                 endFlag = false;
             }
 
             if (booleanArray[k] && booleanArray[k+3] && booleanArray[k+6]) {
                 drawLineForMatchingMoves(103+j, 31, 103+j, 348, color);
-                start(winPlayerIndicator);
+                setGameEndScene(winPlayerIndicator);
                 endFlag = false;
             }
         }
 
         if (booleanArray[0] && booleanArray[4] && booleanArray[8]) {
             drawLineForMatchingMoves(50,30, 368, 348, color);
-            start(winPlayerIndicator);
+            setGameEndScene(winPlayerIndicator);
             endFlag = false;
         }
         if (booleanArray[2] && booleanArray[4] && booleanArray[6]) {
             drawLineForMatchingMoves(50, 348, 368, 30, color);
-            start(winPlayerIndicator);
+            setGameEndScene(winPlayerIndicator);
             endFlag = false;
         }
 
@@ -83,7 +83,7 @@ public class GameLogicForWinning {
     private void drawChecking(){
         boolean draw = true;
         for(int i=0; i<9; i++){ draw = draw && tiles[i].getIsOccupied(); }
-        if(draw){ start(2); }
+        if(draw){ setGameEndScene(2); }
     }
 
     private void drawLineForMatchingMoves(double x1, double y1, double x2, double y2, Color color){
@@ -93,7 +93,7 @@ public class GameLogicForWinning {
     }
 
 
-    private void start(int winPlayerIndicator){
+    private void setGameEndScene(int winPlayerIndicator){
         secondSToWaitForEndScene=1;
         Timer timer  =  new Timer();
         TimerTask timerTask = new TimerTask() {

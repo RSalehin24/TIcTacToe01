@@ -20,11 +20,11 @@ public class ClassicTheme implements Theme {
         gameLogicForWinning = new GameLogicForWinning(gameStage);
         tiles = gameStage.getTiles();
         gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
-        changePlayerSign();
+        changePlayerSignToClassic();
         gameStage.setTheme(this);
     }
 
-    private void changePlayerSign(){
+    private void changePlayerSignToClassic(){
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
                 if(tiles[i].getIsPlayerInForest()) { tiles[i].getChildren().remove(tiles[i].getPlayerInForest()); }
@@ -38,7 +38,7 @@ public class ClassicTheme implements Theme {
     }
 
     public void setPlayerByThemeType(Tile tile){
-        occupiedTileCheckClassic(tile, "X", true);
+        setPlayerInTileClassic(tile, "X", true);
         if(gameLogicForWinning.getEndFlag()) randomAIPlayerClassic();
     }
 
@@ -46,10 +46,10 @@ public class ClassicTheme implements Theme {
         Tile tile;
         if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
         else tile = randomAIPlayer.getPlayerTile();
-        occupiedTileCheckClassic(tile, "O", false);
+        setPlayerInTileClassic(tile, "O", false);
     }
 
-    private void occupiedTileCheckClassic(Tile tile,String playerSymbol, boolean isHuman){
+    private void setPlayerInTileClassic(Tile tile, String playerSymbol, boolean isHuman){
         if(!tile.getIsOccupied()){
             tile.setPlayerInClassic(playerSymbol);
             tile.setPlayerInClassic(true);

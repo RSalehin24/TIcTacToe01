@@ -9,8 +9,8 @@ public class GameEndingScene {
 
     public Scene makeGameOverScene(int winPlayerIndicator) {
 
-        String stringForLabelOne = determineString(winPlayerIndicator, "Yahoo!!!", "Sorry!", "Hmm!");
-        String stringForLabelTwo = determineString(winPlayerIndicator, "You have won the game!!","You have lost the game", "Game Has Drawn");
+        String stringForLabelOne = determineLabelString(winPlayerIndicator, "Yahoo!!!", "Sorry!", "Hmm!");
+        String stringForLabelTwo = determineLabelString(winPlayerIndicator, "You have won the game!!","You have lost the game", "Game Has Drawn");
 
         Label labelOne = createLabel(stringForLabelOne,"#ff0000");
         Label labelTwo = createLabel(stringForLabelTwo, "#228b22");
@@ -20,7 +20,7 @@ public class GameEndingScene {
         return new Scene(vBox, 600, 380);
     }
 
-    protected String determineString(int winPlayerIndicator, String setStringOne, String setStringTwo, String setStringThree){
+    protected String determineLabelString(int winPlayerIndicator, String setStringOne, String setStringTwo, String setStringThree){
         String string;
         if (winPlayerIndicator == 0) {
             string = setStringOne;

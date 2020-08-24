@@ -22,11 +22,11 @@ public class HighContrastTheme implements Theme{
         gameLogicForWinning = new GameLogicForWinning(gameStage);
         tiles = gameStage.getTiles();
         gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
-        changePlayerSign();
+        changePlayerSignToHighContrast();
         gameStage.setTheme(this);
     }
 
-    private void changePlayerSign(){
+    private void changePlayerSignToHighContrast(){
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
                 if(tiles[i].getIsPlayerInForest()) { tiles[i].getChildren().remove(tiles[i].getPlayerInForest()); }
@@ -42,7 +42,7 @@ public class HighContrastTheme implements Theme{
     }
 
     public void setPlayerByThemeType(Tile tile){
-        occupiedTileCheckHighContrast(tile, Color.BLACK, true);
+        setPlayerInTileHighContrast(tile, Color.BLACK, true);
         if(gameLogicForWinning.getEndFlag()) randomAIPlayerHighContrast();
     }
 
@@ -50,10 +50,10 @@ public class HighContrastTheme implements Theme{
         Tile tile;
         if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
         else tile = randomAIPlayer.getPlayerTile();
-        occupiedTileCheckHighContrast(tile, Color.WHITE, false);
+        setPlayerInTileHighContrast(tile, Color.WHITE, false);
     }
 
-    private void occupiedTileCheckHighContrast(Tile tile, Color playerSpecifiedColor, boolean isHuman){
+    private void setPlayerInTileHighContrast(Tile tile, Color playerSpecifiedColor, boolean isHuman){
         if(!tile.getIsOccupied()){
             tile.setBackground(new Background(new BackgroundFill(playerSpecifiedColor, CornerRadii.EMPTY, Insets.EMPTY)));
             tile.setIsOccupied(true);

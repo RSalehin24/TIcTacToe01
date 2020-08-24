@@ -21,11 +21,11 @@ public class ForestTheme implements Theme {
         gameLogicForWinning = new GameLogicForWinning(gameStage);
         tiles = gameStage.getTiles();
         gameStage.thingsToChangeForTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
-        changePlayerSign();
+        changePlayerSignToForest();
         gameStage.setTheme(this);
     }
 
-    private void changePlayerSign(){
+    private void changePlayerSignToForest(){
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
                 if(tiles[i].getIsHuman()){ createImageViewByPlayer("flower.jpg", tiles[i]); }
@@ -35,7 +35,7 @@ public class ForestTheme implements Theme {
     }
 
     public void setPlayerByThemeType(Tile tile){
-        occupiedTileCheckForest(tile,"flower.jpg",true);
+        setPlayerInTileForest(tile,"flower.jpg",true);
         if(gameLogicForWinning.getEndFlag()) randomAIPlayerForest();
     }
 
@@ -43,7 +43,7 @@ public class ForestTheme implements Theme {
         Tile tile;
         if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
         else tile = randomAIPlayer.getPlayerTile();
-        occupiedTileCheckForest(tile,"fruit.jpg", false);
+        setPlayerInTileForest(tile,"fruit.jpg", false);
     }
 
     private void createImageViewByPlayer(String imageName, Tile tile){
@@ -56,7 +56,7 @@ public class ForestTheme implements Theme {
         tile.getChildren().add(imageView);
     }
 
-    private void occupiedTileCheckForest(Tile tile, String playerSpecifiedImageName, boolean isHuman){
+    private void setPlayerInTileForest(Tile tile, String playerSpecifiedImageName, boolean isHuman){
         if(!tile.getIsOccupied()) {
             createImageViewByPlayer(playerSpecifiedImageName, tile);
             tile.setIsOccupied(true);
