@@ -42,12 +42,7 @@ public class HighContrastTheme implements Theme{
     }
 
     public void gameFunctionThemeBasedPlayer(Tile tile){
-        if(!tile.getIsOccupied()){
-            tile.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-            tile.setIsOccupied(true);
-            tile.setIsHuman(true);
-            gameLogicForWinning.gameEndChecker(Color.DARKGREY);
-        }
+        occupiedTileCheckHighContrast(tile, Color.BLACK, true);
         if(gameLogicForWinning.getEndFlag()) randomAIPlayerHighContrast();
     }
 
@@ -55,9 +50,14 @@ public class HighContrastTheme implements Theme{
         Tile tile;
         if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
         else tile = randomAIPlayer.getPlayerTile();
-        if(!tile.getIsOccupied()) {
-            tile.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        occupiedTileCheckHighContrast(tile, Color.WHITE, false);
+    }
+
+    private void occupiedTileCheckHighContrast(Tile tile, Color color, boolean isHuman){
+        if(!tile.getIsOccupied()){
+            tile.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
             tile.setIsOccupied(true);
+            tile.setIsHuman(isHuman);
             gameLogicForWinning.gameEndChecker(Color.DARKGREY);
         }
     }
