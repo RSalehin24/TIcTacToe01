@@ -23,7 +23,7 @@ public class HighContrastTheme implements Theme{
         tiles = gameStage.getTiles();
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
         changePlayerSignToHighContrast();
-        gameStage.setTheme(this);
+        gameStage.setThemeInTilesByThemeType(this);
     }
 
     private void changePlayerSignToHighContrast(){

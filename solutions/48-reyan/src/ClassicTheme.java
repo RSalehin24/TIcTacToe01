@@ -21,7 +21,7 @@ public class ClassicTheme implements Theme {
         tiles = gameStage.getTiles();
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
         changePlayerSignToClassic();
-        gameStage.setTheme(this);
+        gameStage.setThemeInTilesByThemeType(this);
     }
 
     private void changePlayerSignToClassic(){

@@ -22,7 +22,7 @@ public class ForestTheme implements Theme {
         tiles = gameStage.getTiles();
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         changePlayerSignToForest();
-        gameStage.setTheme(this);
+        gameStage.setThemeInTilesByThemeType(this);
     }
 
     private void changePlayerSignToForest(){
