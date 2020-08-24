@@ -26,11 +26,15 @@ public class GameStage {
 
     private Menu menu;
 
-
-    protected void createGameStage(){
+    protected GameStage(){
         menu = new Menu();
         menu.createMenu(this);
-        stageOfGame = createShowGameStage();
+    }
+
+    protected void createShowGameStage(){
+        stageOfGame = new Stage();
+        stageOfGame.setScene(createGameScene());
+        stageOfGame.show();
     }
 
     private Pane createGamePane(){
@@ -50,13 +54,6 @@ public class GameStage {
 
     private Scene createGameScene(){
         return new Scene(createGamePane());
-    }
-
-    protected Stage createShowGameStage(){
-        Stage gameStage = new Stage();
-        gameStage.setScene(createGameScene());
-        gameStage.show();
-        return gameStage;
     }
 
     protected void createTileGroup(){
