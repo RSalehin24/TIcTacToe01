@@ -18,6 +18,7 @@ public class HighContrastTheme implements Theme {
         this.gameStage = gameStage;
         this.aiPlayer = aiPlayer;
         tiles = gameStage.getTiles();
+
         gameLogicForWinning = new GameLogicForWinning();
         gameLogicForWinning.initializeGameWinningLogic(gameStage);
         currentStateOfGame = new CurrentStateOfGame(tiles);

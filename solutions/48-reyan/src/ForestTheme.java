@@ -16,10 +16,12 @@ public class ForestTheme implements Theme {
     protected ForestTheme(GameStage gameStage, AIPlayer aiPlayer){
         this.gameStage = gameStage;
         this.aiPlayer = aiPlayer;
+        tiles = gameStage.getTiles();
+
         gameLogicForWinning = new GameLogicForWinning();
         gameLogicForWinning.initializeGameWinningLogic(gameStage);
-        currentStateOfGame = new CurrentStateOfGame(gameStage.getTiles());
-        tiles = gameStage.getTiles();
+        currentStateOfGame = new CurrentStateOfGame(tiles);
+
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         changePlayerSign();
         gameStage.setThemeInTilesByThemeType(this);

@@ -25,31 +25,14 @@ public class GameLogicForWinning {
     }
 
     protected int winnerDrawChecker(boolean[] booleanArray) {
-        for (int i=0, k=0; i<9; i += 3, k++) {
-            if (booleanArray[i] && booleanArray[i+1] && booleanArray[i+2]) {
-                endFlag = false;
-                return k;
-            }
-
-            if (booleanArray[k] && booleanArray[k+3] && booleanArray[k+6]) {
-                endFlag = false;
-                return k+3;
-            }
+        for (int i=0, k=0; i<9; i+= 3, k++) {
+            if (booleanArray[i] && booleanArray[i+1] && booleanArray[i+2]) { endFlag = false; return k; }
+            if (booleanArray[k] && booleanArray[k+3] && booleanArray[k+6]) { endFlag = false; return k+3; }
         }
+        if (booleanArray[0] && booleanArray[4] && booleanArray[8]) { endFlag = false; return 6; }
+        if (booleanArray[2] && booleanArray[4] && booleanArray[6]) { endFlag = false; return 7; }
 
-        if (booleanArray[0] && booleanArray[4] && booleanArray[8]) {
-            endFlag = false;
-            return 6;
-        }
-        if (booleanArray[2] && booleanArray[4] && booleanArray[6]) {
-            endFlag = false;
-            return 7;
-        }
-
-        if(drawChecking(currentStateOfGame.getOccupiedHuman(), currentStateOfGame.getOccupiedAI())){
-            return 8;
-        }
-
+        if(drawChecking(currentStateOfGame.getOccupiedHuman(), currentStateOfGame.getOccupiedAI())){  return 8; }
         return -1;
     }
 
