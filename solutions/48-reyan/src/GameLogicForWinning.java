@@ -5,21 +5,21 @@ public class GameLogicForWinning {
 
     private boolean endFlag;
 
-    private GameCurrentState gameCurrentState;
+    private CurrentStateOfGame currentStateOfGame;
     private GameEndingWorks gameEndingWorks;
 
 
     protected void initializeGameWinningLogic(GameStage gameStage){
         endFlag = true;
-        gameCurrentState = new GameCurrentState(gameStage.getTiles());
+        currentStateOfGame = new CurrentStateOfGame(gameStage.getTiles());
         gameEndingWorks = new GameEndingWorks(gameStage);
     }
 
     protected void gameEndChecker(Color color) {
-        int combinationNo = winnerDrawChecker( gameCurrentState.getOccupiedHuman());
+        int combinationNo = winnerDrawChecker( currentStateOfGame.getOccupiedHuman());
         boolean isEnd = gameEndingWorks.gameEndSceneSetter(combinationNo, color, 0);
         if(isEnd){
-            combinationNo = winnerDrawChecker(gameCurrentState.getOccupiedAI());
+            combinationNo = winnerDrawChecker(currentStateOfGame.getOccupiedAI());
             gameEndingWorks.gameEndSceneSetter(combinationNo, color, 1);
         }
     }
@@ -46,7 +46,7 @@ public class GameLogicForWinning {
             return 7;
         }
 
-        if(drawChecking(gameCurrentState.getOccupiedHuman(), gameCurrentState.getOccupiedAI())){
+        if(drawChecking(currentStateOfGame.getOccupiedHuman(), currentStateOfGame.getOccupiedAI())){
             return 8;
         }
 

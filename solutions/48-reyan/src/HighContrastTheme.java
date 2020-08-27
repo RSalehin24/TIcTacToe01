@@ -9,7 +9,7 @@ public class HighContrastTheme implements Theme {
     private Tile[] tiles;
 
     private GameLogicForWinning gameLogicForWinning;
-    private GameCurrentState gameCurrentState;
+    private CurrentStateOfGame currentStateOfGame;
     private GameStage gameStage;
     private AIPlayer aiPlayer;
 
@@ -20,14 +20,14 @@ public class HighContrastTheme implements Theme {
         tiles = gameStage.getTiles();
         gameLogicForWinning = new GameLogicForWinning();
         gameLogicForWinning.initializeGameWinningLogic(gameStage);
-        gameCurrentState = new GameCurrentState(tiles);
+        currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
         changePlayerSign();
         gameStage.setThemeInTilesByThemeType(this);
     }
 
-    private void changePlayerSign() {
+    public void changePlayerSign() {
         gameStage.removeExtensions(Color.DARKGREY);
         for (int i = 0; i < 9; i++) {
             if(tiles[i].getIsOccupied()){
@@ -47,7 +47,7 @@ public class HighContrastTheme implements Theme {
     }
 
     public void aiPlayer(){
-        int tileNo = aiPlayer.getAIPlayerTileNo(gameCurrentState.getOccupiedHuman(), gameCurrentState.getOccupiedAI());
+        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getOccupiedHuman(), currentStateOfGame.getOccupiedAI());
         setPlayerInTile(tiles[tileNo], null, Color.WHITE, false);
     }
 

@@ -1,8 +1,8 @@
-public class GameCurrentState {
+public class CurrentStateOfGame {
 
     private Tile[] tiles;
 
-    protected GameCurrentState(Tile[] tiles){
+    protected CurrentStateOfGame(Tile[] tiles){
         this.tiles = tiles;
     }
 

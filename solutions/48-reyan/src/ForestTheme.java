@@ -9,7 +9,7 @@ public class ForestTheme implements Theme {
 
     private GameLogicForWinning gameLogicForWinning;
     private AIPlayer aiPlayer;
-    private GameCurrentState gameCurrentState;
+    private CurrentStateOfGame currentStateOfGame;
     private GameStage gameStage;
 
 
@@ -18,14 +18,14 @@ public class ForestTheme implements Theme {
         this.aiPlayer = aiPlayer;
         gameLogicForWinning = new GameLogicForWinning();
         gameLogicForWinning.initializeGameWinningLogic(gameStage);
-        gameCurrentState = new GameCurrentState(gameStage.getTiles());
+        currentStateOfGame = new CurrentStateOfGame(gameStage.getTiles());
         tiles = gameStage.getTiles();
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         changePlayerSign();
         gameStage.setThemeInTilesByThemeType(this);
     }
 
-    private void changePlayerSign(){
+    public void changePlayerSign(){
         gameStage.removeExtensions(null);
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
@@ -41,7 +41,7 @@ public class ForestTheme implements Theme {
     }
 
     public void aiPlayer(){
-        int tileNo = aiPlayer.getAIPlayerTileNo(gameCurrentState.getOccupiedHuman(), gameCurrentState.getOccupiedAI());
+        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getOccupiedHuman(), currentStateOfGame.getOccupiedAI());
         setPlayerInTile(tiles[tileNo],"fruit.jpg", null, false);
     }
 

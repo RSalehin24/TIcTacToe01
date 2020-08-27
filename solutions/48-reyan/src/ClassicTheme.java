@@ -10,7 +10,7 @@ public class ClassicTheme implements Theme {
 
     private GameLogicForWinning gameLogicForWinning;
     private AIPlayer aiPlayer;
-    private GameCurrentState gameCurrentState;
+    private CurrentStateOfGame currentStateOfGame;
     private GameStage gameStage;
 
     protected ClassicTheme(GameStage gameStage, AIPlayer aiPlayer){
@@ -20,14 +20,14 @@ public class ClassicTheme implements Theme {
 
         gameLogicForWinning = new GameLogicForWinning();
         gameLogicForWinning.initializeGameWinningLogic(gameStage);
-        gameCurrentState = new GameCurrentState(tiles);
+        currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
         changePlayerSign();
         gameStage.setThemeInTilesByThemeType(this);
     }
 
-    private void changePlayerSign(){
+    public void changePlayerSign(){
         gameStage.removeExtensions(Color.WHITE);
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
@@ -46,7 +46,7 @@ public class ClassicTheme implements Theme {
     }
 
     public void aiPlayer(){
-        int tileNo = aiPlayer.getAIPlayerTileNo(gameCurrentState.getOccupiedHuman(), gameCurrentState.getOccupiedAI());
+        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getOccupiedHuman(), currentStateOfGame.getOccupiedAI());
         setPlayerInTile(tiles[tileNo], "O", null,false);
     }
 
