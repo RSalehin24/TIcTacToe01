@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class UnitTesting {
+
     @Test
     public void testDetermineString(){
         GameEndingScene gameEndingScene = new GameEndingScene();
@@ -44,7 +45,7 @@ public class UnitTesting {
         occupiedHuman[3] = true;
         occupiedHuman[5] = true;
 
-        Assertions.assertEquals(2, gameLogicForWinning.winnerDrawChecker(occupiedHuman));
+        Assertions.assertEquals(1, gameLogicForWinning.winnerDrawChecker(occupiedHuman));
     }
 
     @Test
@@ -58,6 +59,6 @@ public class UnitTesting {
         }
         occupiedHuman[8] = true;
 
-        Assertions.assertEquals(true, gameLogicForWinning.drawChecking(occupiedHuman, occupiedAI));
+        Assertions.assertTrue(gameLogicForWinning.drawChecking(occupiedHuman, occupiedAI));
     }
 }
