@@ -1,112 +1,63 @@
-import javafx.application.Platform;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.stage.Stage;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class GameLogicForWinning {
 
-    private boolean[] occupiedHuman;
-    private boolean[] occupiedAI;
+
     private boolean endFlag;
-    private int secondSToWaitForEndScene;
 
-    private Tile[] tiles;
-    private Stage stageOfGame;
-    private Pane pane;
+    private GameCurrentState gameCurrentState;
+    private GameEndingWorks gameEndingWorks;
 
-    private GameEndingScene gameEndingScene;
-    private GameStage gameStage;
 
-    protected GameLogicForWinning(GameStage gameStage){
-        this.gameStage = gameStage;
-        gameEndingScene = new GameEndingScene();
-        stageOfGame = gameStage.getStageOfGame();
-        tiles = gameStage.getTiles();
-        pane = gameStage.getPaneOfGame();
-        occupiedHuman = new boolean[9];
-        occupiedAI = new boolean[9];
+    protected void initializeGameWinningLogic(GameStage gameStage){
         endFlag = true;
-        secondSToWaitForEndScene = 1;
+        gameCurrentState = new GameCurrentState(gameStage.getTiles());
+        gameEndingWorks = new GameEndingWorks(gameStage);
     }
 
     protected void gameEndChecker(Color color) {
-        obtainingPlayerFromTiles(tiles, occupiedHuman, occupiedAI);
-        winnerDeterminer(occupiedHuman, 0, color);
-        winnerDeterminer(occupiedAI, 1, color);
-    }
-
-    protected void obtainingPlayerFromTiles(Tile[] tiles, boolean[] occupiedHuman, boolean[] occupiedAI){
-        for(int i=0; i<9; i++){
-            if(tiles[i].getIsOccupied()){
-                if(tiles[i].getIsHuman()) {
-                    occupiedHuman[i] = true;
-                } else {
-                    occupiedAI[i] = true;
-                }
-            }
+        int combinationNo = winnerDrawChecker( gameCurrentState.getOccupiedHuman());
+        boolean isEnd = gameEndingWorks.gameEndSceneSetter(combinationNo, color, 0);
+        if(isEnd){
+            combinationNo = winnerDrawChecker(gameCurrentState.getOccupiedAI());
+            gameEndingWorks.gameEndSceneSetter(combinationNo, color, 1);
         }
     }
 
-    private void winnerDeterminer(boolean[] booleanArray, int winPlayerIndicator, Color color) {
-        for (int i=0, j=0, k=0; i<9; i += 3, j+=109, k++) {
+    protected int winnerDrawChecker(boolean[] booleanArray) {
+        for (int i=0, k=0; i<9; i += 3, k++) {
             if (booleanArray[i] && booleanArray[i+1] && booleanArray[i+2]) {
-                drawLineForMatchingMoves(53, 84+j, 368, 84+j, color);
-                setGameEndScene(winPlayerIndicator);
                 endFlag = false;
+                return k;
             }
 
             if (booleanArray[k] && booleanArray[k+3] && booleanArray[k+6]) {
-                drawLineForMatchingMoves(103+j, 31, 103+j, 348, color);
-                setGameEndScene(winPlayerIndicator);
                 endFlag = false;
+                return k+3;
             }
         }
 
         if (booleanArray[0] && booleanArray[4] && booleanArray[8]) {
-            drawLineForMatchingMoves(50,30, 368, 348, color);
-            setGameEndScene(winPlayerIndicator);
             endFlag = false;
+            return 6;
         }
         if (booleanArray[2] && booleanArray[4] && booleanArray[6]) {
-            drawLineForMatchingMoves(50, 348, 368, 30, color);
-            setGameEndScene(winPlayerIndicator);
             endFlag = false;
+            return 7;
         }
 
-        drawChecking();
+        if(drawChecking(gameCurrentState.getOccupiedHuman(), gameCurrentState.getOccupiedAI())){
+            return 8;
+        }
+
+        return -1;
     }
 
-    private void drawChecking(){
+    protected boolean drawChecking(boolean[] occupiedHuman, boolean[] occupiedAI){
         boolean draw = true;
-        for(int i=0; i<9; i++){ draw = draw && tiles[i].getIsOccupied(); }
-        if(draw){ setGameEndScene(2); }
-    }
-
-    private void drawLineForMatchingMoves(double x1, double y1, double x2, double y2, Color color){
-        Line line = gameStage.drawLine(x1, y1, x2, y2);
-        line.setStroke(color);
-        pane.getChildren().add(line);
-    }
-
-
-    private void setGameEndScene(int winPlayerIndicator){
-        secondSToWaitForEndScene=1;
-        Timer timer  =  new Timer();
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                secondSToWaitForEndScene--;
-                if(secondSToWaitForEndScene == 0) {
-                    Platform.runLater(() -> stageOfGame.setScene(gameEndingScene.makeGameOverScene(winPlayerIndicator)));
-                }
-                timer.cancel();
-            }
-        };
-        timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+        for(int i=0; i<9; i++){ draw = draw && (occupiedHuman[i] || occupiedAI[i]); }
+        if(draw) endFlag = false;
+        return draw;
     }
 
     protected boolean getEndFlag(){ return endFlag; }

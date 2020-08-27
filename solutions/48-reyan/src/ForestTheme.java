@@ -6,26 +6,27 @@ public class ForestTheme implements Theme {
 
 
     private Tile[] tiles;
-    private boolean isDefensivePlayerAI;
 
-    private RandomAIPlayer randomAIPlayer;
-    private DefensiveAIPlayer defensiveAIPlayer;
     private GameLogicForWinning gameLogicForWinning;
+    private AIPlayer aiPlayer;
+    private GameCurrentState gameCurrentState;
+    private GameStage gameStage;
 
 
-
-    protected ForestTheme(GameStage gameStage, boolean isDefensivePlayerAI){
-        this.isDefensivePlayerAI = isDefensivePlayerAI;
-        randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
-        defensiveAIPlayer = new DefensiveAIPlayer(gameStage);
-        gameLogicForWinning = new GameLogicForWinning(gameStage);
+    protected ForestTheme(GameStage gameStage, AIPlayer aiPlayer){
+        this.gameStage = gameStage;
+        this.aiPlayer = aiPlayer;
+        gameLogicForWinning = new GameLogicForWinning();
+        gameLogicForWinning.initializeGameWinningLogic(gameStage);
+        gameCurrentState = new GameCurrentState(gameStage.getTiles());
         tiles = gameStage.getTiles();
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
-        changePlayerSignToForest();
+        changePlayerSign();
         gameStage.setThemeInTilesByThemeType(this);
     }
 
-    private void changePlayerSignToForest(){
+    private void changePlayerSign(){
+        gameStage.removeExtensive(null);
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
                 if(tiles[i].getIsHuman()){ createImageViewByPlayer("flower.jpg", tiles[i]); }
@@ -34,35 +35,34 @@ public class ForestTheme implements Theme {
         }
     }
 
-    public void setPlayerByThemeType(Tile tile){
-        setPlayerInTileForest(tile,"flower.jpg",true);
-        if(gameLogicForWinning.getEndFlag()) randomAIPlayerForest();
+    public void makeMoveInATile(Tile tile){
+        setPlayerInTile(tile,"flower.jpg",null, true);
+        if(gameLogicForWinning.getEndFlag()) aiPlayer();
     }
 
-    private void randomAIPlayerForest(){
-        Tile tile;
-        if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
-        else tile = randomAIPlayer.getPlayerTile();
-        setPlayerInTileForest(tile,"fruit.jpg", false);
+    public void aiPlayer(){
+        int tileNo = aiPlayer.getAIPlayerTileNo(gameCurrentState.getOccupiedHuman(), gameCurrentState.getOccupiedAI());
+        setPlayerInTile(tiles[tileNo],"fruit.jpg", null, false);
     }
 
-    private void createImageViewByPlayer(String imageName, Tile tile){
-        Image image= new Image(imageName);
-        ImageView imageView = new ImageView(image);
-        tile.setPlayerInForest(imageView);
-        tile.setPlayerInForest(true);
-        imageView.setFitHeight(100);
-        imageView.setFitWidth(100);
-        tile.getChildren().add(imageView);
-    }
 
-    private void setPlayerInTileForest(Tile tile, String playerSpecifiedImageName, boolean isHuman){
+    public void setPlayerInTile(Tile tile, String playerSpecifiedImageName, Color color, boolean isHuman){
         if(!tile.getIsOccupied()) {
             createImageViewByPlayer(playerSpecifiedImageName, tile);
             tile.setIsOccupied(true);
             tile.setIsHuman(isHuman);
             gameLogicForWinning.gameEndChecker(Color.DARKGREEN);
         }
+    }
+
+    private void createImageViewByPlayer(String imageName, Tile tile){
+        Image image= new Image(imageName);
+        ImageView imageView = new ImageView(image);
+        tile.setImageView(imageView);
+        tile.setHasImageView(true);
+        imageView.setFitHeight(100);
+        imageView.setFitWidth(100);
+        tile.getChildren().add(imageView);
     }
 
 }

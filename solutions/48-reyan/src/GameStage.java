@@ -26,12 +26,10 @@ public class GameStage {
 
     private Menu menu;
 
-    protected GameStage(){
-        menu = new Menu();
-        menu.createMenu(this);
-    }
 
     protected void createShowGameStage(){
+        menu = new Menu();
+        menu.createMenu(this);
         stageOfGame = new Stage();
         stageOfGame.setScene(createGameScene());
         stageOfGame.show();
@@ -102,6 +100,18 @@ public class GameStage {
     protected void setThemeInTilesByThemeType(Theme theme){
         for(int i=0; i<9; i++){
             tiles[i].setTheme(theme);
+        }
+    }
+
+    public void removeExtensive(Color color) {
+        for (int i = 0; i < 9; i++) {
+            if (tiles[i].getIsOccupied()) {
+                if (tiles[i].getHasImageView()) {
+                    tiles[i].getChildren().remove(tiles[i].getImageView());
+                    if (tiles[i].getHasText()) tiles[i].setText("");
+                    tiles[i].setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+                }
+            }
         }
     }
 

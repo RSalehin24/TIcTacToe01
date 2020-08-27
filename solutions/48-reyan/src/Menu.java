@@ -67,21 +67,27 @@ public class Menu {
         buttonGroup.getChildren().addAll(buttonRandomAI, buttonDefensiveAI);
     }
 
-    private void themeDeterminerFromRadioButtons(boolean isDefensivePlayerAI){
+    private void themeDeterminerFromRadioButtons(AIPlayer aiPlayer){
         if(radioButtonClassic.isSelected()){
-            ClassicTheme classicTheme = new ClassicTheme(gameStage, isDefensivePlayerAI);
+            ClassicTheme classicTheme = new ClassicTheme(gameStage, aiPlayer);
         }
         else if(radioButtonForest.isSelected()){
-            ForestTheme forestTheme = new ForestTheme(gameStage, isDefensivePlayerAI);
+            ForestTheme forestTheme = new ForestTheme(gameStage, aiPlayer);
         }
         else if(radioButtonHighContrast.isSelected()){
-            HighContrastTheme highContrastTheme = new HighContrastTheme(gameStage, isDefensivePlayerAI);
+            HighContrastTheme highContrastTheme = new HighContrastTheme(gameStage, aiPlayer);
         }
     }
 
     private void buttonEventHandler(){
-        buttonRandomAI.setOnMouseClicked(e -> themeDeterminerFromRadioButtons(false));
-        buttonDefensiveAI.setOnMouseClicked(e -> themeDeterminerFromRadioButtons(true));
+        buttonRandomAI.setOnMouseClicked(e -> {
+            RandomAIPlayer randomAIPlayer = new RandomAIPlayer();
+            themeDeterminerFromRadioButtons(randomAIPlayer);
+        });
+        buttonDefensiveAI.setOnMouseClicked(e -> {
+            DefensiveAIPlayer defensiveAIPlayer = new DefensiveAIPlayer();
+            themeDeterminerFromRadioButtons(defensiveAIPlayer);
+        });
     }
 
     protected Text getTextTheme(){ return textTheme; }

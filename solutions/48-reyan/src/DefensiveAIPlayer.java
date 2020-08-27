@@ -1,45 +1,33 @@
-public class DefensiveAIPlayer {
-
-    private Tile[] tiles;
-
-    private boolean[] occupiedHuman;
-    private boolean[] occupiedAI;
+public class DefensiveAIPlayer implements AIPlayer{
 
     private RandomAIPlayer randomAIPlayer;
-    private GameLogicForWinning gameLogicForWinning;
 
-    public DefensiveAIPlayer(GameStage gameStage){
-        tiles = gameStage.getTiles();
-        occupiedHuman = new boolean[9];
-        occupiedAI = new boolean[9];
-        randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
-        gameLogicForWinning = new GameLogicForWinning(gameStage);
+    protected DefensiveAIPlayer(){
+        randomAIPlayer = new RandomAIPlayer();
     }
 
-    protected Tile getPlayerTile(){
-        gameLogicForWinning.obtainingPlayerFromTiles(tiles, occupiedHuman, occupiedAI);
-        if(!tiles[4].getIsOccupied()) return tiles[4];
+    public int getAIPlayerTileNo(boolean[] occupiedHuman, boolean[] occupiedAI){
+        if(!(occupiedHuman[4]||occupiedAI[4])) return 4;
         for (int i=0; i<9; i += 3) {
-            if(occupiedHuman[i] && occupiedHuman[i+1]){ if(!tiles[i+2].getIsOccupied()) return tiles[i+2]; }
-            else if(occupiedHuman[i] && occupiedHuman[i+2]){ if(!tiles[i+1].getIsOccupied()) return tiles[i+1]; }
-            else if(occupiedHuman[i+1] && occupiedHuman[i+2]){ if(!tiles[i].getIsOccupied()) return tiles[i]; }
+            if(occupiedHuman[i] && occupiedHuman[i+1]){ if(!(occupiedHuman[i+2]||occupiedAI[i+2])) return i+2; }
+            else if(occupiedHuman[i] && occupiedHuman[i+2]){ if(!(occupiedAI[i+1])) return i+1; }
+            else if(occupiedHuman[i+1] && occupiedHuman[i+2]){ if(!(occupiedAI[i])) return i; }
         }
 
-        for(int i=0, j=0; i<3; i++, j+=109){
-            if(occupiedHuman[i] && occupiedHuman[i+3]){ if(!tiles[i+6].getIsOccupied()) return tiles[i+6]; }
-            else if(occupiedHuman[i] && occupiedHuman[i+6]){ if(!tiles[i+3].getIsOccupied()) return tiles[i+3]; }
-            else if(occupiedHuman[i+3] && occupiedHuman[i+6]){ if(!tiles[i].getIsOccupied()) return tiles[i]; }
+        for(int i=0; i<3; i++){
+            if(occupiedHuman[i] && occupiedHuman[i+3]){ if(!(occupiedHuman[i+6]||occupiedAI[i+6])) return i+6; }
+            else if(occupiedHuman[i] && occupiedHuman[i+6]){ if(!(occupiedAI[i+3])) return i+3; }
+            else if(occupiedHuman[i+3] && occupiedHuman[i+6]){ if(!(occupiedAI[i])) return i; }
         }
 
-        if(occupiedHuman[0] && occupiedHuman[4]){ if(!tiles[8].getIsOccupied()) return tiles[8]; }
-        else if(occupiedHuman[0] && occupiedHuman[8]){ if(!tiles[4].getIsOccupied()) return tiles[4]; }
-        else if(occupiedHuman[4] && occupiedHuman[8]){ if(!tiles[0].getIsOccupied()) return tiles[0]; }
+        if(occupiedHuman[0] && occupiedHuman[4]){ if(!(occupiedHuman[8]||occupiedAI[8])) return 8; }
+        else if(occupiedHuman[0] && occupiedHuman[8]){ if(!(occupiedAI[4])) return 4; }
+        else if(occupiedHuman[4] && occupiedHuman[8]){ if(!(occupiedAI[0])) return 0; }
 
-        if(occupiedHuman[2] && occupiedHuman[4]){ if(!tiles[6].getIsOccupied()) return tiles[6]; }
-        else if(occupiedHuman[2] && occupiedHuman[6]){ if(!tiles[4].getIsOccupied()) return tiles[4]; }
-        else if(occupiedHuman[4] && occupiedHuman[6]){ if(!tiles[2].getIsOccupied()) return tiles[2]; }
+        if(occupiedHuman[2] && occupiedHuman[4]){ if(!(occupiedHuman[6]||occupiedAI[6])) return 6; }
+        else if(occupiedHuman[2] && occupiedHuman[6]){ if(!(occupiedAI[4])) return 4; }
+        else if(occupiedHuman[4] && occupiedHuman[6]){ if(!(occupiedAI[2])) return 2; }
 
-        return randomAIPlayer.getPlayerTile();
+        return randomAIPlayer.getAIPlayerTileNo(occupiedHuman, occupiedAI);
     }
-
 }

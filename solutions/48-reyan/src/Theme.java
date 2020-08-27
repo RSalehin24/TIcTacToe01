@@ -1,6 +1,10 @@
+import javafx.scene.paint.Color;
+
 public interface Theme {
 
-    void setPlayerByThemeType(Tile tile);
+    void makeMoveInATile(Tile tile);
+    void aiPlayer();
+    void setPlayerInTile(Tile tile, String string, Color color, boolean isHuman);
 
 }
 

@@ -1,23 +1,17 @@
 import java.util.Random;
 
-public class RandomAIPlayer {
+public class RandomAIPlayer implements AIPlayer{
 
-    private Tile[] tiles;
-
-    public RandomAIPlayer(Tile[] tiles){
-        this.tiles = tiles;
-    }
-
-    protected Tile getPlayerTile(){
+    public int getAIPlayerTileNo(boolean[] occupiedHuman,boolean[] occupiedAI) {
         Random random = new Random();
         int randomTileNo = random.nextInt(9);
 
         for(int i=0; i<100; i++){
             randomTileNo = random.nextInt(9);
-            if(!tiles[randomTileNo].getIsOccupied()){
+            if(!(occupiedHuman[randomTileNo] || occupiedAI[randomTileNo])){
                 break;
             }
         }
-        return tiles[randomTileNo];
+        return randomTileNo;
     }
 }

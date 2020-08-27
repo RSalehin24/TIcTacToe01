@@ -4,56 +4,54 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
-public class HighContrastTheme implements Theme{
+public class HighContrastTheme implements Theme {
 
     private Tile[] tiles;
-    private boolean isDefensivePlayerAI;
 
-    private RandomAIPlayer randomAIPlayer;
-    private DefensiveAIPlayer defensiveAIPlayer;
     private GameLogicForWinning gameLogicForWinning;
+    private GameCurrentState gameCurrentState;
+    private GameStage gameStage;
+    private AIPlayer aiPlayer;
 
 
-
-    protected HighContrastTheme(GameStage gameStage,boolean isDefensivePlayerAI){
-        this.isDefensivePlayerAI = isDefensivePlayerAI;
-        randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
-        defensiveAIPlayer = new DefensiveAIPlayer(gameStage);
-        gameLogicForWinning = new GameLogicForWinning(gameStage);
+    protected HighContrastTheme(GameStage gameStage, AIPlayer aiPlayer) {
+        this.gameStage = gameStage;
+        this.aiPlayer = aiPlayer;
         tiles = gameStage.getTiles();
+        gameLogicForWinning = new GameLogicForWinning();
+        gameLogicForWinning.initializeGameWinningLogic(gameStage);
+        gameCurrentState = new GameCurrentState(tiles);
+
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
-        changePlayerSignToHighContrast();
+        changePlayerSign();
         gameStage.setThemeInTilesByThemeType(this);
     }
 
-    private void changePlayerSignToHighContrast(){
-        for(int i=0; i<9; i++){
+    private void changePlayerSign() {
+        gameStage.removeExtensive(Color.DARKGREY);
+        for (int i = 0; i < 9; i++) {
             if(tiles[i].getIsOccupied()){
-                if(tiles[i].getIsPlayerInForest()) { tiles[i].getChildren().remove(tiles[i].getPlayerInForest()); }
-                if(tiles[i].getIsHuman()){
+                if (tiles[i].getIsHuman()) {
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-                }
-                else {
-                    if(tiles[i].getPlayerInClassic()) tiles[i].setPlayerInClassic("");
+                } else {
+                    if (tiles[i].getHasText()) tiles[i].setText("");
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
             }
         }
     }
 
-    public void setPlayerByThemeType(Tile tile){
-        setPlayerInTileHighContrast(tile, Color.BLACK, true);
-        if(gameLogicForWinning.getEndFlag()) randomAIPlayerHighContrast();
+    public void makeMoveInATile(Tile tile){
+        setPlayerInTile(tile, null, Color.BLACK, true);
+        if(gameLogicForWinning.getEndFlag()) aiPlayer();
     }
 
-    private void randomAIPlayerHighContrast(){
-        Tile tile;
-        if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
-        else tile = randomAIPlayer.getPlayerTile();
-        setPlayerInTileHighContrast(tile, Color.WHITE, false);
+    public void aiPlayer(){
+        int tileNo = aiPlayer.getAIPlayerTileNo(gameCurrentState.getOccupiedHuman(), gameCurrentState.getOccupiedAI());
+        setPlayerInTile(tiles[tileNo], null, Color.WHITE, false);
     }
 
-    private void setPlayerInTileHighContrast(Tile tile, Color playerSpecifiedColor, boolean isHuman){
+    public void setPlayerInTile(Tile tile, String string, Color playerSpecifiedColor, boolean isHuman){
         if(!tile.getIsOccupied()){
             tile.setBackground(new Background(new BackgroundFill(playerSpecifiedColor, CornerRadii.EMPTY, Insets.EMPTY)));
             tile.setIsOccupied(true);

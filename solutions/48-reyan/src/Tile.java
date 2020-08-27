@@ -7,20 +7,22 @@ import javafx.scene.text.Text;
 public class Tile extends StackPane {
 
     private Theme theme;
-    private Text playerInClassic;
-    private ImageView playerInForest;
 
-    private boolean isPlayerInClassic;
+    private Text text;
+    private boolean hasText;
+    private ImageView imageView;
+    private boolean hasImageView;
+
     private boolean isOccupied;
     private boolean isHuman;
-    private boolean isPlayerInForest;
+
 
 
     protected Tile(){
-        playerInClassic = new Text();
-        playerInClassic.setFont(Font.font(75));
+        text = new Text();
+        text.setFont(Font.font(75));
 
-        getChildren().addAll(playerInClassic);
+        getChildren().addAll(text);
         mouseEventHandler();
     }
 
@@ -28,24 +30,24 @@ public class Tile extends StackPane {
         setOnMouseClicked(event -> {
             if(theme== null) return;
             if(event.getButton() == MouseButton.PRIMARY){
-                if(!isOccupied) theme.setPlayerByThemeType(this);
+                if(!isOccupied) theme.makeMoveInATile(this);
             }
         });
     }
 
     protected void setTheme(Theme theme){ this.theme = theme;}
 
-    protected void setPlayerInClassic(String string){ playerInClassic.setText(string); }
-    protected boolean getPlayerInClassic(){ return isPlayerInClassic; }
-    protected void setPlayerInClassic(boolean playerInClassic){ this.isPlayerInClassic = playerInClassic;}
+    protected void setText(String string){ text.setText(string); }
+    protected boolean getHasText(){ return hasText; }
+    protected void setHasText(boolean hasText){ this.hasText = hasText;}
 
     protected boolean getIsOccupied(){ return isOccupied; }
     protected void setIsOccupied(boolean isOccupied){ this.isOccupied = isOccupied; }
     protected boolean getIsHuman(){ return isHuman; }
     protected void setIsHuman(boolean isHuman){ this.isHuman = isHuman; }
 
-    protected ImageView getPlayerInForest(){ return playerInForest; }
-    protected void setPlayerInForest(ImageView playerInForest){ this.playerInForest = playerInForest; }
-    protected boolean getIsPlayerInForest(){ return isPlayerInForest; }
-    protected void setPlayerInForest(boolean playerInForest) { this.isPlayerInForest = playerInForest; }
+    protected ImageView getImageView(){ return imageView; }
+    protected void setImageView(ImageView imageView){ this.imageView = imageView; }
+    protected boolean getHasImageView(){ return hasImageView; }
+    protected void setHasImageView(boolean hasImageView) { this.hasImageView = hasImageView; }
 }

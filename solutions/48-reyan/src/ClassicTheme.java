@@ -7,52 +7,53 @@ import javafx.scene.paint.Color;
 public class ClassicTheme implements Theme {
 
     private Tile[] tiles;
-    private boolean isDefensivePlayerAI;
 
-    private RandomAIPlayer randomAIPlayer;
-    private DefensiveAIPlayer defensiveAIPlayer;
     private GameLogicForWinning gameLogicForWinning;
+    private AIPlayer aiPlayer;
+    private GameCurrentState gameCurrentState;
+    private GameStage gameStage;
 
-    protected ClassicTheme(GameStage gameStage, boolean isDefensivePlayerAI){
-        this.isDefensivePlayerAI = isDefensivePlayerAI;
-        randomAIPlayer = new RandomAIPlayer(gameStage.getTiles());
-        defensiveAIPlayer = new DefensiveAIPlayer(gameStage);
-        gameLogicForWinning = new GameLogicForWinning(gameStage);
+    protected ClassicTheme(GameStage gameStage, AIPlayer aiPlayer){
+        this.gameStage = gameStage;
+        this.aiPlayer = aiPlayer;
         tiles = gameStage.getTiles();
+
+        gameLogicForWinning = new GameLogicForWinning();
+        gameLogicForWinning.initializeGameWinningLogic(gameStage);
+        gameCurrentState = new GameCurrentState(tiles);
+
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
-        changePlayerSignToClassic();
+        changePlayerSign();
         gameStage.setThemeInTilesByThemeType(this);
     }
 
-    private void changePlayerSignToClassic(){
+    private void changePlayerSign(){
+        gameStage.removeExtensive(Color.WHITE);
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
-                if(tiles[i].getIsPlayerInForest()) { tiles[i].getChildren().remove(tiles[i].getPlayerInForest()); }
                 if(tiles[i].getIsHuman()){
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-                    tiles[i].setPlayerInClassic("X");
+                    tiles[i].setText("X");
                 }
-                else { tiles[i].setPlayerInClassic("O");}
+                else { tiles[i].setText("O");}
             }
         }
     }
 
-    public void setPlayerByThemeType(Tile tile){
-        setPlayerInTileClassic(tile, "X", true);
-        if(gameLogicForWinning.getEndFlag()) randomAIPlayerClassic();
+    public void makeMoveInATile(Tile tile){
+        setPlayerInTile(tile, "X",null,true);
+        if(gameLogicForWinning.getEndFlag()) aiPlayer();
     }
 
-    private void randomAIPlayerClassic(){
-        Tile tile;
-        if(isDefensivePlayerAI) tile = defensiveAIPlayer.getPlayerTile();
-        else tile = randomAIPlayer.getPlayerTile();
-        setPlayerInTileClassic(tile, "O", false);
+    public void aiPlayer(){
+        int tileNo = aiPlayer.getAIPlayerTileNo(gameCurrentState.getOccupiedHuman(), gameCurrentState.getOccupiedAI());
+        setPlayerInTile(tiles[tileNo], "O", null,false);
     }
 
-    private void setPlayerInTileClassic(Tile tile, String playerSymbol, boolean isHuman){
+    public void setPlayerInTile(Tile tile, String playerSymbol, Color color, boolean isHuman){
         if(!tile.getIsOccupied()){
-            tile.setPlayerInClassic(playerSymbol);
-            tile.setPlayerInClassic(true);
+            tile.setText(playerSymbol);
+            tile.setHasText(true);
             tile.setIsOccupied(true);
             tile.setIsHuman(isHuman);
             gameLogicForWinning.gameEndChecker(Color.BLACK);
