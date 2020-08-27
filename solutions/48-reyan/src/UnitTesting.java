@@ -59,6 +59,6 @@ public class UnitTesting {
         }
         occupiedHuman[8] = true;
 
-        Assertions.assertTrue(gameLogicForWinning.drawChecking(occupiedHuman, occupiedAI));
+        Assertions.assertEquals(true, gameLogicForWinning.drawChecking(occupiedHuman, occupiedAI));
     }
 }
