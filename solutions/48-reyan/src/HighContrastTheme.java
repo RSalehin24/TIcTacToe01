@@ -34,7 +34,6 @@ public class HighContrastTheme implements Theme {
                 if (tiles[i].getIsHuman()) {
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
                 } else {
-                    if (tiles[i].getHasText()) tiles[i].setText("");
                     tiles[i].setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
             }

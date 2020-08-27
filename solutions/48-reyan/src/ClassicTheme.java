@@ -32,7 +32,6 @@ public class ClassicTheme implements Theme {
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
                 if(tiles[i].getIsHuman()){
-                    tiles[i].setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
                     tiles[i].setText("X");
                 }
                 else { tiles[i].setText("O");}

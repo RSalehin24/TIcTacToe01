@@ -106,11 +106,9 @@ public class GameStage {
     public void removeExtensions(Color color) {
         for (int i = 0; i < 9; i++) {
             if (tiles[i].getIsOccupied()) {
-                if (tiles[i].getHasImageView()) {
-                    tiles[i].getChildren().remove(tiles[i].getImageView());
-                    if (tiles[i].getHasText()) tiles[i].setText("");
-                    tiles[i].setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
-                }
+                if (tiles[i].getHasImageView()) { tiles[i].getChildren().remove(tiles[i].getImageView()); }
+                if (tiles[i].getHasText()) tiles[i].setText("");
+                tiles[i].setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
             }
         }
     }
