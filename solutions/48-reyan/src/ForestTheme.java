@@ -26,7 +26,7 @@ public class ForestTheme implements Theme {
     }
 
     private void changePlayerSign(){
-        gameStage.removeExtensive(null);
+        gameStage.removeExtensions(null);
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
                 if(tiles[i].getIsHuman()){ createImageViewByPlayer("flower.jpg", tiles[i]); }

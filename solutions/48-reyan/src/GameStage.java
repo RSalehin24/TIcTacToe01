@@ -103,7 +103,7 @@ public class GameStage {
         }
     }
 
-    public void removeExtensive(Color color) {
+    public void removeExtensions(Color color) {
         for (int i = 0; i < 9; i++) {
             if (tiles[i].getIsOccupied()) {
                 if (tiles[i].getHasImageView()) {
