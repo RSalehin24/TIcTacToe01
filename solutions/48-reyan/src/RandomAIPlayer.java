@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class RandomAIPlayer implements AIPlayer{
 
-    public int getAIPlayerTileNo(boolean[] occupiedHuman,boolean[] occupiedAI) {
+    public int getAIPlayerTileNo(boolean[] occupiedHuman, boolean[] occupiedAI) {
         Random random = new Random();
         int randomTileNo = random.nextInt(9);
 

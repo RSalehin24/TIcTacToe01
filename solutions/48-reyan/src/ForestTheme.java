@@ -8,9 +8,9 @@ public class ForestTheme implements Theme {
     private Tile[] tiles;
 
     private GameLogicForWinning gameLogicForWinning;
-    private AIPlayer aiPlayer;
     private CurrentStateOfGame currentStateOfGame;
     private GameStage gameStage;
+    private AIPlayer aiPlayer;
 
 
     protected ForestTheme(GameStage gameStage, AIPlayer aiPlayer){
@@ -19,12 +19,12 @@ public class ForestTheme implements Theme {
         tiles = gameStage.getTiles();
 
         gameLogicForWinning = new GameLogicForWinning();
-        gameLogicForWinning.initializeGameWinningLogic(gameStage);
+        gameLogicForWinning.initializeGameLogicForWinning(gameStage);
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         changePlayerSign();
-        gameStage.setThemeInTilesByThemeType(this);
+        gameStage.setThemeInTiles(this);
     }
 
     public void changePlayerSign(){

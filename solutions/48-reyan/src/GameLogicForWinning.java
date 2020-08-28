@@ -9,7 +9,7 @@ public class GameLogicForWinning {
     private GameEndingWorks gameEndingWorks;
 
 
-    protected void initializeGameWinningLogic(GameStage gameStage){
+    protected void initializeGameLogicForWinning(GameStage gameStage){
         notEndFlag = true;
         currentStateOfGame = new CurrentStateOfGame(gameStage.getTiles());
         gameEndingWorks = new GameEndingWorks(gameStage);

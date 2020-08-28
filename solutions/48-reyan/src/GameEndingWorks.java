@@ -25,6 +25,7 @@ public class GameEndingWorks {
     }
 
     protected boolean gameEndSceneSetter(int k, Color color, int winPlayerIndicator){
+        if(k==-1) return true;
         if(k>=0 && k<=2) drawLineForMatchingMoves(53, 84+109*k, 368, 84+109*k, color);
         if(k>=3 && k<=5) drawLineForMatchingMoves(103+109*(k-3), 31, 103+109*(k-3), 348, color);
         if(k==6) drawLineForMatchingMoves(50,30, 368, 348, color);
@@ -49,7 +50,7 @@ public class GameEndingWorks {
 
     private void setGameEndScene(int winPlayerIndicator){
         secondSToWaitForEndScene=1;
-        Timer timer  =  new Timer();
+        Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {

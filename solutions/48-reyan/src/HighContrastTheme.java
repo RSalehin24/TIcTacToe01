@@ -20,12 +20,12 @@ public class HighContrastTheme implements Theme {
         tiles = gameStage.getTiles();
 
         gameLogicForWinning = new GameLogicForWinning();
-        gameLogicForWinning.initializeGameWinningLogic(gameStage);
+        gameLogicForWinning.initializeGameLogicForWinning(gameStage);
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
         changePlayerSign();
-        gameStage.setThemeInTilesByThemeType(this);
+        gameStage.setThemeInTiles(this);
     }
 
     public void changePlayerSign() {

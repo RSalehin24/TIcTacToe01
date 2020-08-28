@@ -97,7 +97,7 @@ public class GameStage {
         }
     }
 
-    protected void setThemeInTilesByThemeType(Theme theme){
+    protected void setThemeInTiles(Theme theme){
         for(int i=0; i<9; i++){
             tiles[i].setTheme(theme);
         }

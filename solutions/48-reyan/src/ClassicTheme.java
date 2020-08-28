@@ -5,9 +5,9 @@ public class ClassicTheme implements Theme {
     private Tile[] tiles;
 
     private GameLogicForWinning gameLogicForWinning;
-    private AIPlayer aiPlayer;
     private CurrentStateOfGame currentStateOfGame;
     private GameStage gameStage;
+    private AIPlayer aiPlayer;
 
     protected ClassicTheme(GameStage gameStage, AIPlayer aiPlayer){
         this.gameStage = gameStage;
@@ -15,12 +15,12 @@ public class ClassicTheme implements Theme {
         tiles = gameStage.getTiles();
 
         gameLogicForWinning = new GameLogicForWinning();
-        gameLogicForWinning.initializeGameWinningLogic(gameStage);
+        gameLogicForWinning.initializeGameLogicForWinning(gameStage);
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
         changePlayerSign();
-        gameStage.setThemeInTilesByThemeType(this);
+        gameStage.setThemeInTiles(this);
     }
 
     public void changePlayerSign(){

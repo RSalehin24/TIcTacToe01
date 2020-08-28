@@ -37,7 +37,7 @@ public class UnitTesting {
     }
 
     @Test
-    public void testGameLogicForWinning(){
+    public void textWinnnerDrawChecker(){
         GameLogicForWinning gameLogicForWinning = new GameLogicForWinning();
         boolean[] occupiedHuman = new boolean[9];
         boolean[] occupiedAI = new boolean[9];
