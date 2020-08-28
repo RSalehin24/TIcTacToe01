@@ -29,7 +29,7 @@ public class HighContrastTheme implements Theme {
     }
 
     public void changePlayerSign() {
-        gameStage.removeExtensions(Color.DARKGREY);
+        gameStage.removeExtensionsFromTile(Color.DARKGREY);
         for (int i = 0; i < 9; i++) {
             if(tiles[i].getIsOccupied()){
                 if (tiles[i].getIsHuman()) {
