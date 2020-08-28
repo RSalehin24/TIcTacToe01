@@ -35,7 +35,6 @@ public class Tile extends StackPane {
     }
 
     protected void setTheme(Theme theme){ this.theme = theme;}
-
     protected void setText(String string){ text.setText(string); }
 
     protected boolean getIsOccupied(){ return isOccupied; }
