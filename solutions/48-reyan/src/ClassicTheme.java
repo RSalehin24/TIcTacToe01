@@ -48,7 +48,6 @@ public class ClassicTheme implements Theme {
     public void setPlayerInTile(Tile tile, String playerSymbol, Color color, boolean isHuman){
         if(!tile.getIsOccupied()){
             tile.setText(playerSymbol);
-            tile.setHasText(true);
             tile.setIsOccupied(true);
             tile.setIsHuman(isHuman);
             gameLogicForWinning.gameEndChecker(Color.BLACK);
