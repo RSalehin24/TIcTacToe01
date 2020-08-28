@@ -45,7 +45,7 @@ public class UnitTesting {
         occupiedHuman[3] = true;
         occupiedHuman[5] = true;
 
-        Assertions.assertEquals(1, gameLogicForWinning.winnerDrawChecker(occupiedHuman));
+        Assertions.assertEquals(1, gameLogicForWinning.winnerDrawChecker(occupiedHuman, occupiedAI));
     }
 
     @Test

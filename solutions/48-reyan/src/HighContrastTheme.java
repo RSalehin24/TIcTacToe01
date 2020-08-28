@@ -43,7 +43,7 @@ public class HighContrastTheme implements Theme {
 
     public void makeMoveInATile(Tile tile){
         setPlayerInTile(tile, null, Color.BLACK, true);
-        if(gameLogicForWinning.getEndFlag()) aiPlayer();
+        if(gameLogicForWinning.getNotEndFlag()) aiPlayer();
     }
 
     public void aiPlayer(){

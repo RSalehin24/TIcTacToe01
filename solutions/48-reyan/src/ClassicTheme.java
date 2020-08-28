@@ -37,7 +37,7 @@ public class ClassicTheme implements Theme {
 
     public void makeMoveInATile(Tile tile){
         setPlayerInTile(tile, "X",null,true);
-        if(gameLogicForWinning.getEndFlag()) aiPlayer();
+        if(gameLogicForWinning.getNotEndFlag()) aiPlayer();
     }
 
     public void aiPlayer(){

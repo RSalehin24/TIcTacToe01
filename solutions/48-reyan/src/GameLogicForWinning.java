@@ -3,45 +3,45 @@ import javafx.scene.paint.Color;
 public class GameLogicForWinning {
 
 
-    private boolean endFlag;
+    private boolean notEndFlag;
 
     private CurrentStateOfGame currentStateOfGame;
     private GameEndingWorks gameEndingWorks;
 
 
     protected void initializeGameWinningLogic(GameStage gameStage){
-        endFlag = true;
+        notEndFlag = true;
         currentStateOfGame = new CurrentStateOfGame(gameStage.getTiles());
         gameEndingWorks = new GameEndingWorks(gameStage);
     }
 
     protected void gameEndChecker(Color color) {
-        int combinationNo = winnerDrawChecker( currentStateOfGame.getOccupiedHuman());
-        boolean isEnd = gameEndingWorks.gameEndSceneSetter(combinationNo, color, 0);
-        if(isEnd){
-            combinationNo = winnerDrawChecker(currentStateOfGame.getOccupiedAI());
+        int combinationNo = winnerDrawChecker(currentStateOfGame.getOccupiedHuman(), currentStateOfGame.getOccupiedAI());
+        boolean isNotEnd = gameEndingWorks.gameEndSceneSetter(combinationNo, color, 0);
+        if(isNotEnd){
+            combinationNo = winnerDrawChecker(currentStateOfGame.getOccupiedAI(), currentStateOfGame.getOccupiedHuman());
             gameEndingWorks.gameEndSceneSetter(combinationNo, color, 1);
         }
     }
 
-    protected int winnerDrawChecker(boolean[] booleanArray) {
+    protected int winnerDrawChecker(boolean[] firstPlayer, boolean[] secondPlayer) {
         for (int i=0, k=0; i<9; i+= 3, k++) {
-            if (booleanArray[i] && booleanArray[i+1] && booleanArray[i+2]) { endFlag = false; return k; }
-            if (booleanArray[k] && booleanArray[k+3] && booleanArray[k+6]) { endFlag = false; return k+3; }
+            if (firstPlayer[i] && firstPlayer[i+1] && firstPlayer[i+2]) { notEndFlag = false; return k; }
+            if (firstPlayer[k] && firstPlayer[k+3] && firstPlayer[k+6]) { notEndFlag = false; return k+3; }
         }
-        if (booleanArray[0] && booleanArray[4] && booleanArray[8]) { endFlag = false; return 6; }
-        if (booleanArray[2] && booleanArray[4] && booleanArray[6]) { endFlag = false; return 7; }
+        if (firstPlayer[0] && firstPlayer[4] && firstPlayer[8]) { notEndFlag = false; return 6; }
+        if (firstPlayer[2] && firstPlayer[4] && firstPlayer[6]) { notEndFlag = false; return 7; }
 
-        if(drawChecking(currentStateOfGame.getOccupiedHuman(), currentStateOfGame.getOccupiedAI())){  return 8; }
+        if(drawChecking(firstPlayer, secondPlayer)){  return 8; }
         return -1;
     }
 
-    protected boolean drawChecking(boolean[] occupiedHuman, boolean[] occupiedAI){
+    protected boolean drawChecking(boolean[] firstPlayer, boolean[] secondPlayer){
         boolean draw = true;
-        for(int i=0; i<9; i++){ draw = draw && (occupiedHuman[i] || occupiedAI[i]); }
-        if(draw) endFlag = false;
+        for(int i=0; i<9; i++){ draw = draw && (firstPlayer[i] || secondPlayer[i]); }
+        if(draw) notEndFlag = false;
         return draw;
     }
 
-    protected boolean getEndFlag(){ return endFlag; }
+    protected boolean getNotEndFlag(){ return notEndFlag; }
 }

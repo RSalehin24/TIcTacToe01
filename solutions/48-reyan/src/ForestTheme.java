@@ -39,7 +39,7 @@ public class ForestTheme implements Theme {
 
     public void makeMoveInATile(Tile tile){
         setPlayerInTile(tile,"flower.jpg",null, true);
-        if(gameLogicForWinning.getEndFlag()) aiPlayer();
+        if(gameLogicForWinning.getNotEndFlag()) aiPlayer();
     }
 
     public void aiPlayer(){
