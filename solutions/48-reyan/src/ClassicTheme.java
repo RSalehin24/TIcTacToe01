@@ -24,7 +24,7 @@ public class ClassicTheme implements Theme {
     }
 
     public void changePlayerSign(){
-        gameStage.removeExtensionsFromTile(Color.WHITE);
+        gameStage.removeExtensionsFromTiles(Color.WHITE);
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
                 if(tiles[i].getIsHuman()){
