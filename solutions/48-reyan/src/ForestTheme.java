@@ -2,48 +2,46 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
-public class ForestTheme implements Theme {
+public class ForestTheme extends ThemeMiddler {
 
 
     private Tile[] tiles;
 
-    private GameLogicForWinning gameLogicForWinning;
+    private GameEndChecker gameEndChecker;
     private CurrentStateOfGame currentStateOfGame;
-    private GameStage gameStage;
     private AIPlayer aiPlayer;
 
 
     protected ForestTheme(GameStage gameStage, AIPlayer aiPlayer){
-        this.gameStage = gameStage;
+        super(gameStage);
         this.aiPlayer = aiPlayer;
-        tiles = gameStage.getTiles();
+        tiles = super.getThemeTiles();
 
-        gameLogicForWinning = new GameLogicForWinning();
-        gameLogicForWinning.initializeGameLogicForWinning(gameStage);
+        gameEndChecker = new GameEndChecker();
+        gameEndChecker.initializeGameLogicForWinning(gameStage);
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
-        changePlayerSign();
+        super.prepareTileToGetChanged(Color.LIGHTGREEN);
         gameStage.setThemeInTiles(this);
     }
 
-    public void changePlayerSign(){
-        gameStage.removeExtensionsFromTiles(Color.LIGHTGREEN);
-        for(int i=0; i<9; i++){
-            if(tiles[i].getIsOccupied()){
-                if(tiles[i].getIsHuman()){ createImageViewByPlayer("flower.jpg", tiles[i]); }
-                else { createImageViewByPlayer("fruit.jpg", tiles[i]); }
-            }
+    public void changePlayerSign(Tile tile){
+        if(tile.getIsHuman()){
+            createImageViewByPlayer("flower.jpg", tile);
+        }
+        else {
+            createImageViewByPlayer("fruit.jpg", tile);
         }
     }
 
     public void makeMoveInATile(Tile tile){
         setPlayerInTile(tile,"flower.jpg",null, true);
-        if(gameLogicForWinning.getNotEndFlag()) aiPlayer();
+        if(gameEndChecker.getDrawWinChecker().getNotEndFlag()) aiPlayer();
     }
 
     public void aiPlayer(){
-        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getOccupiedHuman(), currentStateOfGame.getOccupiedAI());
+        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getOccupiedTiles());
         setPlayerInTile(tiles[tileNo],"fruit.jpg", null, false);
     }
 
@@ -53,7 +51,7 @@ public class ForestTheme implements Theme {
             createImageViewByPlayer(playerSpecifiedImageName, tile);
             tile.setIsOccupied(true);
             tile.setIsHuman(isHuman);
-            gameLogicForWinning.gameEndChecker(Color.DARKGREEN);
+            gameEndChecker.gameEndChecker(Color.DARKGREEN);
         }
     }
 

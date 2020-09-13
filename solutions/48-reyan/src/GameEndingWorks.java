@@ -24,22 +24,80 @@ public class GameEndingWorks {
         gameEndingScene = new GameEndingScene();
     }
 
-    protected boolean gameEndSceneSetter(int k, Color color, int winPlayerIndicator){
-        if(k==-1) return true;
-        if(k>=0 && k<=2) drawLineForMatchingMoves(53, 84+109*k, 368, 84+109*k, color);
-        if(k>=3 && k<=5) drawLineForMatchingMoves(103+109*(k-3), 31, 103+109*(k-3), 348, color);
-        if(k==6) drawLineForMatchingMoves(50,30, 368, 348, color);
-        if(k==7) drawLineForMatchingMoves(50, 348, 368, 30, color);
-        if(k==8) {
-            setGameEndScene(2);
-            return false;
-        }
-        if(k>=0 && k<=7) {
-            setGameEndScene(winPlayerIndicator);
-            return false;
-        }
-        return true;
+    protected boolean gameEndSceneSetter(int combinationNo, Color lineColor, int winPlayerIndicator){
+        if(notDrawNotWinOptimizer(combinationNo)) return true;
+
+        boolean hasNotEnd = true;
+        hasNotEnd = drawHorizontalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
+        hasNotEnd = drawVerticalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
+        hasNotEnd = drawMainDiagonalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
+        hasNotEnd = drawAuxiliaryWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
+        hasNotEnd = drawScene(combinationNo, hasNotEnd);
+
+        return hasNotEnd;
     }
+
+    private boolean notDrawNotWinOptimizer(int k){
+        boolean hasNotEnd = false ;
+        if(k==-1) hasNotEnd = true;
+        return hasNotEnd;
+    }
+
+    private boolean drawHorizontalWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
+        if(hasNotEnd){
+            if(combinationNo>=0 && combinationNo<=2) {
+                drawLineForMatchingMoves(53, 84+109*combinationNo, 368, 84+109*combinationNo, lineColor);
+                setGameEndScene(winPlayerIndicator);
+                hasNotEnd = false;
+            }
+        }
+        return hasNotEnd;
+    }
+
+    private boolean drawVerticalWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
+        if(hasNotEnd){
+            if(combinationNo>=3 && combinationNo<=5) {
+                drawLineForMatchingMoves(103+109*(combinationNo-3), 31, 103+109*(combinationNo-3), 348, lineColor);
+                setGameEndScene(winPlayerIndicator);
+                hasNotEnd = false;
+            }
+        }
+        return hasNotEnd;
+    }
+
+    private boolean drawMainDiagonalWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
+        if(hasNotEnd){
+            if(combinationNo==6) {
+                drawLineForMatchingMoves(50,30, 368, 348, lineColor);
+                setGameEndScene(winPlayerIndicator);
+                hasNotEnd = false;
+            }
+        }
+        return hasNotEnd;
+    }
+
+    private boolean drawAuxiliaryWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
+        if(hasNotEnd){
+            if(combinationNo==7) {
+                drawLineForMatchingMoves(50, 348, 368, 30, lineColor);
+                setGameEndScene(winPlayerIndicator);
+                hasNotEnd = false;
+            }
+        }
+
+        return hasNotEnd;
+    }
+
+    private boolean drawScene(int combinationNo, boolean hasNotEnd){
+        if(hasNotEnd){
+            if(combinationNo == 8){
+                setGameEndScene(2);
+                hasNotEnd=  false;
+            }
+        }
+        return hasNotEnd;
+    }
+
 
     private void drawLineForMatchingMoves(double x1, double y1, double x2, double y2, Color color){
         Line line = gameStage.drawLine(x1, y1, x2, y2);

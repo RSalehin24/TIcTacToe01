@@ -1,47 +1,41 @@
 import javafx.scene.paint.Color;
 
-public class ClassicTheme implements Theme {
+public class ClassicTheme extends ThemeMiddler {
 
     private Tile[] tiles;
 
-    private GameLogicForWinning gameLogicForWinning;
+    private GameEndChecker gameEndChecker;
     private CurrentStateOfGame currentStateOfGame;
-    private GameStage gameStage;
     private AIPlayer aiPlayer;
 
     protected ClassicTheme(GameStage gameStage, AIPlayer aiPlayer){
-        this.gameStage = gameStage;
+        super(gameStage);
         this.aiPlayer = aiPlayer;
-        tiles = gameStage.getTiles();
+        tiles = super.getThemeTiles();
 
-        gameLogicForWinning = new GameLogicForWinning();
-        gameLogicForWinning.initializeGameLogicForWinning(gameStage);
+        gameEndChecker = new GameEndChecker();
+        gameEndChecker.initializeGameLogicForWinning(gameStage);
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
-        changePlayerSign();
+        super.prepareTileToGetChanged(Color.WHITE);
         gameStage.setThemeInTiles(this);
     }
 
-    public void changePlayerSign(){
-        gameStage.removeExtensionsFromTiles(Color.WHITE);
-        for(int i=0; i<9; i++){
-            if(tiles[i].getIsOccupied()){
-                if(tiles[i].getIsHuman()){
-                    tiles[i].setText("X");
-                }
-                else { tiles[i].setText("O");}
-            }
+    public void changePlayerSign(Tile tile) {
+        if(tile.getIsHuman()){
+            tile.setText("X");
         }
+        else { tile.setText("O");}
     }
 
     public void makeMoveInATile(Tile tile){
         setPlayerInTile(tile, "X",null,true);
-        if(gameLogicForWinning.getNotEndFlag()) aiPlayer();
+        if(gameEndChecker.getDrawWinChecker().getNotEndFlag()) aiPlayer();
     }
 
     public void aiPlayer(){
-        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getOccupiedHuman(), currentStateOfGame.getOccupiedAI());
+        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getOccupiedTiles());
         setPlayerInTile(tiles[tileNo], "O", null,false);
     }
 
@@ -50,7 +44,7 @@ public class ClassicTheme implements Theme {
             tile.setText(playerSymbol);
             tile.setIsOccupied(true);
             tile.setIsHuman(isHuman);
-            gameLogicForWinning.gameEndChecker(Color.BLACK);
+            gameEndChecker.gameEndChecker(Color.BLACK);
         }
     }
 }

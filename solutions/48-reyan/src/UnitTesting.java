@@ -16,11 +16,10 @@ public class UnitTesting {
     @Test
     public void testRandomAIPlayer(){
         RandomAIPlayer randomAIPlayer = new RandomAIPlayer();
-        boolean[] occupiedHuman = new boolean[9];
-        boolean[] occupiedAI = new boolean[9];
-        for(int i=0;i<8; i++) occupiedHuman[i] = true;
+        boolean[][] occupiedTiles = new boolean[2][9];
+        for(int i=0;i<8; i++) occupiedTiles[0][i] = true;
 
-        int randomTileNo =  randomAIPlayer.getAIPlayerTileNo(occupiedHuman, occupiedAI);
+        int randomTileNo =  randomAIPlayer.getAIPlayerTileNo(occupiedTiles);
 
         Assertions.assertEquals(8, randomTileNo);
     }
@@ -28,37 +27,34 @@ public class UnitTesting {
     @Test
     public void testDefensiveAIPlayer(){
         DefensiveAIPlayer defensiveAIPlayer = new DefensiveAIPlayer();
-        boolean[] occupiedHuman = new boolean[9];
-        boolean[] occupiedAI = new boolean[9];
-        occupiedHuman[4] = true;
-        occupiedHuman[3] = true;
-        occupiedHuman[6] = true;
-        Assertions.assertEquals(5, defensiveAIPlayer.getAIPlayerTileNo(occupiedHuman, occupiedAI));
+        boolean[][] occupiedTiles = new boolean[2][9];
+        occupiedTiles[0][4] = true;
+        occupiedTiles[0][3] = true;
+        occupiedTiles[0][6] = true;
+        Assertions.assertEquals(0, defensiveAIPlayer.getAIPlayerTileNo(occupiedTiles));
     }
 
     @Test
-    public void textWinnnerDrawChecker(){
-        GameLogicForWinning gameLogicForWinning = new GameLogicForWinning();
-        boolean[] occupiedHuman = new boolean[9];
-        boolean[] occupiedAI = new boolean[9];
-        occupiedHuman[4] = true;
-        occupiedHuman[3] = true;
-        occupiedHuman[5] = true;
+    public void textWinnerDrawChecker(){
+        DrawWinChecker drawWinChecker = new DrawWinChecker();
+        boolean[][] occupiedTiles = new boolean[2][9];
+        occupiedTiles[0][4] = true;
+        occupiedTiles[0][3] = true;
+        occupiedTiles[0][5] = true;
 
-        Assertions.assertEquals(1, gameLogicForWinning.winnerDrawChecker(occupiedHuman, occupiedAI));
+        Assertions.assertEquals(1, drawWinChecker.winnerDrawChecker(occupiedTiles[0], occupiedTiles[1]));
     }
 
     @Test
     public void testDrawChecking(){
-        GameLogicForWinning gameLogicForWinning = new GameLogicForWinning();
-        boolean[] occupiedHuman = new boolean[9];
-        boolean[] occupiedAI = new boolean[9];
+        DrawWinChecker drawWinChecker = new DrawWinChecker();
+        boolean[][] occupiedTiles = new boolean[2][9];
         for(int i=0,j=1;i<8; i+=2, j+=2){
-            occupiedHuman[i] = true;
-            occupiedAI[j] = true;
+            occupiedTiles[0][i] = true;
+            occupiedTiles[1][j] = true;
         }
-        occupiedHuman[8] = true;
+        occupiedTiles[0][8] = true;
 
-        Assertions.assertEquals(true, gameLogicForWinning.drawChecking(occupiedHuman, occupiedAI));
+        Assertions.assertEquals(8, drawWinChecker.drawChecking(-1, occupiedTiles[0], occupiedTiles[1]));
     }
 }

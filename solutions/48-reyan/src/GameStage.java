@@ -103,15 +103,21 @@ public class GameStage {
         }
     }
 
-    public void removeExtensionsFromTiles(Color color) {
+    public void removeExtensionsFromTiles(Color tileBackGroundColor) {
         for (int i = 0; i < 9; i++) {
             if (tiles[i].getIsOccupied()) {
                 if (tiles[i].getHasImageView()) { tiles[i].getChildren().remove(tiles[i].getImageView()); }
                 tiles[i].setText("");
-                tiles[i].setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+                tiles[i].setBackground(new Background(new BackgroundFill(tileBackGroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
             }
         }
     }
+
+    public void addExtensionInTiles(Color tileBackGroundColor){
+        removeExtensionsFromTiles(tileBackGroundColor);
+
+    }
+
 
     protected Pane getPaneOfGame(){ return paneOfGame; }
     protected Stage getStageOfGame(){ return stageOfGame; }

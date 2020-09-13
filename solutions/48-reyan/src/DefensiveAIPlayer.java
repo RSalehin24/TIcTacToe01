@@ -6,28 +6,76 @@ public class DefensiveAIPlayer implements AIPlayer{
         randomAIPlayer = new RandomAIPlayer();
     }
 
-    public int getAIPlayerTileNo(boolean[] occupiedHuman, boolean[] occupiedAI){
-        if(!(occupiedHuman[4]||occupiedAI[4])) return 4;
-        for (int i=0; i<9; i += 3) {
-            if(occupiedHuman[i] && occupiedHuman[i+1]){ if(!(occupiedHuman[i+2]||occupiedAI[i+2])) return i+2; }
-            else if(occupiedHuman[i] && occupiedHuman[i+2]){ if(!(occupiedAI[i+1])) return i+1; }
-            else if(occupiedHuman[i+1] && occupiedHuman[i+2]){ if(!(occupiedAI[i])) return i; }
-        }
+    public int getAIPlayerTileNo(boolean[][] occupiedTiles){
+        int tileNo = -1;
 
-        for(int i=0; i<3; i++){
-            if(occupiedHuman[i] && occupiedHuman[i+3]){ if(!(occupiedHuman[i+6]||occupiedAI[i+6])) return i+6; }
-            else if(occupiedHuman[i] && occupiedHuman[i+6]){ if(!(occupiedAI[i+3])) return i+3; }
-            else if(occupiedHuman[i+3] && occupiedHuman[i+6]){ if(!(occupiedAI[i])) return i; }
-        }
+        tileNo = checkTileNoFour(tileNo, occupiedTiles);
+        tileNo = checkVerticalTile(tileNo, occupiedTiles);
+        tileNo = checkHorizontalCombination(tileNo, occupiedTiles);
+        tileNo = checkMainDiagonalTile(tileNo, occupiedTiles);
+        tileNo = checkAuxiiaryDiagonalTile(tileNo, occupiedTiles);
+        tileNo = randomTileNo(tileNo, occupiedTiles);
 
-        if(occupiedHuman[0] && occupiedHuman[4]){ if(!(occupiedHuman[8]||occupiedAI[8])) return 8; }
-        else if(occupiedHuman[0] && occupiedHuman[8]){ if(!(occupiedAI[4])) return 4; }
-        else if(occupiedHuman[4] && occupiedHuman[8]){ if(!(occupiedAI[0])) return 0; }
-
-        if(occupiedHuman[2] && occupiedHuman[4]){ if(!(occupiedHuman[6]||occupiedAI[6])) return 6; }
-        else if(occupiedHuman[2] && occupiedHuman[6]){ if(!(occupiedAI[4])) return 4; }
-        else if(occupiedHuman[4] && occupiedHuman[6]){ if(!(occupiedAI[2])) return 2; }
-
-        return randomAIPlayer.getAIPlayerTileNo(occupiedHuman, occupiedAI);
+        return tileNo;
     }
+
+    private int checkTileNoFour(int tileNo, boolean[][] occupiedTiles){
+        if(!(occupiedTiles[0][4]||occupiedTiles[1][4])) {
+            tileNo = 4;
+        }
+        return tileNo;
+    }
+
+    private int checkHorizontalCombination(int tileNo, boolean[][] occupiedTiles){
+        for (int i=0; i<9; i += 3) {
+            tileNo = checkTheTiles(tileNo, occupiedTiles, i, i+1, i+2);
+            tileNo = checkTheTiles(tileNo, occupiedTiles, i, i+2, i+1);
+            tileNo = checkTheTiles(tileNo, occupiedTiles, i+1,i+1, i);
+        }
+        return tileNo;
+    }
+
+    private int checkVerticalTile(int tileNo, boolean[][] occupiedTiles){
+        for(int i=0; i<3; i++){
+            tileNo = checkTheTiles(tileNo, occupiedTiles, i, i+3, i+6);
+            tileNo = checkTheTiles(tileNo, occupiedTiles, i, i+6, i+3);
+            tileNo = checkTheTiles(tileNo, occupiedTiles, i+3,i+6, i);
+        }
+        return tileNo;
+    }
+
+    private int checkMainDiagonalTile(int tileNo, boolean[][] occupiedTiles){
+        for(int i=0; i<3; i++){
+            tileNo = checkTheTiles(tileNo, occupiedTiles, 0, 4, 8);
+            tileNo = checkTheTiles(tileNo, occupiedTiles, 0, 8, 4);
+            tileNo = checkTheTiles(tileNo, occupiedTiles, 4,8, 0);
+        }
+        return tileNo;
+    }
+
+    private int checkAuxiiaryDiagonalTile(int tileNo, boolean[][] occupiedTiles){
+        for(int i=0; i<3; i++){
+            tileNo = checkTheTiles(tileNo, occupiedTiles, 2, 4, 6);
+            tileNo = checkTheTiles(tileNo, occupiedTiles, 2, 6, 4);
+            tileNo = checkTheTiles(tileNo, occupiedTiles, 4,6, 2);
+        }
+        return tileNo;
+    }
+
+    private int checkTheTiles(int tileNo, boolean[][] occupiedTiles, int tileOne, int tileTwo, int tileThree){
+        if(tileNo == -1) {
+            if (occupiedTiles[0][tileOne] && occupiedTiles[0][tileTwo]) {
+                if (!(occupiedTiles[0][tileThree] || occupiedTiles[1][tileThree])) tileNo = tileThree;
+            }
+        }
+        return  tileNo;
+    }
+
+    private int randomTileNo(int tileNo, boolean[][] occupiedTiles){
+        if(tileNo == -1){
+            tileNo = randomAIPlayer.getAIPlayerTileNo(occupiedTiles);
+        }
+        return tileNo;
+    }
+
 }
