@@ -6,7 +6,7 @@ public class CurrentStateOfGame {
         this.tiles = tiles;
     }
 
-    protected boolean[][] getOccupiedTiles(){
+    protected boolean[][] getTilesOccupiedByPlayers(){
 
         boolean[][] occupiedTiles= new boolean[2][9];
 

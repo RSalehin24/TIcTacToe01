@@ -14,10 +14,10 @@ public class GameEndChecker {
     }
 
     protected void gameEndChecker(Color color) {
-        int combinationNo = drawWinChecker.winnerDrawChecker(currentStateOfGame.getOccupiedTiles()[0], currentStateOfGame.getOccupiedTiles()[1]);
+        int combinationNo = drawWinChecker.winnerDrawChecker(currentStateOfGame.getTilesOccupiedByPlayers()[0], currentStateOfGame.getTilesOccupiedByPlayers()[1]);
         boolean isNotEnd = gameEndingWorks.gameEndSceneSetter(combinationNo, color, 0);
         if(isNotEnd){
-            combinationNo = drawWinChecker.winnerDrawChecker(currentStateOfGame.getOccupiedTiles()[1], currentStateOfGame.getOccupiedTiles()[0]);
+            combinationNo = drawWinChecker.winnerDrawChecker(currentStateOfGame.getTilesOccupiedByPlayers()[1], currentStateOfGame.getTilesOccupiedByPlayers()[0]);
             gameEndingWorks.gameEndSceneSetter(combinationNo, color, 1);
         }
     }

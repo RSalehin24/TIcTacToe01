@@ -39,7 +39,7 @@ public class ForestTheme extends ThemeIntermediate {
     }
 
     public void aiPlayer(){
-        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getOccupiedTiles());
+        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getTilesOccupiedByPlayers());
         setPlayerInTile(tiles[tileNo],"fruit.jpg", null, false);
     }
 

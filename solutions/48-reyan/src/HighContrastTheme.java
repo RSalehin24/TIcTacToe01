@@ -42,7 +42,7 @@ public class HighContrastTheme extends ThemeIntermediate {
     }
 
     public void aiPlayer(){
-        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getOccupiedTiles());
+        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getTilesOccupiedByPlayers());
         setPlayerInTile(tiles[tileNo], null, Color.WHITE, false);
     }
 
