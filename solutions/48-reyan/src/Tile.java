@@ -40,11 +40,9 @@ public class Tile extends StackPane {
     }
 
     public void removeExtensionsFromTile(Color tileBackGroundColor) {
-        if (this.getIsOccupied()) {
-            if (this.getHasImageView()) { this.getChildren().remove(this.getImageView()); }
-            this.setText("");
-            this.setBackground(new Background(new BackgroundFill(tileBackGroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
-        }
+        if (this.getHasImageView()) { this.getChildren().remove(this.getImageView()); }
+        this.setText("");
+        this.setBackground(new Background(new BackgroundFill(tileBackGroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     protected void setTheme(Theme theme){ this.theme = theme;}

@@ -2,7 +2,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
-public class ForestTheme extends ThemeMiddler {
+public class ForestTheme extends ThemeCommonJobs {
 
 
     private Tile[] tiles;
@@ -22,21 +22,16 @@ public class ForestTheme extends ThemeMiddler {
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
-        super.prepareTileToGetChanged(Color.LIGHTGREEN);
+        super.prepareAndChangeThemePlayerSign(Color.LIGHTGREEN);
         gameStage.setThemeInTiles(this);
     }
 
-    public void changePlayerSign(Tile tile){
-        if(tile.getIsHuman()){
-            setChangedPlayer(tile, "flower.jpg", null);
-        }
-        else {
-            setChangedPlayer(tile, "fruit.jpg", null);
-        }
+    public void setChangedHumanPlayer(Tile tile){
+        createImageViewByPlayer("flower.jpg", tile);
     }
 
-    public void setChangedPlayer(Tile tile, String string, Color backGroundColor){
-        createImageViewByPlayer(string, tile);
+    public void setChangedAIPlayer(Tile tile){
+        createImageViewByPlayer("fruit.jpg", tile);
     }
 
     public void makeMoveInATile(Tile tile){

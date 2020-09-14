@@ -1,15 +1,13 @@
 import javafx.scene.paint.Color;
 
-public abstract class ThemeMiddler implements Theme {
-    private GameStage gameStage;
+public abstract class ThemeCommonJobs implements Theme {
     private Tile[] tiles;
 
-    protected ThemeMiddler(GameStage gameStage){
-        this.gameStage = gameStage;
+    protected ThemeCommonJobs(GameStage gameStage){
         tiles = gameStage.getTiles();
     }
 
-    public void prepareTileToGetChanged(Color tileBackGroundColor){
+    public void prepareAndChangeThemePlayerSign(Color tileBackGroundColor){
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
                 tiles[i].removeExtensionsFromTile(tileBackGroundColor);
@@ -18,8 +16,17 @@ public abstract class ThemeMiddler implements Theme {
         }
     }
 
-    public void changePlayerSign(Tile tile){}
-    public void setChangedPlayer(Tile tile, String string, Color backGroundColor){}
+    private void changePlayerSign(Tile tile){
+        if(tile.getIsHuman()){
+            setChangedHumanPlayer(tile);
+        }
+        else{
+            setChangedAIPlayer(tile);
+        }
+    }
+
+    public void setChangedHumanPlayer(Tile tile){}
+    public void setChangedAIPlayer(Tile tile){}
     public void makeMoveInATile(Tile tile){}
     public void aiPlayer(){}
     public void setPlayerInTile(Tile tile, String string, Color color, boolean isHuman){}

@@ -4,7 +4,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
-public class HighContrastTheme extends ThemeMiddler {
+public class HighContrastTheme extends ThemeCommonJobs {
 
     private Tile[] tiles;
 
@@ -24,20 +24,16 @@ public class HighContrastTheme extends ThemeMiddler {
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
-        super.prepareTileToGetChanged(Color.DARKGREY);
+        super.prepareAndChangeThemePlayerSign(Color.DARKGREY);
         gameStage.setThemeInTiles(this);
     }
 
-    public void changePlayerSign(Tile tile) {
-        if (tile.getIsHuman()) {
-            setChangedPlayer(tile, null, Color.BLACK);
-        } else {
-            setChangedPlayer(tile, null, Color.WHITE);
-        }
+    public void setChangedHumanPlayer(Tile tile){
+        tile.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
-    public void setChangedPlayer(Tile tile, String string, Color backGroundColor){
-        tile.setBackground(new Background(new BackgroundFill(backGroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
+    public void setChangedAIPlayer(Tile tile){
+        tile.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     public void makeMoveInATile(Tile tile){

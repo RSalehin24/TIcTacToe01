@@ -1,6 +1,6 @@
 import javafx.scene.paint.Color;
 
-public class ClassicTheme extends ThemeMiddler {
+public class ClassicTheme extends ThemeCommonJobs {
 
     private Tile[] tiles;
 
@@ -18,21 +18,16 @@ public class ClassicTheme extends ThemeMiddler {
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
-        super.prepareTileToGetChanged(Color.WHITE);
+        super.prepareAndChangeThemePlayerSign(Color.WHITE);
         gameStage.setThemeInTiles(this);
     }
 
-    public void changePlayerSign(Tile tile) {
-        if(tile.getIsHuman()){
-            setChangedPlayer(tile, "X", null);
-        }
-        else{
-            setChangedPlayer(tile, "O", null);
-        }
+    public void setChangedHumanPlayer(Tile tile){
+        tile.setText("X");
     }
 
-    public void setChangedPlayer(Tile tile, String string, Color backGroundColor){
-        tile.setText(string);
+    public void setChangedAIPlayer(Tile tile){
+        tile.setText("O");
     }
 
     public void makeMoveInATile(Tile tile){
