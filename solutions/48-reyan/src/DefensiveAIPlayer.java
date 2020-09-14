@@ -8,14 +8,12 @@ public class DefensiveAIPlayer implements AIPlayer{
 
     public int getAIPlayerTileNo(boolean[][] occupiedTiles){
         int tileNo = -1;
-
         tileNo = checkTileNoFour(tileNo, occupiedTiles);
         tileNo = checkRowsTiles(tileNo, occupiedTiles);
         tileNo = checkColumnsTiles(tileNo, occupiedTiles);
         tileNo = checkMainDiagonalTiles(tileNo, occupiedTiles);
         tileNo = checkAuxiliaryDiagonalTiles(tileNo, occupiedTiles);
         tileNo = returnRandomTileNo(tileNo, occupiedTiles);
-
         return tileNo;
     }
 
@@ -30,7 +28,7 @@ public class DefensiveAIPlayer implements AIPlayer{
         for (int i=0; i<9; i += 3) {
             tileNo = checkIfTwoTilesHaveMatched(tileNo, occupiedTiles, i, i+1, i+2);
             tileNo = checkIfTwoTilesHaveMatched(tileNo, occupiedTiles, i, i+2, i+1);
-            tileNo = checkIfTwoTilesHaveMatched(tileNo, occupiedTiles, i+1,i+1, i);
+            tileNo = checkIfTwoTilesHaveMatched(tileNo, occupiedTiles, i+1,i+2, i);
         }
         return tileNo;
     }

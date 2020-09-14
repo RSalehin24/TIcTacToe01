@@ -8,8 +8,8 @@ import javafx.scene.text.Text;
 
 public class Menu {
 
-    private Group buttonGroup = new Group();
-    private  Group radioButtonGroup = new Group();
+    private Group buttonGroupForAI = new Group();
+    private  Group radioButtonGroupForTheme = new Group();
 
     private Text textTheme;
     private Button buttonRandomAI;
@@ -58,13 +58,24 @@ public class Menu {
         radioButtonClassic = createRadioButton("Classic", toggleGroup, X, Y1);
         radioButtonForest = createRadioButton("Forest", toggleGroup, X, Y2);
         radioButtonHighContrast = createRadioButton("High Contrast", toggleGroup, X, Y3);
-        radioButtonGroup.getChildren().addAll(radioButtonClassic, radioButtonForest, radioButtonHighContrast);
+        radioButtonGroupForTheme.getChildren().addAll(radioButtonClassic, radioButtonForest, radioButtonHighContrast);
     }
 
     private void createButtonGroupToSelectAIPlayer(double X1, double X2, double Y1, double Y2){
         buttonRandomAI = createButton("Play with Random AI",X1, Y1);
         buttonDefensiveAI = createButton("Play with Defensive AI", X2, Y2);
-        buttonGroup.getChildren().addAll(buttonRandomAI, buttonDefensiveAI);
+        buttonGroupForAI.getChildren().addAll(buttonRandomAI, buttonDefensiveAI);
+    }
+
+    private void buttonEventHandlerPerAIPlayer(){
+        buttonRandomAI.setOnMouseClicked(e -> {
+            RandomAIPlayer randomAIPlayer = new RandomAIPlayer();
+            themeDeterminerFromRadioButtons(randomAIPlayer);
+        });
+        buttonDefensiveAI.setOnMouseClicked(e -> {
+            DefensiveAIPlayer defensiveAIPlayer = new DefensiveAIPlayer();
+            themeDeterminerFromRadioButtons(defensiveAIPlayer);
+        });
     }
 
     private void themeDeterminerFromRadioButtons(AIPlayer aiPlayer){
@@ -79,18 +90,7 @@ public class Menu {
         }
     }
 
-    private void buttonEventHandlerPerAIPlayer(){
-        buttonRandomAI.setOnMouseClicked(e -> {
-            RandomAIPlayer randomAIPlayer = new RandomAIPlayer();
-            themeDeterminerFromRadioButtons(randomAIPlayer);
-        });
-        buttonDefensiveAI.setOnMouseClicked(e -> {
-            DefensiveAIPlayer defensiveAIPlayer = new DefensiveAIPlayer();
-            themeDeterminerFromRadioButtons(defensiveAIPlayer);
-        });
-    }
-
     protected Text getTextTheme(){ return textTheme; }
-    protected Group getRadioButtonGroup(){ return radioButtonGroup; }
-    protected Group getButtonGroup(){ return buttonGroup; }
+    protected Group getRadioButtonGroupForTheme(){ return radioButtonGroupForTheme; }
+    protected Group getButtonGroupForAI(){ return buttonGroupForAI; }
 }

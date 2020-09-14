@@ -1,11 +1,6 @@
-import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -18,14 +13,13 @@ public class GameStage {
 
     private Group tileGroup = new Group();
     private Group lineGroup = new Group();
-    private Group radioButtonGroup = new Group();
-    private Group buttonGroup = new Group();
+    private Group radioButtonGroupForTheme = new Group();
+    private Group buttonGroupForAI = new Group();
 
     private Tile[] tiles = new Tile[9];
     private Line[] lines = new Line[9];
 
     private Menu menu;
-
 
     protected void createShowGameStage(){
         menu = new Menu();
@@ -47,10 +41,10 @@ public class GameStage {
         createLineGroup();
 
         textTheme = menu.getTextTheme();
-        radioButtonGroup = menu.getRadioButtonGroup();
-        buttonGroup = menu.getButtonGroup();
+        buttonGroupForAI = menu.getButtonGroupForAI();
+        radioButtonGroupForTheme = menu.getRadioButtonGroupForTheme();
 
-        paneOfGame.getChildren().addAll(tileGroup, lineGroup, textTheme, buttonGroup, radioButtonGroup);
+        paneOfGame.getChildren().addAll(tileGroup, lineGroup, textTheme, buttonGroupForAI, radioButtonGroupForTheme);
         return paneOfGame;
     }
 
@@ -58,10 +52,7 @@ public class GameStage {
         for(int i=0, l=0; i<3; i++){
             for(int j=0; j<3; j++){
                 Tile tile = new Tile();
-                tile.setMinSize(100, 100);
-                tile.setTranslateX(j*109+53);
-                tile.setTranslateY(i*109+30);
-
+                createTile(tile, j, i);
                 tiles[l] = tile;
                 tileGroup.getChildren().add(tiles[l]);
                 l++;
@@ -82,6 +73,13 @@ public class GameStage {
         lines[l] = drawLine(400, 30, 400, 348);
 
         lineGroup.getChildren().addAll(lines[0], lines[1], lines[2], lines[3], lines[4]);
+    }
+
+    private Tile createTile(Tile tile, int X, int Y){
+        tile.setMinSize(100, 100);
+        tile.setTranslateX(X*109+53);
+        tile.setTranslateY(Y*109+30);
+        return tile;
     }
 
     protected Line drawLine(double x1, double y1, double x2, double y2){

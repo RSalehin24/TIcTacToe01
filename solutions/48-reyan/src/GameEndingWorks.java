@@ -26,14 +26,12 @@ public class GameEndingWorks {
 
     protected boolean gameEndSceneSetter(int combinationNo, Color lineColor, int winPlayerIndicator){
         if(notDrawNotWinOptimizer(combinationNo)) return true;
-
         boolean hasNotEnd = true;
         hasNotEnd = drawRowWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
         hasNotEnd = drawColumnWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
         hasNotEnd = drawMainDiagonalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
         hasNotEnd = drawAuxiliaryDiagonalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
         hasNotEnd = drawDrawScene(combinationNo, hasNotEnd);
-
         return hasNotEnd;
     }
 

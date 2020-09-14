@@ -7,12 +7,9 @@ public class CurrentStateOfGame {
     }
 
     protected boolean[][] getTilesOccupiedByPlayers(){
-
         boolean[][] occupiedTiles= new boolean[2][9];
-
         occupiedTiles[0] = getOccupiedTilesPerPlayer(true);
         occupiedTiles[1] = getOccupiedTilesPerPlayer(false);
-
         return occupiedTiles;
     }
 

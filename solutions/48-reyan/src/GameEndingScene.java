@@ -8,7 +8,6 @@ import javafx.scene.text.Font;
 public class GameEndingScene {
 
     protected Scene makeGameOverScene(int winPlayerIndicator) {
-
         String stringForLabelOne = determineLabelString(winPlayerIndicator, "Yahoo!!!", "Sorry!", "Hmm!");
         String stringForLabelTwo = determineLabelString(winPlayerIndicator, "You have won the game!!","You have lost the game", "Game Has Drawn");
 
@@ -16,7 +15,6 @@ public class GameEndingScene {
         Label labelTwo = createLabel(stringForLabelTwo, "#228b22");
 
         VBox vBox = createVBox(labelOne, labelTwo);
-
         return new Scene(vBox, 600, 380);
     }
 
