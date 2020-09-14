@@ -75,10 +75,10 @@ public abstract class ThemeIntermediate implements Theme {
         }
     }
 
+    public void setChangedHumanPlayer(Tile tile){}
+    public void setChangedAIPlayer(Tile tile){}
+
     protected void setHumanPlayer(Tile tile){}
     protected void setAIPlayer(Tile tile){}
     protected void setThemePlayer(Tile tile, String playerSymbol, Color tileBackGroundColor){}
-
-    public void setChangedHumanPlayer(Tile tile){}
-    public void setChangedAIPlayer(Tile tile){}
 }

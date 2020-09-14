@@ -20,8 +20,6 @@ public class Tile extends StackPane {
     private boolean isOccupied;
     private boolean isHuman;
 
-
-
     protected Tile(){
         text = new Text();
         text.setFont(Font.font(75));
