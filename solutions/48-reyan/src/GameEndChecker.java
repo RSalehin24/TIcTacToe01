@@ -6,7 +6,6 @@ public class GameEndChecker {
     private GameEndingWorks gameEndingWorks;
     private DrawWinChecker drawWinChecker;
 
-
     protected void initializeGameEndChecker(GameStage gameStage){
         currentStateOfGame = new CurrentStateOfGame(gameStage.getTiles());
         gameEndingWorks = new GameEndingWorks(gameStage);
