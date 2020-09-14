@@ -28,10 +28,10 @@ public class GameEndingWorks {
         if(notDrawNotWinOptimizer(combinationNo)) return true;
 
         boolean hasNotEnd = true;
-        hasNotEnd = drawHorizontalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
-        hasNotEnd = drawVerticalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
+        hasNotEnd = drawRowWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
+        hasNotEnd = drawColumnWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
         hasNotEnd = drawMainDiagonalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
-        hasNotEnd = drawAuxiliaryWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
+        hasNotEnd = drawAuxiliaryDiagonalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
         hasNotEnd = drawDrawScene(combinationNo, hasNotEnd);
 
         return hasNotEnd;
@@ -43,7 +43,7 @@ public class GameEndingWorks {
         return hasNotEnd;
     }
 
-    private boolean drawHorizontalWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
+    private boolean drawRowWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
         if(hasNotEnd){
             if(combinationNo>=0 && combinationNo<=2) {
                 drawLineForMatchingMoves(53, 84+109*combinationNo, 368, 84+109*combinationNo, lineColor);
@@ -54,7 +54,7 @@ public class GameEndingWorks {
         return hasNotEnd;
     }
 
-    private boolean drawVerticalWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
+    private boolean drawColumnWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
         if(hasNotEnd){
             if(combinationNo>=3 && combinationNo<=5) {
                 drawLineForMatchingMoves(103+109*(combinationNo-3), 31, 103+109*(combinationNo-3), 348, lineColor);
@@ -76,7 +76,7 @@ public class GameEndingWorks {
         return hasNotEnd;
     }
 
-    private boolean drawAuxiliaryWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
+    private boolean drawAuxiliaryDiagonalWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
         if(hasNotEnd){
             if(combinationNo==7) {
                 drawLineForMatchingMoves(50, 348, 368, 30, lineColor);
