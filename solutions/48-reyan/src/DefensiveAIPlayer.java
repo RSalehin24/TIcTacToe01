@@ -13,7 +13,7 @@ public class DefensiveAIPlayer implements AIPlayer{
         tileNo = checkHorizontalCombinations(tileNo, occupiedTiles);
         tileNo = checkVerticalTileCombinations(tileNo, occupiedTiles);
         tileNo = checkMainDiagonalTiles(tileNo, occupiedTiles);
-        tileNo = checkAuxliaryDiagonalTiles(tileNo, occupiedTiles);
+        tileNo = checkAuxiliaryDiagonalTiles(tileNo, occupiedTiles);
         tileNo = returnRandomTileNo(tileNo, occupiedTiles);
 
         return tileNo;
@@ -53,7 +53,7 @@ public class DefensiveAIPlayer implements AIPlayer{
         return tileNo;
     }
 
-    private int checkAuxliaryDiagonalTiles(int tileNo, boolean[][] occupiedTiles){
+    private int checkAuxiliaryDiagonalTiles(int tileNo, boolean[][] occupiedTiles){
         for(int i=0; i<3; i++){
             tileNo = checkTheTiles(tileNo, occupiedTiles, 2, 4, 6);
             tileNo = checkTheTiles(tileNo, occupiedTiles, 2, 6, 4);

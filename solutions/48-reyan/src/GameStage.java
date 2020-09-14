@@ -90,14 +90,8 @@ public class GameStage {
         return line;
     }
 
-    protected void thingsToChangePerTheme(Pane gamePane, Color colorOfPane, Color colorOfLine){
-        gamePane.setBackground(new Background((new BackgroundFill(colorOfPane, CornerRadii.EMPTY, Insets.EMPTY))));
-        for(int i=0; i<4; i++){
-            lines[i].setStroke(colorOfLine);
-        }
-    }
-
     protected Pane getPaneOfGame(){ return paneOfGame; }
     protected Stage getStageOfGame(){ return stageOfGame; }
     protected Tile[] getTiles(){ return tiles; }
+    protected Line[] getLines(){ return lines; }
 }

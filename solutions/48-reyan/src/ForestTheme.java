@@ -18,10 +18,10 @@ public class ForestTheme extends ThemeIntermediate {
         tiles = super.getThemeTiles();
 
         gameEndChecker = new GameEndChecker();
-        gameEndChecker.initializeGameLogicForWinning(gameStage);
+        gameEndChecker.initializeGameEndChecker(gameStage);
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
-        gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
+        super.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         super.prepareTileAndChangeThemePlayerSign(Color.LIGHTGREEN);
         super.setThemeInTiles(this);
     }

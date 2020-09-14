@@ -7,7 +7,7 @@ import javafx.scene.text.Font;
 
 public class GameEndingScene {
 
-    public Scene makeGameOverScene(int winPlayerIndicator) {
+    protected Scene makeGameOverScene(int winPlayerIndicator) {
 
         String stringForLabelOne = determineLabelString(winPlayerIndicator, "Yahoo!!!", "Sorry!", "Hmm!");
         String stringForLabelTwo = determineLabelString(winPlayerIndicator, "You have won the game!!","You have lost the game", "Game Has Drawn");

@@ -20,10 +20,10 @@ public class HighContrastTheme extends ThemeIntermediate {
         tiles = super.getThemeTiles();
 
         gameEndChecker = new GameEndChecker();
-        gameEndChecker.initializeGameLogicForWinning(gameStage);
+        gameEndChecker.initializeGameEndChecker(gameStage);
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
-        gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
+        super.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
         super.prepareTileAndChangeThemePlayerSign(Color.DARKGREY);
         super.setThemeInTiles(this);
     }

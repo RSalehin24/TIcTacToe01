@@ -1,10 +1,27 @@
+import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 
 public abstract class ThemeIntermediate implements Theme {
+
     private Tile[] tiles;
+    private Line[] lines;
+
 
     protected ThemeIntermediate(GameStage gameStage){
         tiles = gameStage.getTiles();
+        lines = gameStage.getLines();
+    }
+
+    public void thingsToChangePerTheme(Pane gamePane, Color colorOfPane, Color colorOfLine){
+        gamePane.setBackground(new Background((new BackgroundFill(colorOfPane, CornerRadii.EMPTY, Insets.EMPTY))));
+        for(int i=0; i<4; i++){
+            lines[i].setStroke(colorOfLine);
+        }
     }
 
     public void prepareTileAndChangeThemePlayerSign(Color tileBackGroundColor){
@@ -31,10 +48,14 @@ public abstract class ThemeIntermediate implements Theme {
         }
     }
 
+    protected Tile[] getThemeTiles(){
+        return tiles;
+    }
+
     public void setChangedHumanPlayer(Tile tile){}
     public void setChangedAIPlayer(Tile tile){}
     public void makeMoveInATile(Tile tile){}
     public void aiPlayer(){}
     public void setPlayerInTile(Tile tile, String string, Color color, boolean isHuman){}
-    protected Tile[] getThemeTiles(){ return tiles; }
+
 }

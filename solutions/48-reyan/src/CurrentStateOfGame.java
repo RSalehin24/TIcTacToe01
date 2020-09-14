@@ -10,13 +10,13 @@ public class CurrentStateOfGame {
 
         boolean[][] occupiedTiles= new boolean[2][9];
 
-        occupiedTiles[0] = getOccupiedTilesByPlayer(true);
-        occupiedTiles[1] = getOccupiedTilesByPlayer(false);
+        occupiedTiles[0] = getOccupiedTilesPerPlayer(true);
+        occupiedTiles[1] = getOccupiedTilesPerPlayer(false);
 
         return occupiedTiles;
     }
 
-    private boolean[] getOccupiedTilesByPlayer(boolean isHuman){
+    private boolean[] getOccupiedTilesPerPlayer(boolean isHuman){
         boolean[] occupiedTile = new boolean[9];
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){

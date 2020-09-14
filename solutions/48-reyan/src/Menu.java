@@ -24,9 +24,9 @@ public class Menu {
     protected void createMenu(GameStage gameStage){
         this.gameStage = gameStage;
         textTheme = createText("Theme", 410, 30);
-        createButtonGroup(410, 410, 280, 320);
-        createRadioButtonGroup(410, 40, 62, 84);
-        buttonEventHandler();
+        createButtonGroupToSelectAIPlayer(410, 410, 280, 320);
+        createRadioButtonGroupToCheckTheme(410, 40, 62, 84);
+        buttonEventHandlerPerAIPlayer();
     }
 
 
@@ -53,7 +53,7 @@ public class Menu {
         return button;
     }
 
-    private void createRadioButtonGroup(double X, double Y1, double Y2, double Y3){
+    private void createRadioButtonGroupToCheckTheme(double X, double Y1, double Y2, double Y3){
         ToggleGroup toggleGroup = new ToggleGroup();
         radioButtonClassic = createRadioButton("Classic", toggleGroup, X, Y1);
         radioButtonForest = createRadioButton("Forest", toggleGroup, X, Y2);
@@ -61,7 +61,7 @@ public class Menu {
         radioButtonGroup.getChildren().addAll(radioButtonClassic, radioButtonForest, radioButtonHighContrast);
     }
 
-    private void createButtonGroup(double X1, double X2, double Y1, double Y2){
+    private void createButtonGroupToSelectAIPlayer(double X1, double X2, double Y1, double Y2){
         buttonRandomAI = createButton("Play with Random AI",X1, Y1);
         buttonDefensiveAI = createButton("Play with Defensive AI", X2, Y2);
         buttonGroup.getChildren().addAll(buttonRandomAI, buttonDefensiveAI);
@@ -79,7 +79,7 @@ public class Menu {
         }
     }
 
-    private void buttonEventHandler(){
+    private void buttonEventHandlerPerAIPlayer(){
         buttonRandomAI.setOnMouseClicked(e -> {
             RandomAIPlayer randomAIPlayer = new RandomAIPlayer();
             themeDeterminerFromRadioButtons(randomAIPlayer);

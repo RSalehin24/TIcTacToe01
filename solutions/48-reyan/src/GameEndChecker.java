@@ -7,7 +7,7 @@ public class GameEndChecker {
     private DrawWinChecker drawWinChecker;
 
 
-    protected void initializeGameLogicForWinning(GameStage gameStage){
+    protected void initializeGameEndChecker(GameStage gameStage){
         currentStateOfGame = new CurrentStateOfGame(gameStage.getTiles());
         gameEndingWorks = new GameEndingWorks(gameStage);
         drawWinChecker = new DrawWinChecker();
