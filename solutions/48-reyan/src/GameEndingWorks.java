@@ -46,7 +46,7 @@ public class GameEndingWorks {
     private boolean drawRowWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
         if(hasNotEnd){
             if(combinationNo>=0 && combinationNo<=2) {
-                drawLineForMatchingMoves(53, 84+109*combinationNo, 368, 84+109*combinationNo, lineColor);
+                drawLineForThreeMatchingTiles(53, 84+109*combinationNo, 368, 84+109*combinationNo, lineColor);
                 setGameEndScene(winPlayerIndicator);
                 hasNotEnd = false;
             }
@@ -57,7 +57,7 @@ public class GameEndingWorks {
     private boolean drawColumnWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
         if(hasNotEnd){
             if(combinationNo>=3 && combinationNo<=5) {
-                drawLineForMatchingMoves(103+109*(combinationNo-3), 31, 103+109*(combinationNo-3), 348, lineColor);
+                drawLineForThreeMatchingTiles(103+109*(combinationNo-3), 31, 103+109*(combinationNo-3), 348, lineColor);
                 setGameEndScene(winPlayerIndicator);
                 hasNotEnd = false;
             }
@@ -68,7 +68,7 @@ public class GameEndingWorks {
     private boolean drawMainDiagonalWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
         if(hasNotEnd){
             if(combinationNo==6) {
-                drawLineForMatchingMoves(50,30, 368, 348, lineColor);
+                drawLineForThreeMatchingTiles(50,30, 368, 348, lineColor);
                 setGameEndScene(winPlayerIndicator);
                 hasNotEnd = false;
             }
@@ -79,7 +79,7 @@ public class GameEndingWorks {
     private boolean drawAuxiliaryDiagonalWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
         if(hasNotEnd){
             if(combinationNo==7) {
-                drawLineForMatchingMoves(50, 348, 368, 30, lineColor);
+                drawLineForThreeMatchingTiles(50, 348, 368, 30, lineColor);
                 setGameEndScene(winPlayerIndicator);
                 hasNotEnd = false;
             }
@@ -99,7 +99,7 @@ public class GameEndingWorks {
     }
 
 
-    private void drawLineForMatchingMoves(double x1, double y1, double x2, double y2, Color color){
+    private void drawLineForThreeMatchingTiles(double x1, double y1, double x2, double y2, Color color){
         Line line = gameStage.drawLine(x1, y1, x2, y2);
         line.setStroke(color);
         paneOfGame.getChildren().add(line);
