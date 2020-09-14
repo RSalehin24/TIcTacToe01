@@ -16,11 +16,10 @@ public class HighContrastTheme extends ThemeIntermediate {
     protected HighContrastTheme(GameStage gameStage, AIPlayer aiPlayer) {
         super(gameStage);
         this.aiPlayer = aiPlayer;
-        tiles = super.getThemeTiles();
 
-        gameEndChecker = new GameEndChecker();
-        gameEndChecker.initializeGameEndChecker(gameStage);
-        currentStateOfGame = new CurrentStateOfGame(tiles);
+        tiles = super.getThemeTiles();
+        gameEndChecker = super.getGameEndChecker();
+        currentStateOfGame = super.getCurrentStateOfGame();
 
         super.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
         super.prepareTileAndChangeThemePlayerSign(Color.DARKGREY);

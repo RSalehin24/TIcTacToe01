@@ -14,11 +14,10 @@ public class ForestTheme extends ThemeIntermediate {
     protected ForestTheme(GameStage gameStage, AIPlayer aiPlayer){
         super(gameStage);
         this.aiPlayer = aiPlayer;
-        tiles = super.getThemeTiles();
 
-        gameEndChecker = new GameEndChecker();
-        gameEndChecker.initializeGameEndChecker(gameStage);
-        currentStateOfGame = new CurrentStateOfGame(tiles);
+        tiles = super.getThemeTiles();
+        gameEndChecker = super.getGameEndChecker();
+        currentStateOfGame = super.getCurrentStateOfGame();
 
         super.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         super.prepareTileAndChangeThemePlayerSign(Color.LIGHTGREEN);

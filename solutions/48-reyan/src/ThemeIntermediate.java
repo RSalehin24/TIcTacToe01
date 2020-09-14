@@ -11,10 +11,16 @@ public abstract class ThemeIntermediate implements Theme {
     private Tile[] tiles;
     private Line[] lines;
 
+    private GameEndChecker gameEndChecker;
+    private CurrentStateOfGame currentStateOfGame;
 
     protected ThemeIntermediate(GameStage gameStage){
         tiles = gameStage.getTiles();
         lines = gameStage.getLines();
+
+        gameEndChecker = new GameEndChecker();
+        gameEndChecker.initializeGameEndChecker(gameStage);
+        currentStateOfGame = new CurrentStateOfGame(tiles);
     }
 
     public void thingsToChangePerTheme(Pane gamePane, Color colorOfPane, Color colorOfLine){
@@ -50,6 +56,14 @@ public abstract class ThemeIntermediate implements Theme {
 
     protected Tile[] getThemeTiles(){
         return tiles;
+    }
+
+    protected GameEndChecker getGameEndChecker() {
+        return gameEndChecker;
+    }
+
+    protected CurrentStateOfGame getCurrentStateOfGame(){
+        return currentStateOfGame;
     }
 
     public void setChangedHumanPlayer(Tile tile){}
