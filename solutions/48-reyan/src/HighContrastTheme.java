@@ -8,7 +8,7 @@ public class HighContrastTheme extends ThemeIntermediate {
 
     protected HighContrastTheme(GameStage gameStage, AIPlayer aiPlayer) {
         super(gameStage, aiPlayer);
-        super.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
+        super.thingsToChangePerTheme(Color.DARKGREY, Color.LIGHTGREY);
         super.prepareTileAndChangeThemePlayerSign(Color.DARKGREY);
         super.setThemeInTiles(this);
     }

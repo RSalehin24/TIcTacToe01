@@ -4,7 +4,7 @@ public class ClassicTheme extends ThemeIntermediate {
 
     protected ClassicTheme(GameStage gameStage, AIPlayer aiPlayer){
         super(gameStage, aiPlayer);
-        super.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
+        super.thingsToChangePerTheme(Color.WHITE, Color.BLACK);
         super.prepareTileAndChangeThemePlayerSign(Color.WHITE);
         super.setThemeInTiles(this);
     }

@@ -24,76 +24,46 @@ public class GameEndingWorks {
         gameEndingScene = new GameEndingScene();
     }
 
-    protected boolean gameEndSceneSetter(int combinationNo, Color lineColor, int winPlayerIndicator){
-        if(notDrawNotWinOptimizer(combinationNo)) return true;
-        boolean hasNotEnd = true;
-        hasNotEnd = drawRowWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
-        hasNotEnd = drawColumnWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
-        hasNotEnd = drawMainDiagonalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
-        hasNotEnd = drawAuxiliaryDiagonalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
-        hasNotEnd = drawDrawScene(combinationNo, hasNotEnd);
-        return hasNotEnd;
+    protected void gameEndSceneSetter(int combinationNo, Color lineColor, int winPlayerIndicator){
+        drawRowWinLineAndSetScene(combinationNo, lineColor, winPlayerIndicator);
+        drawColumnWinLineAndSetScene(combinationNo, lineColor, winPlayerIndicator);
+        drawMainDiagonalWinLineAndSetScene(combinationNo, lineColor, winPlayerIndicator);
+        drawAuxiliaryDiagonalWinLineAndSetScene(combinationNo, lineColor, winPlayerIndicator);
+        drawDrawScene(combinationNo);
     }
 
-    private boolean notDrawNotWinOptimizer(int combinationNo){
-        boolean hasNotEnd = false ;
-        if(combinationNo ==-1) hasNotEnd = true;
-        return hasNotEnd;
-    }
-
-    private boolean drawRowWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
-        if(hasNotEnd){
-            if(combinationNo>=0 && combinationNo<=2) {
-                drawLineForThreeMatchingTiles(53, 84+109*combinationNo, 368, 84+109*combinationNo, lineColor);
-                setGameEndScene(winPlayerIndicator);
-                hasNotEnd = false;
-            }
+    private void drawRowWinLineAndSetScene(int combinationNo, Color lineColor, int winPlayerIndicator){
+        if(combinationNo>=0 && combinationNo<=2) {
+            drawLineForThreeMatchingTiles(53, 84+109*combinationNo, 368, 84+109*combinationNo, lineColor);
+            setGameEndScene(winPlayerIndicator);
         }
-        return hasNotEnd;
     }
 
-    private boolean drawColumnWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
-        if(hasNotEnd){
-            if(combinationNo>=3 && combinationNo<=5) {
-                drawLineForThreeMatchingTiles(103+109*(combinationNo-3), 31, 103+109*(combinationNo-3), 348, lineColor);
-                setGameEndScene(winPlayerIndicator);
-                hasNotEnd = false;
-            }
+    private void drawColumnWinLineAndSetScene(int combinationNo, Color lineColor, int winPlayerIndicator){
+        if(combinationNo>=3 && combinationNo<=5) {
+            drawLineForThreeMatchingTiles(103+109*(combinationNo-3), 31, 103+109*(combinationNo-3), 348, lineColor);
+            setGameEndScene(winPlayerIndicator);
         }
-        return hasNotEnd;
     }
 
-    private boolean drawMainDiagonalWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
-        if(hasNotEnd){
-            if(combinationNo==6) {
-                drawLineForThreeMatchingTiles(50,30, 368, 348, lineColor);
-                setGameEndScene(winPlayerIndicator);
-                hasNotEnd = false;
-            }
+    private void drawMainDiagonalWinLineAndSetScene(int combinationNo, Color lineColor, int winPlayerIndicator){
+        if(combinationNo==6) {
+            drawLineForThreeMatchingTiles(50, 30, 368, 348, lineColor);
+            setGameEndScene(winPlayerIndicator);
         }
-        return hasNotEnd;
     }
 
-    private boolean drawAuxiliaryDiagonalWinLineAndSetScene(int combinationNo, boolean hasNotEnd, Color lineColor, int winPlayerIndicator){
-        if(hasNotEnd){
-            if(combinationNo==7) {
-                drawLineForThreeMatchingTiles(50, 348, 368, 30, lineColor);
-                setGameEndScene(winPlayerIndicator);
-                hasNotEnd = false;
-            }
+    private void drawAuxiliaryDiagonalWinLineAndSetScene(int combinationNo, Color lineColor, int winPlayerIndicator){
+        if(combinationNo==7) {
+            drawLineForThreeMatchingTiles(50, 348, 368, 30, lineColor);
+            setGameEndScene(winPlayerIndicator);
         }
-
-        return hasNotEnd;
     }
 
-    private boolean drawDrawScene(int combinationNo, boolean hasNotEnd){
-        if(hasNotEnd){
-            if(combinationNo == 8){
-                setGameEndScene(2);
-                hasNotEnd=  false;
-            }
+    private void drawDrawScene(int combinationNo){
+        if(combinationNo == 8) {
+            setGameEndScene(2);
         }
-        return hasNotEnd;
     }
 
 

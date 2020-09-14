@@ -6,7 +6,7 @@ public class ForestTheme extends ThemeIntermediate {
 
     protected ForestTheme(GameStage gameStage, AIPlayer aiPlayer){
         super(gameStage, aiPlayer);
-        super.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
+        super.thingsToChangePerTheme(Color.LIGHTGREEN, Color.DARKGREEN);
         super.prepareTileAndChangeThemePlayerSign(Color.LIGHTGREEN);
         super.setThemeInTiles(this);
     }
@@ -20,7 +20,7 @@ public class ForestTheme extends ThemeIntermediate {
     }
 
     protected void setHumanPlayer(Tile tile) {
-        super.setPlayerInTile(tile, "flower.jpg",null, Color.DARKGREEN, true);
+        super.setPlayerInTile(tile, "flower.jpg", null, Color.DARKGREEN, true);
     }
 
     protected void setAIPlayer(Tile tile) {

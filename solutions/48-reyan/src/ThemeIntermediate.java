@@ -10,6 +10,7 @@ public abstract class ThemeIntermediate implements Theme {
 
     private Tile[] tiles;
     private Line[] lines;
+    private Pane paneOfGame;
 
     private AIPlayer aiPlayer;
     private GameEndChecker gameEndChecker;
@@ -18,6 +19,7 @@ public abstract class ThemeIntermediate implements Theme {
     protected ThemeIntermediate(GameStage gameStage, AIPlayer aiPlayer){
         tiles = gameStage.getTiles();
         lines = gameStage.getLines();
+        paneOfGame = gameStage.getPaneOfGame();
         this.aiPlayer = aiPlayer;
 
         gameEndChecker = new GameEndChecker();
@@ -25,8 +27,8 @@ public abstract class ThemeIntermediate implements Theme {
         currentStateOfGame = new CurrentStateOfGame(tiles);
     }
 
-    public void thingsToChangePerTheme(Pane gamePane, Color colorOfPane, Color colorOfLine){
-        gamePane.setBackground(new Background((new BackgroundFill(colorOfPane, CornerRadii.EMPTY, Insets.EMPTY))));
+    public void thingsToChangePerTheme(Color colorOfPane, Color colorOfLine){
+        paneOfGame.setBackground(new Background((new BackgroundFill(colorOfPane, CornerRadii.EMPTY, Insets.EMPTY))));
         for(int i=0; i<4; i++){
             lines[i].setStroke(colorOfLine);
         }
