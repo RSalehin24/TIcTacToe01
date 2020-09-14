@@ -24,7 +24,7 @@ public class HighContrastTheme extends ThemeCommonJobs {
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
-        super.prepareAndChangeThemePlayerSign(Color.DARKGREY);
+        super.prepareTileAndChangeThemePlayerSign(Color.DARKGREY);
         gameStage.setThemeInTiles(this);
     }
 

@@ -7,7 +7,7 @@ public abstract class ThemeCommonJobs implements Theme {
         tiles = gameStage.getTiles();
     }
 
-    public void prepareAndChangeThemePlayerSign(Color tileBackGroundColor){
+    public void prepareTileAndChangeThemePlayerSign(Color tileBackGroundColor){
         for(int i=0; i<9; i++){
             if(tiles[i].getIsOccupied()){
                 tiles[i].removeExtensionsFromTile(tileBackGroundColor);

@@ -22,7 +22,7 @@ public class ForestTheme extends ThemeCommonJobs {
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
-        super.prepareAndChangeThemePlayerSign(Color.LIGHTGREEN);
+        super.prepareTileAndChangeThemePlayerSign(Color.LIGHTGREEN);
         gameStage.setThemeInTiles(this);
     }
 

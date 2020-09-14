@@ -18,7 +18,7 @@ public class ClassicTheme extends ThemeCommonJobs {
         currentStateOfGame = new CurrentStateOfGame(tiles);
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
-        super.prepareAndChangeThemePlayerSign(Color.WHITE);
+        super.prepareTileAndChangeThemePlayerSign(Color.WHITE);
         gameStage.setThemeInTiles(this);
     }
 
