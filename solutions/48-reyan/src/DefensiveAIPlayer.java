@@ -9,8 +9,8 @@ public class DefensiveAIPlayer implements AIPlayer{
     public int getAIPlayerTileNo(boolean[][] occupiedTiles){
         int tileNo = -1;
         tileNo = checkTileNoFour(tileNo, occupiedTiles);
-        tileNo = checkRowsTiles(tileNo, occupiedTiles);
-        tileNo = checkColumnsTiles(tileNo, occupiedTiles);
+        tileNo = checkRowTiles(tileNo, occupiedTiles);
+        tileNo = checkColumnTiles(tileNo, occupiedTiles);
         tileNo = checkMainDiagonalTiles(tileNo, occupiedTiles);
         tileNo = checkAuxiliaryDiagonalTiles(tileNo, occupiedTiles);
         tileNo = returnRandomTileNo(tileNo, occupiedTiles);
@@ -24,7 +24,7 @@ public class DefensiveAIPlayer implements AIPlayer{
         return tileNo;
     }
 
-    private int checkRowsTiles(int tileNo, boolean[][] occupiedTiles){
+    private int checkRowTiles(int tileNo, boolean[][] occupiedTiles){
         for (int i=0; i<9; i += 3) {
             tileNo = checkIfTwoTilesHaveMatched(tileNo, occupiedTiles, i, i+1, i+2);
             tileNo = checkIfTwoTilesHaveMatched(tileNo, occupiedTiles, i, i+2, i+1);
@@ -33,7 +33,7 @@ public class DefensiveAIPlayer implements AIPlayer{
         return tileNo;
     }
 
-    private int checkColumnsTiles(int tileNo, boolean[][] occupiedTiles){
+    private int checkColumnTiles(int tileNo, boolean[][] occupiedTiles){
         for(int i=0; i<3; i++){
             tileNo = checkIfTwoTilesHaveMatched(tileNo, occupiedTiles, i, i+3, i+6);
             tileNo = checkIfTwoTilesHaveMatched(tileNo, occupiedTiles, i, i+6, i+3);

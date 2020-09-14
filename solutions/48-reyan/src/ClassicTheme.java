@@ -18,7 +18,7 @@ public class ClassicTheme extends ThemeIntermediate {
     }
 
     protected void setHumanPlayer(Tile tile) {
-        super.setPlayerInTile(tile, "X",null, Color.BLACK, true);
+        super.setPlayerInTile(tile, "X", null, Color.BLACK, true);
     }
 
     protected void setAIPlayer(Tile tile) {

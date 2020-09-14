@@ -24,12 +24,12 @@ public class GameEndingWorks {
         gameEndingScene = new GameEndingScene();
     }
 
-    protected void gameEndSceneSetter(int combinationNo, Color lineColor, int winPlayerIndicator){
+    protected void gameEndLineDrawerAndSceneSetter(int combinationNo, Color lineColor, int winPlayerIndicator){
         drawRowWinLineAndSetScene(combinationNo, lineColor, winPlayerIndicator);
         drawColumnWinLineAndSetScene(combinationNo, lineColor, winPlayerIndicator);
         drawMainDiagonalWinLineAndSetScene(combinationNo, lineColor, winPlayerIndicator);
         drawAuxiliaryDiagonalWinLineAndSetScene(combinationNo, lineColor, winPlayerIndicator);
-        drawDrawScene(combinationNo);
+        setDrawScene(combinationNo);
     }
 
     private void drawRowWinLineAndSetScene(int combinationNo, Color lineColor, int winPlayerIndicator){
@@ -60,7 +60,7 @@ public class GameEndingWorks {
         }
     }
 
-    private void drawDrawScene(int combinationNo){
+    private void setDrawScene(int combinationNo){
         if(combinationNo == 8) {
             setGameEndScene(2);
         }
