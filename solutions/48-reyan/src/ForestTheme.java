@@ -35,7 +35,7 @@ public class ForestTheme extends ThemeIntermediate {
 
     public void makeMoveInATile(Tile tile){
         setPlayerInTile(tile,"flower.jpg",null, true);
-        if(gameEndChecker.getDrawWinChecker().getNotEndFlag()) aiPlayer();
+        if(gameEndChecker.getNotEndFlag()) aiPlayer();
     }
 
     public void aiPlayer(){

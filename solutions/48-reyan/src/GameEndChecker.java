@@ -22,7 +22,7 @@ public class GameEndChecker {
         }
     }
 
-    protected DrawWinChecker getDrawWinChecker(){
-        return drawWinChecker;
+    protected boolean getNotEndFlag(){
+        return drawWinChecker.getNotEndFlag();
     }
 }

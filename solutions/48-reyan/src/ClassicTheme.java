@@ -32,7 +32,7 @@ public class ClassicTheme extends ThemeIntermediate {
 
     public void makeMoveInATile(Tile tile){
         setPlayerInTile(tile, "X",null,true);
-        if(gameEndChecker.getDrawWinChecker().getNotEndFlag()) aiPlayer();
+        if(gameEndChecker.getNotEndFlag()) aiPlayer();
     }
 
     public void aiPlayer(){

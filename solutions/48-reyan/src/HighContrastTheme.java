@@ -38,7 +38,7 @@ public class HighContrastTheme extends ThemeIntermediate {
 
     public void makeMoveInATile(Tile tile){
         setPlayerInTile(tile, null, Color.BLACK, true);
-        if(gameEndChecker.getDrawWinChecker().getNotEndFlag()) aiPlayer();
+        if(gameEndChecker.getNotEndFlag()) aiPlayer();
     }
 
     public void aiPlayer(){
