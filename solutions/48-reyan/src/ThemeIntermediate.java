@@ -11,12 +11,14 @@ public abstract class ThemeIntermediate implements Theme {
     private Tile[] tiles;
     private Line[] lines;
 
+    private AIPlayer aiPlayer;
     private GameEndChecker gameEndChecker;
     private CurrentStateOfGame currentStateOfGame;
 
-    protected ThemeIntermediate(GameStage gameStage){
+    protected ThemeIntermediate(GameStage gameStage, AIPlayer aiPlayer){
         tiles = gameStage.getTiles();
         lines = gameStage.getLines();
+        this.aiPlayer = aiPlayer;
 
         gameEndChecker = new GameEndChecker();
         gameEndChecker.initializeGameEndChecker(gameStage);
@@ -54,22 +56,29 @@ public abstract class ThemeIntermediate implements Theme {
         }
     }
 
-    protected Tile[] getThemeTiles(){
-        return tiles;
+    public void makeMoveInATile(Tile tile){
+        setHumanPlayer(tile);
+        if(gameEndChecker.getNotEndFlag()) aiPlayer();
     }
 
-    protected GameEndChecker getGameEndChecker() {
-        return gameEndChecker;
+    public void aiPlayer(){
+        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getTilesOccupiedByPlayers());
+        setAIPlayer(tiles[tileNo]);
     }
 
-    protected CurrentStateOfGame getCurrentStateOfGame(){
-        return currentStateOfGame;
+    public void setPlayerInTile(Tile tile, String playerSymbol, Color tileBackGroundColor, Color lineColor, boolean isHuman){
+        if(!tile.getIsOccupied()){
+            setThemePlayer(tile, playerSymbol, tileBackGroundColor);
+            tile.setIsOccupied(true);
+            tile.setIsHuman(isHuman);
+            gameEndChecker.gameEndChecker(lineColor);
+        }
     }
+
+    protected void setHumanPlayer(Tile tile){}
+    protected void setAIPlayer(Tile tile){}
+    protected void setThemePlayer(Tile tile, String playerSymbol, Color tileBackGroundColor){}
 
     public void setChangedHumanPlayer(Tile tile){}
     public void setChangedAIPlayer(Tile tile){}
-    public void makeMoveInATile(Tile tile){}
-    public void aiPlayer(){}
-    public void setPlayerInTile(Tile tile, String string, Color color, boolean isHuman){}
-
 }

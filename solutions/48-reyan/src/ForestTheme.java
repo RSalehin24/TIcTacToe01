@@ -4,21 +4,8 @@ import javafx.scene.paint.Color;
 
 public class ForestTheme extends ThemeIntermediate {
 
-    private Tile[] tiles;
-
-    private GameEndChecker gameEndChecker;
-    private CurrentStateOfGame currentStateOfGame;
-    private AIPlayer aiPlayer;
-
-
     protected ForestTheme(GameStage gameStage, AIPlayer aiPlayer){
-        super(gameStage);
-        this.aiPlayer = aiPlayer;
-
-        tiles = super.getThemeTiles();
-        gameEndChecker = super.getGameEndChecker();
-        currentStateOfGame = super.getCurrentStateOfGame();
-
+        super(gameStage, aiPlayer);
         super.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         super.prepareTileAndChangeThemePlayerSign(Color.LIGHTGREEN);
         super.setThemeInTiles(this);
@@ -32,24 +19,16 @@ public class ForestTheme extends ThemeIntermediate {
         createImageViewByPlayer("fruit.jpg", tile);
     }
 
-    public void makeMoveInATile(Tile tile){
-        setPlayerInTile(tile,"flower.jpg",null, true);
-        if(gameEndChecker.getNotEndFlag()) aiPlayer();
+    protected void setHumanPlayer(Tile tile) {
+        super.setPlayerInTile(tile, "flower.jpg",null, Color.DARKGREEN, true);
     }
 
-    public void aiPlayer(){
-        int tileNo = aiPlayer.getAIPlayerTileNo(currentStateOfGame.getTilesOccupiedByPlayers());
-        setPlayerInTile(tiles[tileNo],"fruit.jpg", null, false);
+    protected void setAIPlayer(Tile tile) {
+        super.setPlayerInTile(tile, "fruit.jpg", null, Color.DARKGREEN, false);
     }
 
-
-    public void setPlayerInTile(Tile tile, String playerSpecifiedImageName, Color color, boolean isHuman){
-        if(!tile.getIsOccupied()) {
-            createImageViewByPlayer(playerSpecifiedImageName, tile);
-            tile.setIsOccupied(true);
-            tile.setIsHuman(isHuman);
-            gameEndChecker.gameEndChecker(Color.DARKGREEN);
-        }
+    protected void setThemePlayer(Tile tile, String playerSymbol, Color tileBackGroundColor){
+        createImageViewByPlayer(playerSymbol, tile);
     }
 
     private void createImageViewByPlayer(String imageName, Tile tile){
