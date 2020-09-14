@@ -10,7 +10,6 @@ public class HighContrastTheme extends ThemeIntermediate {
 
     private GameEndChecker gameEndChecker;
     private CurrentStateOfGame currentStateOfGame;
-    private GameStage gameStage;
     private AIPlayer aiPlayer;
 
 

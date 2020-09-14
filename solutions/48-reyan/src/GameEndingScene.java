@@ -15,7 +15,7 @@ public class GameEndingScene {
         Label labelOne = createLabel(stringForLabelOne,"#ff0000");
         Label labelTwo = createLabel(stringForLabelTwo, "#228b22");
 
-        VBox vBox = creatVBox(labelOne, labelTwo);
+        VBox vBox = createVBox(labelOne, labelTwo);
 
         return new Scene(vBox, 600, 380);
     }
@@ -39,7 +39,7 @@ public class GameEndingScene {
         return label;
     }
 
-    protected VBox creatVBox(Label labelOne, Label labelTwo){
+    protected VBox createVBox(Label labelOne, Label labelTwo){
         VBox vBox = new VBox(5);
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(labelOne, labelTwo);
