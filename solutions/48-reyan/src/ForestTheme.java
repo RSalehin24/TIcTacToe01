@@ -4,7 +4,6 @@ import javafx.scene.paint.Color;
 
 public class ForestTheme extends ThemeIntermediate {
 
-
     private Tile[] tiles;
 
     private GameEndChecker gameEndChecker;
