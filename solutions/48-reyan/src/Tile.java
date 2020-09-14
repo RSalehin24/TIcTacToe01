@@ -1,6 +1,11 @@
+import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -32,6 +37,14 @@ public class Tile extends StackPane {
                 if(!isOccupied) theme.makeMoveInATile(this);
             }
         });
+    }
+
+    public void removeExtensionsFromTile(Color tileBackGroundColor) {
+        if (this.getIsOccupied()) {
+            if (this.getHasImageView()) { this.getChildren().remove(this.getImageView()); }
+            this.setText("");
+            this.setBackground(new Background(new BackgroundFill(tileBackGroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
     }
 
     protected void setTheme(Theme theme){ this.theme = theme;}

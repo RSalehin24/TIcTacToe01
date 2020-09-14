@@ -30,10 +30,14 @@ public class HighContrastTheme extends ThemeMiddler {
 
     public void changePlayerSign(Tile tile) {
         if (tile.getIsHuman()) {
-            tile.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+            setChangedPlayer(tile, null, Color.BLACK);
         } else {
-            tile.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+            setChangedPlayer(tile, null, Color.WHITE);
         }
+    }
+
+    public void setChangedPlayer(Tile tile, String string, Color backGroundColor){
+        tile.setBackground(new Background(new BackgroundFill(backGroundColor, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     public void makeMoveInATile(Tile tile){

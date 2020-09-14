@@ -28,11 +28,15 @@ public class ForestTheme extends ThemeMiddler {
 
     public void changePlayerSign(Tile tile){
         if(tile.getIsHuman()){
-            createImageViewByPlayer("flower.jpg", tile);
+            setChangedPlayer(tile, "flower.jpg", null);
         }
         else {
-            createImageViewByPlayer("fruit.jpg", tile);
+            setChangedPlayer(tile, "fruit.jpg", null);
         }
+    }
+
+    public void setChangedPlayer(Tile tile, String string, Color backGroundColor){
+        createImageViewByPlayer(string, tile);
     }
 
     public void makeMoveInATile(Tile tile){

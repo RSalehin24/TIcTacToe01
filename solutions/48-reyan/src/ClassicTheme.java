@@ -24,9 +24,15 @@ public class ClassicTheme extends ThemeMiddler {
 
     public void changePlayerSign(Tile tile) {
         if(tile.getIsHuman()){
-            tile.setText("X");
+            setChangedPlayer(tile, "X", null);
         }
-        else { tile.setText("O");}
+        else{
+            setChangedPlayer(tile, "O", null);
+        }
+    }
+
+    public void setChangedPlayer(Tile tile, String string, Color backGroundColor){
+        tile.setText(string);
     }
 
     public void makeMoveInATile(Tile tile){
