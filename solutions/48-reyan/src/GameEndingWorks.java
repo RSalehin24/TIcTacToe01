@@ -32,14 +32,14 @@ public class GameEndingWorks {
         hasNotEnd = drawVerticalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
         hasNotEnd = drawMainDiagonalWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
         hasNotEnd = drawAuxiliaryWinLineAndSetScene(combinationNo, hasNotEnd, lineColor, winPlayerIndicator);
-        hasNotEnd = drawScene(combinationNo, hasNotEnd);
+        hasNotEnd = drawDrawScene(combinationNo, hasNotEnd);
 
         return hasNotEnd;
     }
 
-    private boolean notDrawNotWinOptimizer(int k){
+    private boolean notDrawNotWinOptimizer(int combinationNo){
         boolean hasNotEnd = false ;
-        if(k==-1) hasNotEnd = true;
+        if(combinationNo ==-1) hasNotEnd = true;
         return hasNotEnd;
     }
 
@@ -88,7 +88,7 @@ public class GameEndingWorks {
         return hasNotEnd;
     }
 
-    private boolean drawScene(int combinationNo, boolean hasNotEnd){
+    private boolean drawDrawScene(int combinationNo, boolean hasNotEnd){
         if(hasNotEnd){
             if(combinationNo == 8){
                 setGameEndScene(2);

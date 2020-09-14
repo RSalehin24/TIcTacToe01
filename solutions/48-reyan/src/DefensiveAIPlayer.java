@@ -10,11 +10,11 @@ public class DefensiveAIPlayer implements AIPlayer{
         int tileNo = -1;
 
         tileNo = checkTileNoFour(tileNo, occupiedTiles);
-        tileNo = checkVerticalTile(tileNo, occupiedTiles);
-        tileNo = checkHorizontalCombination(tileNo, occupiedTiles);
-        tileNo = checkMainDiagonalTile(tileNo, occupiedTiles);
-        tileNo = checkAuxiiaryDiagonalTile(tileNo, occupiedTiles);
-        tileNo = randomTileNo(tileNo, occupiedTiles);
+        tileNo = checkHorizontalCombinations(tileNo, occupiedTiles);
+        tileNo = checkVerticalTileCombinations(tileNo, occupiedTiles);
+        tileNo = checkMainDiagonalTiles(tileNo, occupiedTiles);
+        tileNo = checkAuxliaryDiagonalTiles(tileNo, occupiedTiles);
+        tileNo = returnRandomTileNo(tileNo, occupiedTiles);
 
         return tileNo;
     }
@@ -26,7 +26,7 @@ public class DefensiveAIPlayer implements AIPlayer{
         return tileNo;
     }
 
-    private int checkHorizontalCombination(int tileNo, boolean[][] occupiedTiles){
+    private int checkHorizontalCombinations(int tileNo, boolean[][] occupiedTiles){
         for (int i=0; i<9; i += 3) {
             tileNo = checkTheTiles(tileNo, occupiedTiles, i, i+1, i+2);
             tileNo = checkTheTiles(tileNo, occupiedTiles, i, i+2, i+1);
@@ -35,7 +35,7 @@ public class DefensiveAIPlayer implements AIPlayer{
         return tileNo;
     }
 
-    private int checkVerticalTile(int tileNo, boolean[][] occupiedTiles){
+    private int checkVerticalTileCombinations(int tileNo, boolean[][] occupiedTiles){
         for(int i=0; i<3; i++){
             tileNo = checkTheTiles(tileNo, occupiedTiles, i, i+3, i+6);
             tileNo = checkTheTiles(tileNo, occupiedTiles, i, i+6, i+3);
@@ -44,7 +44,7 @@ public class DefensiveAIPlayer implements AIPlayer{
         return tileNo;
     }
 
-    private int checkMainDiagonalTile(int tileNo, boolean[][] occupiedTiles){
+    private int checkMainDiagonalTiles(int tileNo, boolean[][] occupiedTiles){
         for(int i=0; i<3; i++){
             tileNo = checkTheTiles(tileNo, occupiedTiles, 0, 4, 8);
             tileNo = checkTheTiles(tileNo, occupiedTiles, 0, 8, 4);
@@ -53,7 +53,7 @@ public class DefensiveAIPlayer implements AIPlayer{
         return tileNo;
     }
 
-    private int checkAuxiiaryDiagonalTile(int tileNo, boolean[][] occupiedTiles){
+    private int checkAuxliaryDiagonalTiles(int tileNo, boolean[][] occupiedTiles){
         for(int i=0; i<3; i++){
             tileNo = checkTheTiles(tileNo, occupiedTiles, 2, 4, 6);
             tileNo = checkTheTiles(tileNo, occupiedTiles, 2, 6, 4);
@@ -71,7 +71,7 @@ public class DefensiveAIPlayer implements AIPlayer{
         return  tileNo;
     }
 
-    private int randomTileNo(int tileNo, boolean[][] occupiedTiles){
+    private int returnRandomTileNo(int tileNo, boolean[][] occupiedTiles){
         if(tileNo == -1){
             tileNo = randomAIPlayer.getAIPlayerTileNo(occupiedTiles);
         }
