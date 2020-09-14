@@ -2,7 +2,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
-public class ForestTheme extends ThemeCommonJobs {
+public class ForestTheme extends ThemeIntermediate {
 
 
     private Tile[] tiles;
@@ -23,7 +23,7 @@ public class ForestTheme extends ThemeCommonJobs {
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.LIGHTGREEN, Color.DARKGREEN);
         super.prepareTileAndChangeThemePlayerSign(Color.LIGHTGREEN);
-        gameStage.setThemeInTiles(this);
+        super.setThemeInTiles(this);
     }
 
     public void setChangedHumanPlayer(Tile tile){

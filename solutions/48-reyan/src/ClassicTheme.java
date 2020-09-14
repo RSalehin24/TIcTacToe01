@@ -1,6 +1,6 @@
 import javafx.scene.paint.Color;
 
-public class ClassicTheme extends ThemeCommonJobs {
+public class ClassicTheme extends ThemeIntermediate {
 
     private Tile[] tiles;
 
@@ -19,7 +19,7 @@ public class ClassicTheme extends ThemeCommonJobs {
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.WHITE, Color.BLACK);
         super.prepareTileAndChangeThemePlayerSign(Color.WHITE);
-        gameStage.setThemeInTiles(this);
+        super.setThemeInTiles(this);
     }
 
     public void setChangedHumanPlayer(Tile tile){

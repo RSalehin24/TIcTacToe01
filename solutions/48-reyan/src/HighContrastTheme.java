@@ -4,7 +4,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
-public class HighContrastTheme extends ThemeCommonJobs {
+public class HighContrastTheme extends ThemeIntermediate {
 
     private Tile[] tiles;
 
@@ -25,7 +25,7 @@ public class HighContrastTheme extends ThemeCommonJobs {
 
         gameStage.thingsToChangePerTheme(gameStage.getPaneOfGame(), Color.DARKGREY, Color.LIGHTGREY);
         super.prepareTileAndChangeThemePlayerSign(Color.DARKGREY);
-        gameStage.setThemeInTiles(this);
+        super.setThemeInTiles(this);
     }
 
     public void setChangedHumanPlayer(Tile tile){

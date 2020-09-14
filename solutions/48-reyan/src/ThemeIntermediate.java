@@ -1,9 +1,9 @@
 import javafx.scene.paint.Color;
 
-public abstract class ThemeCommonJobs implements Theme {
+public abstract class ThemeIntermediate implements Theme {
     private Tile[] tiles;
 
-    protected ThemeCommonJobs(GameStage gameStage){
+    protected ThemeIntermediate(GameStage gameStage){
         tiles = gameStage.getTiles();
     }
 
@@ -22,6 +22,12 @@ public abstract class ThemeCommonJobs implements Theme {
         }
         else{
             setChangedAIPlayer(tile);
+        }
+    }
+
+    public void setThemeInTiles(Theme theme){
+        for(int i=0; i<9; i++){
+            tiles[i].setTheme(theme);
         }
     }
 

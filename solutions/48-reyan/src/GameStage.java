@@ -97,12 +97,6 @@ public class GameStage {
         }
     }
 
-    protected void setThemeInTiles(Theme theme){
-        for(int i=0; i<9; i++){
-            tiles[i].setTheme(theme);
-        }
-    }
-
     protected Pane getPaneOfGame(){ return paneOfGame; }
     protected Stage getStageOfGame(){ return stageOfGame; }
     protected Tile[] getTiles(){ return tiles; }
