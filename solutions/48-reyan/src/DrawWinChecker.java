@@ -15,7 +15,7 @@ public class DrawWinChecker {
         return combinationNo;
     }
 
-    private int checkRowAndColumnTiles(int combinationNo, boolean[] firstPlayer){
+    protected int checkRowAndColumnTiles(int combinationNo, boolean[] firstPlayer){
         for (int i=0, k=0; i<9; i+= 3, k++) {
             combinationNo = checkingIfThreeTilesHaveMatched(combinationNo, k, i, i+1, i+2, firstPlayer);
             combinationNo = checkingIfThreeTilesHaveMatched(combinationNo,k+3, k, k+3, k+6, firstPlayer);
@@ -23,12 +23,12 @@ public class DrawWinChecker {
         return combinationNo;
     }
 
-    private int checkMainDiagonalTiles(int combinationNo, boolean[] firstPlayer){
+    protected int checkMainDiagonalTiles(int combinationNo, boolean[] firstPlayer){
         combinationNo = checkingIfThreeTilesHaveMatched(combinationNo, 6, 0, 4, 8, firstPlayer);
         return combinationNo;
     }
 
-    private int checkAuxiliaryDiagonalTiles(int combinationNo, boolean[] firstPlayer){
+    protected int checkAuxiliaryDiagonalTiles(int combinationNo, boolean[] firstPlayer){
         combinationNo = checkingIfThreeTilesHaveMatched(combinationNo, 7, 2, 4, 6, firstPlayer);
         return combinationNo;
     }
@@ -48,7 +48,7 @@ public class DrawWinChecker {
         return combinationNo;
     }
 
-    private int checkingIfThreeTilesHaveMatched(int combinationNo, int updatedCombinationNo, int tileOne, int tileTwo, int tileThree, boolean[] firstPlayer){
+    protected int checkingIfThreeTilesHaveMatched(int combinationNo, int updatedCombinationNo, int tileOne, int tileTwo, int tileThree, boolean[] firstPlayer){
         if(combinationNo == -1){
             if (firstPlayer[tileOne] && firstPlayer[tileTwo] && firstPlayer[tileThree]) {
                 combinationNo = updatedCombinationNo;
